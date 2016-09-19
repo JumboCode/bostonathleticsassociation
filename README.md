@@ -1,2 +1,6 @@
-# 
- Spencer Perry - JumboCode_BostonAthleticsAssociation
+
+ Spencer Perry
+ JumboCode_BostonAthleticsAssociation
+
+Ian Luo
+
