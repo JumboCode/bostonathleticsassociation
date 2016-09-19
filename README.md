@@ -1,2 +1,4 @@
 # JumboCode_BostonAthleticsAssociation
-Ian Luo Ryan Osgood Michael Morisi
+Ian Luo
+Ryan Osgood
+Michael Morisi
