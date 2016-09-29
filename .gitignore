@@ -3,3 +3,4 @@ back-end/env
 *.sqlite3
 __pycache__/
 *.DS_Store
+node_modules

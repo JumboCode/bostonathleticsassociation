@@ -24,6 +24,6 @@ For this project, we will maintain two branches, `master` and `dev`. The master 
 * To commit: `git add --all && git commit -m "Meaningful message here" && git push origin dev`
 * Merge to master: `git checkout master && git merge dev && git push origin master`
 * When you only wanna merge certain commits: `git checkout master && git cherry-pick COMMIT-HASH && git push origin master`
-* [How to create other branches](http://stackoverflow.com/questions/1519006/how-do-you-create-a-remote-git-branch)
+* [How to create other branches](http://stackoverflow.com/questions/1519006/how-do-you-create-a-remote-git-branchgit )
 
 
