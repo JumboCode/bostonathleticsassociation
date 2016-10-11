@@ -15,7 +15,32 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls import url, include
+from api.models import *
+
+from rest_framework import routers, serializers, viewsets
+
+class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Volunteer
+        fields = ('name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
+                  'jacket_size', 'status', 'team_captain')
+
+
+#Viewsets define the view behavior
+
+class VolunteerViewSet(viewsets.ModelViewSet):
+    queryset = Volunteer.objects.all()
+    serializer_class = VolunteerSerializer
+
+# routers
+
+router = routers.DefaultRouter()
+router.register(r'volunteers', VolunteerViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(router.urls)),
+    url(r'^api/', include('rest_framework.urls', namespace='rest_framework'))
 ]
