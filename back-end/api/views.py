@@ -1,11 +1,20 @@
-from django.shortcuts import render
-from rest_framework import  status
 from .models import Volunteer
+from .serializers import VolunteerSerializer
+from rest_framework import generics
 
-from rest_framework.response import Response
-from rest_framework.views import  APIView
+# generic view patterns documented http://www.django-rest-framework.org/tutorial/3-class-based-views/
 
-from rest_framework import authentication, permissions
+#returns all volunteers
+class VolunteerList(generics.ListCreateAPIView):
+    queryset = Volunteer.objects.all()
+    serializer_class = VolunteerSerializer
+
+#returns specific volunteer, ability to update, delete as well
+class VolunteerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Volunteer.objects.all()
+    serializer_class = VolunteerSerializer
 
 
-# Create your views here.
+
+
+

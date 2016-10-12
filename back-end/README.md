@@ -38,7 +38,13 @@ Note: Steps 4, 6, 7 and 11 are necessary every time! The admin page is at `local
 3. Who's Doing What?
 ======
 
-API:
+4. API:
 
-Interface: 
+Interface:
 
+1) The current interface for the api can be read in nicely generated doc form by going to "localhost:8000/docs"
+
+2) The current permission set allows for anyone to perform the GET requests, but requires the user to be signed in to
+   django/admin in order to post or delete data.
+
+======

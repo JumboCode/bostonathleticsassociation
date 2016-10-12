@@ -13,34 +13,20 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+
 from django.contrib import admin
 from django.conf.urls import url, include
-from api.models import *
 
-from rest_framework import routers, serializers, viewsets
-
-class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Volunteer
-        fields = ('name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
-                  'jacket_size', 'status', 'team_captain')
-
-
-#Viewsets define the view behavior
-
-class VolunteerViewSet(viewsets.ModelViewSet):
-    queryset = Volunteer.objects.all()
-    serializer_class = VolunteerSerializer
 
 # routers
 
-router = routers.DefaultRouter()
-router.register(r'volunteers', VolunteerViewSet)
+#router = routers.DefaultRouter()
+#router.register(r'volunteers/$', )
+
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include(router.urls)),
-    url(r'^api/', include('rest_framework.urls', namespace='rest_framework'))
-]
+    url(r'^api/', include('api.urls')),
+    url(r'docs/', include('rest_framework_docs.urls'))
+    ]
