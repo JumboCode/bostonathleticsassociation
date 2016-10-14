@@ -7,8 +7,11 @@ fieldnames = ("Vol Name","Status","City","State","Phone","Email","Service Years"
 reader = csv.DictReader(csvfile, fieldnames)
 
 jsonfile.write('[\n')
+count = 0
 for row in reader:
-    json.dump(row, jsonfile)
-    jsonfile.write(',')
-    jsonfile.write('\n')
+    if count != 0:
+        json.dump(row, jsonfile)
+        jsonfile.write(',')
+        jsonfile.write('\n')
+    count += 1
 jsonfile.write(']')
