@@ -30,8 +30,8 @@ angular.module('starter', ['ionic'])
       // Prompt popup code
       $scope.showPrompt = function() {
         var promptPopup = $ionicPopup.prompt({
-          title: 'Ionic Popup',
-          template: 'This is prompt popup'
+          title: 'Volunteer Name',
+          template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">julia.grace@tufts.edu</div><hr><div class="row">email</div><br><div class="row">617-763-8095</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Medford</div><div class="col col-50">MA</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
         });
         promptPopup.then(function(res) {
           if(res) {
@@ -50,7 +50,7 @@ angular.module('starter', ['ionic'])
 
         var myPopup = $ionicPopup.show({
           template: ' Enter Password<input type="password" ng-model="data.userPassword">   <br> Enter Confirm Password  <input type="password" ng-model="data.confirmPassword" > ',
-          title: 'Enter Password',
+          title: 'Volunteer Name',
           subTitle: 'Please use normal things',
 
           scope: $scope,
