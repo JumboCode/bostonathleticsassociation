@@ -53,7 +53,7 @@ Interface:
   (currently) very small data set that can be used to seed local databases.
 
   In order to seed a local database - simply call python manage.py loaddata <filename> where in this case the file name
-  is "volunteers_small.json"
+  is "data_small.json"
 
 2) This data lives in the repo, so although the command will most likely only be called once - it can be called
    whenever a database needs to be re-initialized with data.
