@@ -8,6 +8,9 @@ urlpatterns = [
 #    url(r'^', include('rest_framework.urls', namespace='rest_framework')),
     url(r'volunteers$', views.VolunteerList.as_view()),
     url(r'volunteers/(?P<pk>[0-9]+)/$', views.VolunteerDetail.as_view()),
+    url(r'events$', views.EventList.as_view()),
+    url(r'events/(?P<pk>[0-9]+)/$', views.EventDetail.as_view()),
 ]
+
 
 urlpatterns = format_suffix_patterns(urlpatterns)

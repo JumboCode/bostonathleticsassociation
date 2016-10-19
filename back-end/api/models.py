@@ -11,3 +11,15 @@ class Volunteer(models.Model):
     jacket_size = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
     team_captain = models.CharField(max_length=30)
+
+class Event(models.Model):
+    name = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    duration = models.IntegerField()
+    location = models.CharField(max_length=40)
+    street = models.TextField(null=True)
+    city = models.TextField(null=True)
+    state = models.TextField(null=True)
+    z_code = models.TextField(null=True)
+    notes = models.TextField(null=True)
+

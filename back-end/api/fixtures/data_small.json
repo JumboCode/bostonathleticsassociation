@@ -1,5 +1,21 @@
 [
   {
+    "model": "api.event",
+    "pk": "1",
+    "fields": {
+      "name": "Marathon",
+      "date": "2016-10-19T09:00:41Z",
+      "duration": "4",
+      "location": "My dorm",
+      "street": "421 Latin Way",
+      "city": "Somerville",
+      "state": "MA",
+      "z_code": "02155",
+      "notes": "It'll be lit! Come thrrruuu"
+    }
+  },
+
+  {
     "model": "api.volunteer",
     "pk": 1,
     "fields": {
