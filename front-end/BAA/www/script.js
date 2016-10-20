@@ -1,5 +1,16 @@
 angular.module('starter', ['ionic'])
-    .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
+    .controller('PopupCtrl',function($scope, $ionicPopup, $timeout, $http) {
+
+      $http({
+        method: 'GET',
+        url: '/api/volunteers'
+      }).then(function successCallback(response) {
+          console.log(response);
+      }, function errorCallback(response) {
+          console.log(response);
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
 
       // An alert dialog
       $scope.showAlert = function() {
@@ -94,3 +105,6 @@ angular.module('starter', ['ionic'])
       };
 
     });
+
+
+
