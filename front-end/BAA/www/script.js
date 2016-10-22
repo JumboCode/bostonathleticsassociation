@@ -3,11 +3,14 @@ angular.module('starter', ['ionic'])
 
       $http({
         method: 'GET',
-        url: '/api/volunteers'
+        url: '/api/volunteers',
+        withCredentials: true
       }).then(function successCallback(response) {
-          console.log(response);
+          console.log('hello');
+          console.log(response.data[1]);
       }, function errorCallback(response) {
-          console.log(response);
+          console.log('error');
+          console.log(response[1].name);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
       });
