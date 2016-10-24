@@ -1,4 +1,4 @@
-from .models import Volunteer, Event
+from .models import *
 from .serializers import VolunteerSerializer, EventSerializer
 from rest_framework import generics
 
