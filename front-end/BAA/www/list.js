@@ -1,6 +1,21 @@
 angular.module('ionicApp', ['ionic'])
 
-.controller('MyCtrl', function($scope) {
+
+
+.controller('MyCtrl', function($scope, $http) {
+    $http({
+        method: 'GET',
+        url: '/api/volunteers',
+        withCredentials: true
+      }).then(function successCallback(response) {
+          console.log('hello');
+          console.log(response.data[1]);
+      }, function errorCallback(response) {
+          console.log('error');
+          console.log(response[1].name);
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
   
   $scope.data = {
     showDelete: false
