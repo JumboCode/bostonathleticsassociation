@@ -5,6 +5,8 @@
 	padding-top: 339px;
 	padding-left: 17%;
 	padding-right: 17%;
+	display:inline-block;
+	float: center;
 }
 
 .item-input {
@@ -20,27 +22,9 @@
 }
 
 #userpng {
-	position: absolute;
-	top: 350px;
-	left: 70%;
+	padding-top: 341px;
 }
 
 #lockpng {
-	position: absolute;
-	top: 403px;
-	left: 70%;
+	padding-top: 345px;
 }
-
-#login {
-	display:inline-block;
-	float: center;
-	text-align: center;
-	width: 100%;
-	padding-left: 17%;
-	padding-right: 17%;
-	padding-top: 7%;
-
-	/*position: absolute;*/
-}
-
-
