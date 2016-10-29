@@ -25,34 +25,6 @@
     <script src="cordova.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
-     <script>
-angular.module('todo', ['ionic'])
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
-})
-.controller('MainCtrl', function($scope, $ionicPopup) {
-$scope.showAlert = function() {
-   var alertPopup = $ionicPopup.alert({
-     title: 'Try again later!',
-     template: 'No Connection Found.'
-   });
- 
-   alertPopup.then(function(res) {
-     console.log('Thank you for advice.');
-   });
- };
-});
- 
-</script>
 </head>
 
 <body ng-app="starter">
@@ -61,20 +33,23 @@ $scope.showAlert = function() {
             <h1 class="title">Sign In Page</h1>
         </ion-header-bar>
         <ion-content>
-            <div class="list">
+            <span id="userpng"> <img src="css/user.png" height="20px" width="20px"> </span>
+            <span id="lockpng"> <img src="css/lock.png" height="20px" width="20px"> </span>
+            <div class="inputs">
                 <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" id="user">
+                    <input type="text" placeholder="Username" id="user">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password">
+                    <input type="password" placeholder="Password" id="pass">
                 </label>
             </div>
-            <button class="button button-large button-positive">
-                Sign In
-            </button>
-            <br><a href="list.html"> list.html </a><br>
+            <span id="login"> <img src="css/sign_in.png" height="50px"> </span>
+
+
+
+            <!-- <button class="button button-block button-calm" onclick="getCredentials()">Login</button> -->
+            <br><a href="list.html"> list.html </a>
+            <br>
             <a href="profile.html"> profile.html </a>
         </ion-content>
     </ion-pane>

@@ -1,1 +1,44 @@
 /* Empty. Add your own CSS if you like */
+
+.inputs {
+	width: 100%;
+	padding-top: 339px;
+	padding-left: 17%;
+	padding-right: 17%;
+}
+
+.item-input {
+	border-radius: 25px;
+	margin-bottom: 7px;
+	opacity: 0.5;
+}
+
+.scroll-content {
+	background-image: url("sign_in_background_1024.png");
+	background-size: cover;
+	/*position:relative;*/
+}
+
+#userpng {
+	position: absolute;
+	top: 350px;
+	left: 70%;
+}
+
+#lockpng {
+	position: absolute;
+	top: 403px;
+	left: 70%;
+}
+
+#login {
+	display:inline-block;
+	float: center;
+	text-align: center;
+	width: 100%;
+	padding-left: 17%;
+	padding-right: 17%;
+	padding-top: 7%;
+
+	/*position: absolute;*/
+}
