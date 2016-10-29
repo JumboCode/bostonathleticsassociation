@@ -28,5 +28,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('api.urls')),
-    url(r'docs/', include('rest_framework_docs.urls'))
+    url(r'docs/', include('rest_framework_docs.urls')),
+    url(r'interface', include('interface.urls'))
     ]
