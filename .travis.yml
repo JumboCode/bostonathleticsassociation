@@ -1,0 +1,15 @@
+language: python
+
+python:
+  - "3.4"
+
+services: postgresql
+
+env:
+  - Django==1.10.2
+
+install:
+  pip install -r back-end/requirements.txt
+
+script:
+  - python back-end/manage.py test 
