@@ -10,3 +10,6 @@ env:
 
 install:
   pip install -r back-end/requirements.txt
+
+script:
+  - python manage.py test 
