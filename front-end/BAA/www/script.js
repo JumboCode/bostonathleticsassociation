@@ -1,7 +1,7 @@
 angular.module('starter', ['ionic'])
     .controller('PopupCtrl',function($scope, $ionicPopup, $timeout, $http) {
 
-      $http({
+      /*$http({
         method: 'GET',
         url: '/api/volunteers',
         withCredentials: true
@@ -39,10 +39,11 @@ angular.module('starter', ['ionic'])
             console.log('You clicked on "Cancel" button');
           }
         });
-      };
+      };*/
 
       // Prompt popup code
       $scope.showPrompt = function() {
+        console.log('in popup');
 
 
       $http({
