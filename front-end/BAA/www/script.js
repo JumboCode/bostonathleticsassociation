@@ -43,10 +43,30 @@ angular.module('starter', ['ionic'])
 
       // Prompt popup code
       $scope.showPrompt = function() {
-        var promptPopup = $ionicPopup.prompt({
-          title: 'Volunteer Name',
-          template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">julia.grace@tufts.edu</div><hr><div class="row">email</div><br><div class="row">617-763-8095</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Medford</div><div class="col col-50">MA</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
-        });
+
+
+      $http({
+        method: 'GET',
+        url: '/api/volunteers',
+        withCredentials: true
+      }).then(function successCallback(response) {
+          console.log('in pop up');
+          console.log(response.data[1]);
+          var promptPopup = $ionicPopup.prompt({
+            title: response.data[1].name,
+            template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">iamthebest.michaeljordan</div><hr><div class="row">email</div><br><div class="row">3243423423</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Chicago</div><div class="col col-50">Illinois</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
+          });
+      }, function errorCallback(response) {
+          console.log('error');
+          console.log(response[1].name);
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
+
+        //var promptPopup = $ionicPopup.prompt({
+        //  title: 'Volunteer Name',
+        //  template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">julia.grace@tufts.edu</div><hr><div class="row">email</div><br><div class="row">617-763-8095</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Medford</div><div class="col col-50">MA</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
+        //});
         promptPopup.then(function(res) {
           if(res) {
             console.log('Your input is ',res);
