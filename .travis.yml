@@ -12,4 +12,4 @@ install:
   pip install -r back-end/requirements.txt
 
 script:
-  - python manage.py test 
+  - python back-end/manage.py test 
