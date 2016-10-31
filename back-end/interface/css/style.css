@@ -1,0 +1,32 @@
+@font-face {
+    font-family: FrutigerCELight;
+    src: url("../fonts/Frutiger CE 45 Light.ttf");
+}
+
+@font-face {
+    font-family: FrutigerCERoman;
+    src: url("../fonts/Frutiger CE 45 Light.ttf");
+}
+
+@font-face {
+    font-family: FrutigerLTBoldCondensed;
+    src: url("../fonts/Frutiger CE 45 Light.ttf");
+}
+
+#left-col {
+    float: left;
+    width: 33%;
+    height: 100%;
+    background-color: #EC9591;
+    font-size: 2rem;
+    font-family: FrutigerCELight;
+}
+
+#right-col {
+    float: right;
+    width: 66%;
+    height: 100%;
+    background: url("../images/BAALogo.png") no-repeat center;
+    font-size: 12.5rem;
+    font-family: FrutigerCELight;
+}
