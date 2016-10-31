@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "3.4"
+
+services: postgresql
+
+env:
+  - Django==1.10.2
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=BAA.settings.dev
+
+install:
+  - pip install -r back-end/requirements.txt
+  - pip install psycopg2 --quiet
+
+before_script:
+  - psql -c "CREATE DATABASE travisci;" -U postgres
+
+script:
+  - python back-end/manage.py migrate
+  - python back-end/manage.py test 

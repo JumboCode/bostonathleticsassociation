@@ -41,7 +41,7 @@
 
         <ion-item ng-repeat="item in items" 
                   item="item"
-                  href="#/item/{{item.id}}" class="item-remove-animate">
+                  href="#/item/{{item.id}}" class="item-remove-animate" class="button button-primary" ng-click="showPrompt()">
             {{item.name}}
          
           <ion-delete-button class="ion-minus-circled" 
