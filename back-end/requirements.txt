@@ -1,4 +1,3 @@
 Django
 djangorestframework
 drfdocs
-psycopg2
