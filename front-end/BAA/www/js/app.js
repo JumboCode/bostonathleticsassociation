@@ -25,10 +25,20 @@ angular.module('starter', ['ionic'])
     });
 })
 
-getCredentials = function(){
-    var user = document.getElementById("user").value;
-    var pass = document.getElementById("pass").value;
+checkCredentials = function(){
+        var user = document.getElementById("user").value;
+        var pass = document.getElementById("pass").value;
+
+        alert(user + pass);
+    //alert("invalid login");
+	//window.locations.href = "list.html";
 };
+
+
+
+
+
+
 
 
 
