@@ -12,7 +12,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='event',
+            name='duration',
+        ), 
+        migrations.AddField(
             model_name='event',
             name='duration',
             field=models.IntegerField(),
