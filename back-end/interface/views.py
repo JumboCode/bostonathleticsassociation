@@ -9,4 +9,4 @@ def view(request, event_id):
     pass
 
 def index(request):
-    return render_to_response("index.html")
+    return render("signin.html")
