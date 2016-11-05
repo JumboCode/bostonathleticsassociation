@@ -1,4 +1,9 @@
 {
   "name": "BAA",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+  {
+  	"path": "/api",
+  	"proxyUrl": "http://localhost:8000/api/volunteers"
+  	}]
 }

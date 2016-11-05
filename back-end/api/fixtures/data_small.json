@@ -1,0 +1,66 @@
+[
+  {
+    "model": "api.event",
+    "pk": "1",
+    "fields": {
+      "name": "Marathon",
+      "date": "2016-10-19T09:00:41Z",
+      "duration": "4",
+      "location": "My dorm",
+      "street": "421 Latin Way",
+      "city": "Somerville",
+      "state": "MA",
+      "z_code": "02155",
+      "notes": "It'll be lit! Come thrrruuu"
+    }
+  },
+
+  {
+    "model": "api.volunteer",
+    "pk": 1,
+    "fields": {
+      "name": "Babe Ruth",
+      "phone": "434324324234",
+      "email": "gosox@baseball.com",
+      "city": "Home Run",
+      "state": "Maryland",
+      "years_of_service": "4",
+      "jacket": "3",
+      "jacket_size": "2",
+      "status": "2",
+      "team_captain": "Mike Tyson"
+    }
+  },
+  {
+    "model": "api.volunteer",
+    "pk": 2,
+    "fields": {
+      "name": "Michael Jordan",
+      "phone": "3243423423",
+      "email": "iamthebest.michaeljordan",
+      "city": "Chicago",
+      "state": "Illinois",
+      "years_of_service": "4",
+      "jacket": "2",
+      "jacket_size": "3",
+      "status": "yes",
+      "team_captain": "Me"
+    }
+  },
+  {
+    "model": "api.volunteer",
+    "pk": 3,
+    "fields": {
+      "name": "Earl Sweatshirt",
+      "phone": "3943288904",
+      "email": "sweatshirt@aol.com",
+      "city": "LA",
+      "state": "Cali",
+      "years_of_service": "4",
+      "jacket": "2",
+      "jacket_size": "3",
+      "status": "3",
+      "team_captain": "Tyler the Creator"
+    }
+  }
+]

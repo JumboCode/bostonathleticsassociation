@@ -34,13 +34,3 @@ checkCredentials = function(){
 	//window.locations.href = "list.html";
 };
 
-
-
-
-
-
-
-
-
-
-

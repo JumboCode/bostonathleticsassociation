@@ -6,4 +6,9 @@ class VolunteerAdmin(admin.ModelAdmin):
                     'years_of_service', 'jacket', 'jacket_size',
                     'status', 'team_captain')
 
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('name', 'date', 'duration', 'location', 'street', 'city', 'state', 'z_code', 'notes')
+
+
 admin.site.register(models.Volunteer, VolunteerAdmin)
+admin.site.register(models.Event, EventAdmin)

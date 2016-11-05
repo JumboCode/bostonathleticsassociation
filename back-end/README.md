@@ -34,11 +34,26 @@ This is the Backend server running Django for this project. This server will ser
 
 Note: Steps 4, 6, 7 and 11 are necessary every time! The admin page is at `localhost:8000/admin`
 
-
-3. Who's Doing What?
 ======
 
-API:
+4. API:
 
-Interface: 
+Interface:
 
+1) The current interface for the api can be read in nicely generated doc form by going to "localhost:8000/docs"
+
+2) The current permission set allows for anyone to perform the GET requests, but requires the user to be signed in to
+   django/admin in order to post or delete data.
+
+======
+
+5. Dummy Data
+
+1) In order to help with the acessibility and testing of the api, in the fixures folder of the api, there is a
+  (currently) very small data set that can be used to seed local databases.
+
+  In order to seed a local database - simply call python manage.py loaddata <filename> where in this case the file name
+  is "data_small.json"
+
+2) This data lives in the repo, so although the command will most likely only be called once - it can be called
+   whenever a database needs to be re-initialized with data.
