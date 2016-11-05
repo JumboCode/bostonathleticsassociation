@@ -3,7 +3,7 @@ import csv, json, sys
 csvfile = open(sys.argv[1], 'r')
 jsonfile = open(sys.argv[2], 'w')
 
-fieldnames = ("Vol Name","Status","City","State","Phone","Email","Service Years","Jacket","JacketSize","GroupName")
+fieldnames = ("name", "status", "city", "state", "phone", "email", "years_of_service", "jacket", "jacket_size", "team_captain")
 reader = csv.DictReader(csvfile, fieldnames)
 
 jsonfile.write('[\n')
