@@ -5,4 +5,4 @@ __pycache__/
 *.DS_Store
 node_modules
 .idea/
-front-end/BAA/resources/*
+front-end/BAA/resources/
