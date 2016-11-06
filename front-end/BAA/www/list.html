@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Ionic List Directive</title>
+    <title>Volunteers</title>
       <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
@@ -12,8 +12,7 @@
      <script src="script.js"></script>
    
     <link href="list.css" rel="stylesheet">
-  <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
-
+   <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
     <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.js"></script>
     <script src="list.js"></script>
   </head>
@@ -21,40 +20,22 @@
   <body ng-controller="MyCtrl">
     
     <ion-header-bar class="bar-positive">
-      <div class="buttons">
-        <button class="button button-icon icon ion-ios-minus-outline"
-          ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
-      </div>
       <h1 class="title">Volunteers</h1>
-      <div class="buttons">
-        <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-            Check In
-        </button>
-      </div>
+
     </ion-header-bar>
 
     <ion-content>
-
       <!-- The list directive is great, but be sure to also checkout the collection repeat directive when scrolling through large lists -->
-      
-      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-
-        <ion-item ng-repeat="item in items" 
-                  item="item"
-                  href="#/item/{{item.id}}" class="item-remove-animate" class="button button-primary" ng-click="showPrompt()">
-            {{item.name}}
-         
-          <ion-delete-button class="ion-minus-circled" 
-                             ng-click="onItemDelete(item)">
-          </ion-delete-button>
-          <ion-option-button class="button-assertive"
-                             ng-click="edit(item)">
-            Edit
-          </ion-option-button>
-          <ion-option-button class="button button-primary" ng-click="showPrompt()">
-    Prompt
-</ion-option-button>
-          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+      <label class = "item item-input">
+        <i class = "ion ion-ios-search placeholder-icon"></i>
+        <input type = 'search' placeholder = "search" ng-model = "searchQuery"/>
+      </label>
+      <ion-list >
+        <ion-item ng-repeat="item in items | filter:searchQuery" item="item" class="item item-button-right">
+            <button class =" largerB" ng-click="showPrompt(item)"> {{item.name}} </button>
+            <div class = 'buttons hide'>
+             <button class="button button-icon larger " ng-click="unchecked =!unchecked; changeStatus(item)"  ng-class="{'icon ion-ios-checkmark-outline': !unchecked, 'icon ion-ios-checkmark': unchecked}"></button>
+             <!-- <button class="button button-icon ion-ios-close-outline larger "></button> -->
         </ion-item>
 
       </ion-list>

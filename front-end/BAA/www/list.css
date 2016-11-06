@@ -1,3 +1,13 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
+
+.larger{
+	font-size: 200% !important;
+}
+.largerB{
+	font-size: 110% !important;
+}
+.hide{
+	display:none;
+}
