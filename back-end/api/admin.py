@@ -7,7 +7,7 @@ class VolunteerAdmin(admin.ModelAdmin):
                     'status', 'team_captain')
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date', 'duration', 'location', 'street', 'city', 'state', 'z_code', 'notes')
+    list_display = ('name', 'date')
 
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('volunteer', 'event', 'at_event', 'team_captain', 'notes')
