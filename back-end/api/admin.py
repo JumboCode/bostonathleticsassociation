@@ -9,7 +9,7 @@ class VolunteerAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'date', 'duration', 'location', 'street', 'city', 'state', 'z_code', 'notes')
 
-class AttendeAdmin(admin.ModelAdmin):
+class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('volunteer', 'event', 'at_event', 'team_captain', 'notes')
 
 admin.site.register(models.Attendee, AttendeeAdmin)
