@@ -10,16 +10,14 @@ class Volunteer(models.Model):
     jacket = models.CharField(max_length=30)
     jacket_size = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
-    team_captain = models.CharField(max_length=30)
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
-    date = models.DateTimeField()
-    duration = models.IntegerField()
-    location = models.CharField(max_length=40)
-    street = models.TextField(null=True)
-    city = models.TextField(null=True)
-    state = models.TextField(null=True)
-    z_code = models.TextField(null=True)
-    notes = models.TextField(null=True)
+    date = models.CharField(max_length=30)
 
+class Attende(models.Model):
+    volunteer = models.OneToOneField(Volunteer, related_name="volunteer")
+    event = models.ForeignKey(Event)
+    at_event = models.BooleanField(default=False)
+    notes = models.TextField(null=True)
+    team_captain = models.OneToOneField(Volunteer, related_name="team_captain", null=True)
