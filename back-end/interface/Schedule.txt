@@ -1,0 +1,40 @@
+Schedule:
+
+templating (add Shanshan's CSS to the actual site)
+    to be done by: 11/6
+    by: Morisi
+
+linking (make links direct to appropriate locations)
+    TBD, touch base with back-end
+
+upload json to server
+    to be done by: 11/6
+    by: Hoiberg
+
+user accounts
+
+back-end has 3 tables
+volunteers
+events
+attendance
+
+interface (Hoiberg/Morisi) need to:
+match format of json created by back-end
+create new event based off back-end from site
+view events based off attendee data, filter by event
+
+figure out searching, probably me
+
+submitting:
+make 2 post events, one for events, one for volunteers
+
+TODO Hoiberg:
+figure out if json okay
+filter by status
+upload csv to json parser, add each volunteer to table
+
+TODO Morisi:
+implement ShanShan's design
+
+TODO Grace:
+create new events

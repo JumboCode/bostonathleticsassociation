@@ -12,3 +12,6 @@ def index(request):
     context = {}
     return render(request, "signin.html", context)
 
+def upload_csv(request):
+    return HttpResponse("import csv data here")
+
