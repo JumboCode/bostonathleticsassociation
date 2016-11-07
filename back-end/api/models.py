@@ -15,7 +15,7 @@ class Event(models.Model):
     name = models.CharField(max_length=30)
     date = models.CharField(max_length=30)
 
-class Attende(models.Model):
+class Attendee(models.Model):
     volunteer = models.OneToOneField(Volunteer, related_name="volunteer")
     event = models.ForeignKey(Event)
     at_event = models.BooleanField(default=False)
