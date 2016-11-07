@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Volunteer, Event
+from .models import Volunteer, Event, Attendee
 
 class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -12,5 +12,10 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ('name', 'date', 'duration', 'location', 'street', 'city','state', 'z_code', 'notes')
+        fields = ('name', 'date')
+
+class AttendeeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Attendee
+        fields = ('volunteer', 'event', 'at_event', 'notes', 'team_captain')
 
