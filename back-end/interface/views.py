@@ -9,4 +9,6 @@ def view(request, event_id):
     pass
 
 def index(request):
-    return render("signin.html")
+    context = {}
+    return render(request, "signin.html", context)
+
