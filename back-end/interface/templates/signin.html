@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock stylesheets %}
+
 {% block left-column %}
     <span id = "Username"><input type = "text" name = "Username" placeholder = "Username"></span><br>
     <span id = "Password"><input type = "text" name = "Password" placeholder = "Password"></span><br>
