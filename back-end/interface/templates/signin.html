@@ -7,12 +7,14 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-    <span id = "Username"><input type = "text" name = "Username" placeholder = "Username"></span><br>
-    <span id = "Password"><input type = "text" name = "Password" placeholder = "Password"></span><br>
+    <div id = "login-buttons">
+        <span id = "Username"><input type = "text" placeholder = "Username"></span><br>
+        <span id = "Password"><input type = "text" placeholder = "Password"></span><br>
+    </div>
 {% endblock left-column %}
 
 {% block right-column %}
-    <span id = "top-text">{{ top_title }}</span>
+    <span id = "top-text">SIGN</span>
     <br>
-    <span id = "bottom-text">{{ bottom_title }}</span>
+    <span id = "bottom-text">IN</span>
 {% endblock right-column %}
