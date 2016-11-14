@@ -6,3 +6,5 @@ __pycache__/
 node_modules
 .idea/
 front-end/BAA/platforms/*/
+back-end/static/*
+!back-end/static/.gitkeep
