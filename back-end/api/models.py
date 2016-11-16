@@ -29,4 +29,5 @@ class Attendee(models.Model):
     team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
 
     def __str__(self):
-        return '%s' % (self.volunteer.name)
+        return self.volunteer.name
+

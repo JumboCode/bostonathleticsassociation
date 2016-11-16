@@ -47,3 +47,4 @@ class FilteredAttendeeList(generics.ListAPIView):
 
          queryset = Attendee.objects.filter(event__name__contains=event, team_captain=captain)
          return queryset
+
