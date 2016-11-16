@@ -1,4 +1,4 @@
 Django
 djangorestframework
 drfdocs
-django-filer
+django-filter
