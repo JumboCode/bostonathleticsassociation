@@ -18,11 +18,12 @@
       "city": "Home Run",
       "state": "Maryland",
       "years_of_service": "4",
-      "jacket": "3",
+      "jacket": "Yes",
       "jacket_size": "XS",
-      "status": "2"
+      "status": "Ok"
     }
   },
+
   {
     "model": "api.volunteer",
     "pk": 2,
@@ -33,11 +34,12 @@
       "city": "Chicago",
       "state": "Illinois",
       "years_of_service": "4",
-      "jacket": "2",
-      "jacket_size": "3",
-      "status": "yes"
+      "jacket": "Yes",
+      "jacket_size": "L",
+      "status": "Ok"
     }
   },
+
   {
     "model": "api.volunteer",
     "pk": 3,
@@ -48,9 +50,45 @@
       "city": "LA",
       "state": "Cali",
       "years_of_service": "4",
-      "jacket": "2",
-      "jacket_size": "3",
+      "jacket": "Yes",
+      "jacket_size": "M",
       "status": "3"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 1,
+    "fields": {
+      "volunteer": 1,
+      "event": 1,
+      "team_captain": 3,
+      "at_event": true,
+      "notes": "Made it to the event"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 2,
+    "fields": {
+      "volunteer": "3",
+      "event": "1",
+      "team_captain": 1,
+      "at_event": true,
+      "notes": "What"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 3,
+    "fields": {
+      "volunteer": 2,
+      "event": 1,
+      "team_captain": 1,
+      "at_event": true,
+      "notes": "sjcidsoj"
     }
   }
 ]

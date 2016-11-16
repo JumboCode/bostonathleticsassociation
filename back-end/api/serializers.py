@@ -5,7 +5,8 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Volunteer
         fields = ('name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
-                  'jacket_size', 'status', 'team_captain')
+                  'jacket_size', 'status')
+
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,5 +16,5 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 class AttendeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Attendee
-        fields = ('volunteer', 'event', 'at_event', 'notes', 'team_captain')
+        fields = ('volunteer', 'event', 'team_captain', 'at_event', 'notes')
 

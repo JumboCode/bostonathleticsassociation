@@ -12,23 +12,21 @@ class Volunteer(models.Model):
     status = models.CharField(max_length=30)
 
     def __str__(self):
-        return '%s' % (self.name)
-
+       return self.name
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
     date = models.CharField(max_length=30)
 
     def __str__(self):
-        return '%s' % (self.name)
-
+        return self.name
 
 class Attendee(models.Model):
-    volunteer = models.OneToOneField(Volunteer, related_name="volunteer")
-    event = models.ForeignKey(Event)
+    volunteer = models.ForeignKey(Volunteer, related_name="volunteer")
+    event = models.ForeignKey(Event, related_name="event", related_query_name="event")
     at_event = models.BooleanField(default=False)
     notes = models.TextField(null=True)
-    team_captain = models.OneToOneField(Volunteer, related_name="team_captain", null=True)
+    team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
 
     def __str__(self):
         return '%s' % (self.volunteer.name)
