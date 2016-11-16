@@ -1,5 +1,5 @@
 Django
 djangorestframework
 drfdocs
-django-filer
+django-filter
 django-crispy-forms
