@@ -2,3 +2,4 @@ Django
 djangorestframework
 drfdocs
 django-filer
+django-crispy-forms
