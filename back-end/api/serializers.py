@@ -7,8 +7,6 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
                   'jacket_size', 'status', 'team_captain')
 
-
-
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event

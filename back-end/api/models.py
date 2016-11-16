@@ -11,9 +11,17 @@ class Volunteer(models.Model):
     jacket_size = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
 
+    def __str__(self):
+        return '%s' % (self.name)
+
+
 class Event(models.Model):
     name = models.CharField(max_length=30)
     date = models.CharField(max_length=30)
+
+    def __str__(self):
+        return '%s' % (self.name)
+
 
 class Attendee(models.Model):
     volunteer = models.OneToOneField(Volunteer, related_name="volunteer")
@@ -21,3 +29,6 @@ class Attendee(models.Model):
     at_event = models.BooleanField(default=False)
     notes = models.TextField(null=True)
     team_captain = models.OneToOneField(Volunteer, related_name="team_captain", null=True)
+
+    def __str__(self):
+        return '%s' % (self.volunteer.name)

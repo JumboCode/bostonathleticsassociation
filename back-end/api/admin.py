@@ -12,6 +12,6 @@ class EventAdmin(admin.ModelAdmin):
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('volunteer', 'event', 'at_event', 'team_captain', 'notes')
 
-admin.site.register(models.Attendee, AttendeeAdmin)
 admin.site.register(models.Volunteer, VolunteerAdmin)
 admin.site.register(models.Event, EventAdmin)
+admin.site.register(models.Attendee, AttendeeAdmin)
