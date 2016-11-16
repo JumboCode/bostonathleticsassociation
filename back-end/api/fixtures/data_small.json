@@ -20,10 +20,10 @@
       "years_of_service": "4",
       "jacket": "3",
       "jacket_size": "2",
-      "status": "2",
-      "team_captain": "Mike Tyson"
+      "status": "2"
     }
   },
+
   {
     "model": "api.volunteer",
     "pk": 2,
@@ -36,10 +36,10 @@
       "years_of_service": "4",
       "jacket": "2",
       "jacket_size": "3",
-      "status": "yes",
-      "team_captain": "Me"
+      "status": "yes"
     }
   },
+
   {
     "model": "api.volunteer",
     "pk": 3,
@@ -52,8 +52,43 @@
       "years_of_service": "4",
       "jacket": "2",
       "jacket_size": "3",
-      "status": "3",
-      "team_captain": "Tyler the Creator"
+      "status": "3"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 1,
+    "fields": {
+      "volunteer": 1,
+      "event": 2,
+      "team_captain": 3,
+      "at_event": true,
+      "notes": "Made it to the event"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 2,
+    "fields": {
+      "volunteer": "3",
+      "event": "1",
+      "team_captain": 1,
+      "at_event": true,
+      "notes": "What"
+    }
+  },
+
+  {
+    "model": "api.attendee",
+    "pk": 3,
+    "fields": {
+      "volunteer": 2,
+      "event": 1,
+      "team_captain": 1,
+      "at_event": true,
+      "notes": "sjcidsoj"
     }
   }
 ]
