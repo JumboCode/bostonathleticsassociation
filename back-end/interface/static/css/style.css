@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: FrutigerLTBoldCondensed;
-    src: url("../fonts/Frutiger CE 67 Bold Condensed.ttf");
+    src: url("../fonts/Frutiger LT 67 Bold Condensed.ttf");
 }
 
 @font-face {
@@ -55,6 +55,7 @@ html, body {
 #login-buttons {
     padding-top: 30.3rem;
     text-align: center;
+    padding-bottom: 4.6rem;
 }
 
 #Username > input {
@@ -111,9 +112,6 @@ html, body {
     font-size: 2rem;
 }
 
-
-
-
 #Events > ul > li {
     padding-bottom: 3.8rem;
     font-family: FrutigerLTRoman;
@@ -127,6 +125,17 @@ html, body {
     border: none;
     width: 18.1rem;
     height: 5rem;
+}
+
+#signin-button {
+    text-align: center;
+}
+
+#signin-button > button {
+    background: url("../images/login.png") no-repeat center;
+    border: none;
+    height: 2rem;
+    width: 17rem;
 }
 
 #right-col {
