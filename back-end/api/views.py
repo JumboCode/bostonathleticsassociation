@@ -1,7 +1,6 @@
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
 from rest_framework import generics
-import sys
 
 # generic view patterns documented http://www.django-rest-framework.org/tutorial/3-class-based-views/
 
@@ -9,6 +8,7 @@ import sys
 class VolunteerList(generics.ListCreateAPIView):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
+
 
 #returns specific volunteer, ability to update, delete as well
 class VolunteerDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -45,6 +45,5 @@ class FilteredAttendeeList(generics.ListAPIView):
          event = self.kwargs['event']
          captain = self.kwargs['teamcap']
 
-         queryset = Attendee.objects.filter(event__name__contains=event, team_captain=captain)
+         queryset = Attendee.objects.filter(event=event, team_captain=captain)
          return queryset
-
