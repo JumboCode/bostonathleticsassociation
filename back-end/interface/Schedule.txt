@@ -32,6 +32,7 @@ TODO Hoiberg:
 figure out if json okay
 filter by status
 upload csv to json parser, add each volunteer to table
+look at data_small.json in back-end/api/fixtures
 
 TODO Morisi:
 implement ShanShan's design
