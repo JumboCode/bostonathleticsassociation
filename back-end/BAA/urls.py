@@ -16,6 +16,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.conf.urls import url, include
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework.authtoken import views
 
 
 # routers
@@ -29,5 +31,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('api.urls')),
     url(r'docs/', include('rest_framework_docs.urls')),
-    url(r'interface/', include('interface.urls'))
+    url(r'interface/', include('interface.urls')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+   # url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^api-token-auth/', views.obtain_auth_token)
     ]

@@ -2,6 +2,7 @@ from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
 from rest_framework import generics
 
+
 # generic view patterns documented http://www.django-rest-framework.org/tutorial/3-class-based-views/
 
 #returns all volunteers
