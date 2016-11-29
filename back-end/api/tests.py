@@ -34,3 +34,9 @@ class Models_Tests(TestCase):
 
         retrieve = Attendee.objects.get(notes="Was lit")
         self.assertEqual(retrieve.volunteer.name, "Ian")
+
+
+class Integration_tests(TestCase):
+    def check_homepage(self):
+        pass
+        
