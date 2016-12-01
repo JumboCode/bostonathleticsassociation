@@ -1,5 +1,6 @@
 from django.test import TestCase
 from api.models import *
+import os
 
 # Create your tests here.
 class test_Model(TestCase):
@@ -37,6 +38,9 @@ class test_Model(TestCase):
 
 
 class Integration_tests(TestCase):
+    def test_email(self):
+        self.assertIsNotNone(os.environ['EMAIL_PASS'])
+
     def check_homepage(self):
         pass
         
