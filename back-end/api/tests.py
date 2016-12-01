@@ -41,7 +41,7 @@ class Integration_tests(TestCase):
     def test_email(self):
         self.assertIsNotNone(os.getenv('EMAIL_PASS'))
 
-    def check_homepage(self):
+    def test_homepage(self):
         c = Client()
         response = c.get('/')
         self.assertEqual(response.status_code, 200)
