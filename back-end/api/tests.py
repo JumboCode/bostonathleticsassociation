@@ -39,7 +39,7 @@ class test_Model(TestCase):
 
 class Integration_tests(TestCase):
     def test_email(self):
-        self.assertIsNotNone(os.environ['EMAIL_PASS'])
+        self.assertIsNotNone(os.getenv['EMAIL_PASS'])
 
     def test_homepage(self):
         c = Client()
