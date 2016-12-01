@@ -2,7 +2,7 @@ from django.test import TestCase
 from api.models import *
 
 # Create your tests here.
-class testModel(TestCase):
+class test_Model(TestCase):
     def test_volunteer(self):
         store = Volunteer(name="Ian", email="ian@ianluo.com", 
                           phone="1231231234", city="medford",
