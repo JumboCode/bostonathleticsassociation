@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from api.models import *
 import os
 
@@ -41,6 +41,7 @@ class Integration_tests(TestCase):
     def test_email(self):
         self.assertIsNotNone(os.environ['EMAIL_PASS'])
 
-    def check_homepage(self):
-        pass
-        
+    def test_homepage(self):
+        c = Client()
+        response = c.get('/')
+        self.assertEqual(response.status_code, 200)
