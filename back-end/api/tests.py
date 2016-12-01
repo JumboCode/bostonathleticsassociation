@@ -1,5 +1,6 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from api.models import *
+import os
 
 # Create your tests here.
 class test_Model(TestCase):
@@ -37,6 +38,11 @@ class test_Model(TestCase):
 
 
 class Integration_tests(TestCase):
-    def check_homepage(self):
-        pass
+    def test_email(self):
+        self.assertIsNotNone(os.getenv('EMAIL_PASS'))
+
+    def test_homepage(self):
+        c = Client()
+        response = c.get('/')
+        self.assertEqual(response.status_code, 200)
         

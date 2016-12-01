@@ -148,5 +148,9 @@ STATICFILES_FINDERS = [
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'baattendence@gmail.com'
+<<<<<<< HEAD
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+=======
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS', default='')
+>>>>>>> ca9f27cf14dbce4ba39a07f5acb03af608514f54
 EMAIL_PORT = 587
