@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'attendees/$', views.AttendeeList.as_view(), name="attendee-list"),
     url(r'attendees/(?P<pk>[0-9]+)/$', views.AttendeeDetail.as_view(), name="attendee-detail"),
     url(r'attendees/event/(?P<event>[-\w]+)/teamcap/(?P<teamcap>[-\w]+)', views.FilteredAttendeeList.as_view(), name="filtered-attendees"),
+    url(r'notify_captains/event/(?P<event>[-\w]+)', views.NotifyTeamCaptains.as_view(), name="notify-captains")
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
