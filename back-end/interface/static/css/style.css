@@ -34,8 +34,6 @@ html, body {
     font-family: FrutigerCELight;
 }
 
-
-
 ::-webkit-input-placeholder {
    color: #F3F3F3;
 }
@@ -111,9 +109,6 @@ html, body {
     font-size: 2rem;
 }
 
-
-
-
 #Events > ul > li {
     padding-bottom: 3.8rem;
     font-family: FrutigerLTRoman;
@@ -122,6 +117,7 @@ html, body {
 #New-Event {
     text-align: center;
 }
+
 #New-Event > button {
     background: url("../images/newevent.png") no-repeat center;
     border: none;
@@ -151,3 +147,100 @@ html, body {
     padding-left: .3rem;
     font-weight: bold;
 }
+
+#box {
+    padding-top: 9.3rem;
+    padding-bottom: 9.3rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+    line-height: 100% !important;
+    font-size: 1.7rem !important;
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px #CDCDCD;
+    margin: auto;
+    /*width: 75%;*/
+    width: 500px;
+    opacity: .85;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#new {
+    color: #EC9591;
+}
+
+#ev {
+    color: #EEC3BC;
+}
+
+#month {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#day {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#year {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#up_vol {
+    margin-top: 2.3rem;
+    color: #4A4A4A;
+    opacity: .60;
+    font-size: 1.7rem;
+    font-family: FrutigerLT-Light;
+}
+
+#submit {
+    margin-top: 4.6rem;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.btn-group > ul > li:hover {
+    background-color: #F7F7F7;
+}
+
+.dropdown-toggle { 
+    min-width: 100px; 
+} 
+
+.caret {
+    color: white;
+    position: absolute;
+    left: 80%;
+    top: 45%;
+}
+
+.btn-default {
+    background-color: #9B9B9B !important;
+}
+
+#m, #d, #y {
+    color: white;
+}
+
+.past {
+    min-width: 100px;
+    background-color: #9B9B9B;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px 1px #CDCDCD;
+}
+

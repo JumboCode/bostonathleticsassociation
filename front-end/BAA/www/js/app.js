@@ -25,11 +25,24 @@ angular.module('starter', ['ionic'])
     });
 })
 
+var token;
 checkCredentials = function(){
-        var user = document.getElementById("user").value;
-        var pass = document.getElementById("pass").value;
+    var user = document.getElementById("user").value;
+    var pass = document.getElementById("pass").value;
 
-        alert(user + pass);
+    var url = "api-token-auth";
+    request = new XMLHttpRequest();
+    request.open("POST", url);
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            token = request.responseText;
+            console.log(token);
+        }
+    }
+
+    request.send("username=" + user + "&password=" + pass);
+
     //alert("invalid login");
 	//window.locations.href = "list.html";
 };
