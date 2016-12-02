@@ -39,7 +39,7 @@ checkCredentials = function(){
         if (request.readyState == 4 && request.status == 200) {
             token = request.responseText;
             console.log(token);
-            window.location.href = "list.html";
+            //window.location.href = "list.html";
         }
 
         if (request.readyState == 4 && request.status == 400) {
