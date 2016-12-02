@@ -7,16 +7,18 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-    <div id = "login-buttons">
-        <span id = "Username"><input type = "text" placeholder = "Username"></span><br>
-        <span id = "Password"><input type = "text" placeholder = "Password"></span><br>
-    </div>
+	<form name="LoginForm" action = "/login/" method="post">
+	    <div id = "login-buttons">
+	        <span id = "Username"><input type = "text" placeholder = "Username"></span><br>
+	        <span id = "Password"><input type = "text" placeholder = "Password"></span><br>
+	    </div>
 
-         <div id = "signin-button">
-            <button type = "submit"></button>
-        </div>
+	         <div id = "signin-button">
+	            <button type = "submit"></button>
+	        </div>
 
-    </div>
+	    </div>
+	</form>
 {% endblock left-column %}
 
 {% block right-column %}

@@ -34,8 +34,6 @@ html, body {
     font-family: FrutigerCELight;
 }
 
-
-
 ::-webkit-input-placeholder {
    color: #F3F3F3;
 }
@@ -53,9 +51,9 @@ html, body {
 }
 
 #login-buttons {
-    padding-top: 30.3rem;
+    padding-top: 500px;
     text-align: center;
-    padding-bottom: 4.6rem;
+    padding-bottom: 45px;
 }
 
 #Username > input {
@@ -66,8 +64,8 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 2rem;
-    width: 22.8rem;
-    height: 4rem;
+    width: 351px;
+    height: 65px;
     padding-bottom: 1rem;
     font-family: FrutigerCELight;
     background: url("../images/signin1.png") no-repeat;
@@ -81,15 +79,15 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 2rem;
-    width: 22.8rem;
-    height: 4rem;
+    width: 351px;
+    height: 65px;
     font-family: FrutigerCELight;
     background: url("../images/signin2.png") no-repeat;
 }
 
 #Event-Search {
     text-align: center;
-    padding-top: 2.8rem;
+    padding-top: 60px;
 }
 
 #search > input {
@@ -99,32 +97,33 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 1.8rem;
-    width: 23.2rem;
-    height: 3rem;
+    width: 371px;
+    height: 60px;
     font-family: FrutigerCELight;
     background: url("../images/searchbar2.png") no-repeat;
 }
 
 #Events > ul {
-    padding-top: 1rem;
-    padding-left: 4.8rem;
+    padding-top: 12px;
+    padding-left: 85px;
     font-family: FrutigerCERoman;
     font-size: 2rem;
 }
 
 #Events > ul > li {
-    padding-bottom: 3.8rem;
+    padding-bottom: 45px;
     font-family: FrutigerLTRoman;
 }
 
 #New-Event {
     text-align: center;
 }
+
 #New-Event > button {
     background: url("../images/newevent.png") no-repeat center;
     border: none;
-    width: 18.1rem;
-    height: 5rem;
+    width: 280px;
+    height: 70px;
 }
 
 #signin-button {
@@ -134,8 +133,8 @@ html, body {
 #signin-button > button {
     background: url("../images/login.png") no-repeat center;
     border: none;
-    height: 2rem;
-    width: 17rem;
+    height: 70px;
+    width: 275px;
 }
 
 #right-col {
@@ -143,7 +142,7 @@ html, body {
     width: 66%;
     height: 100%;
     background: url("../images/BAALogo.png") no-repeat center;
-    font-size: 12.5rem;
+    font-size: 200px;
     font-family: FrutigerLTBoldCondensed;
     line-height: 175px;
 }
@@ -151,12 +150,109 @@ html, body {
 
 #top-text {
     color: #ED9491;
-    padding-left: .3rem;
+    padding-left: 7px;
     font-weight: bold;
 }
 
 #bottom-text {
     color: #EC7C79;
-    padding-left: .3rem;
+    padding-left: 7px;
     font-weight: bold;
 }
+
+#box {
+    padding-top: 9.3rem;
+    padding-bottom: 9.3rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+    line-height: 100% !important;
+    font-size: 1.7rem !important;
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px #CDCDCD;
+    margin: auto;
+    /*width: 75%;*/
+    width: 500px;
+    opacity: .85;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#new {
+    color: #EC9591;
+}
+
+#ev {
+    color: #EEC3BC;
+}
+
+#month {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#day {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#year {
+    margin-top: 3.4rem;
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#up_vol {
+    margin-top: 2.3rem;
+    color: #4A4A4A;
+    opacity: .60;
+    font-size: 1.7rem;
+    font-family: FrutigerLT-Light;
+}
+
+#submit {
+    margin-top: 4.6rem;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.btn-group > ul > li:hover {
+    background-color: #F7F7F7;
+}
+
+.dropdown-toggle { 
+    min-width: 100px; 
+} 
+
+.caret {
+    color: white;
+    position: absolute;
+    left: 80%;
+    top: 45%;
+}
+
+.btn-default {
+    background-color: #9B9B9B !important;
+}
+
+#m, #d, #y {
+    color: white;
+}
+
+.past {
+    min-width: 100px;
+    background-color: #9B9B9B;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px 1px #CDCDCD;
+}
+

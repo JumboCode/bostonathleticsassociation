@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>Boston Athletics Association</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id = "left-col">
@@ -21,6 +25,18 @@
             </ul>
         </div>
 
+        <button id = "New-Event" onclick="add_event()" style="color:black">
+            New Event
+        </button>
+
+        <button id = "New-Event" onclick="view_past_event()" style="color:black">
+            Past Event
+        </button>
+
+        <button id = "New-Event" onclick="edit_event()" style="color:black">
+            Edit Event
+        </button>
+
         <div id = "New-Event">
             <button type = "submit"></button>
         </div>
@@ -28,8 +44,103 @@
     </div>
 
     <div id = "right-col">
-
+        <!--
+        <div id = "new"> NEW </div>
+        <div id = "ev"> EVENT </div>
+        <div id = "box">
+            <input type = "text" id = "new_event" placeholder = "New Event"style="border:none; font-size: 3.3rem; width: 100%; text-align: center">
+            <hr style="position:relative; top:-10px">
+            <div id = "month"> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "m">Month </span><span class="caret"></span></button>
+                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                        <li onclick = "set_month(1)" style="padding-left: 5%;">1</li>
+                        <li onclick = "set_month(2)" style="padding-left: 5%; padding-top: 5%">2</li>
+                        <li onclick = "set_month(3)" style="padding-left: 5%; padding-top: 5%">3</li>
+                        <li onclick = "set_month(4)" style="padding-left: 5%; padding-top: 5%">4</li>
+                        <li onclick = "set_month(5)" style="padding-left: 5%; padding-top: 5%">5</li>
+                        <li onclick = "set_month(6)" style="padding-left: 5%; padding-top: 5%">6</li>
+                        <li onclick = "set_month(7)" style="padding-left: 5%; padding-top: 5%">7</li>
+                        <li onclick = "set_month(8)" style="padding-left: 5%; padding-top: 5%">8</li>
+                        <li onclick = "set_month(9)" style="padding-left: 5%; padding-top: 5%">9</li>
+                        <li onclick = "set_month(10)" style="padding-left: 5%; padding-top: 5%">10</li>
+                        <li onclick = "set_month(12)" style="padding-left: 5%; padding-top: 5%">11</li>
+                        <li onclick = "set_month(12)" style="padding-left: 5%; padding-top: 5%">12</li>
+                    </ul>
+                </div>
+            </div>
+            <div id = "day">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "d">Day </span>  <span class="caret"></span></button>
+                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                        <li onclick = "set_day(1)" style="padding-left: 5%;">1</li>
+                        <li onclick = "set_day(2)" style="padding-left: 5%; padding-top: 5%">2</li>
+                        <li onclick = "set_day(3)" style="padding-left: 5%; padding-top: 5%">3</li>
+                        <li onclick = "set_day(4)" style="padding-left: 5%; padding-top: 5%">4</li>
+                        <li onclick = "set_day(5)" style="padding-left: 5%; padding-top: 5%">5</li>
+                        <li onclick = "set_day(6)" style="padding-left: 5%; padding-top: 5%">6</li>
+                        <li onclick = "set_day(7)" style="padding-left: 5%; padding-top: 5%">7</li>
+                        <li onclick = "set_day(8)" style="padding-left: 5%; padding-top: 5%">8</li>
+                        <li onclick = "set_day(9)" style="padding-left: 5%; padding-top: 5%">9</li>
+                        <li onclick = "set_day(10)" style="padding-left: 5%; padding-top: 5%">10</li>
+                        <li onclick = "set_day(11)" style="padding-left: 5%; padding-top: 5%">11</li>
+                        <li onclick = "set_day(12)" style="padding-left: 5%; padding-top: 5%">12</li>
+                        <li onclick = "set_day(13)" style="padding-left: 5%; padding-top: 5%">13</li>
+                        <li onclick = "set_day(14)" style="padding-left: 5%; padding-top: 5%">14</li>
+                        <li onclick = "set_day(15)" style="padding-left: 5%; padding-top: 5%">15</li>
+                        <li onclick = "set_day(16)" style="padding-left: 5%; padding-top: 5%">16</li>
+                        <li onclick = "set_day(17)" style="padding-left: 5%; padding-top: 5%">17</li>
+                        <li onclick = "set_day(18)" style="padding-left: 5%; padding-top: 5%">18</li>
+                        <li onclick = "set_day(19)" style="padding-left: 5%; padding-top: 5%">19</li>
+                        <li onclick = "set_day(20)" style="padding-left: 5%; padding-top: 5%">20</li>
+                        <li onclick = "set_day(21)" style="padding-left: 5%; padding-top: 5%">21</li>
+                        <li onclick = "set_day(22)" style="padding-left: 5%; padding-top: 5%">22</li>
+                        <li onclick = "set_day(23)" style="padding-left: 5%; padding-top: 5%">23</li>
+                        <li onclick = "set_day(24)" style="padding-left: 5%; padding-top: 5%">24</li>
+                        <li onclick = "set_day(25)" style="padding-left: 5%; padding-top: 5%">25</li>
+                        <li onclick = "set_day(26)" style="padding-left: 5%; padding-top: 5%">26</li>
+                        <li onclick = "set_day(27)" style="padding-left: 5%; padding-top: 5%">27</li>
+                        <li onclick = "set_day(28)" style="padding-left: 5%; padding-top: 5%">28</li>
+                        <li onclick = "set_day(29)" style="padding-left: 5%; padding-top: 5%">29</li>
+                        <li onclick = "set_day(30)" style="padding-left: 5%; padding-top: 5%">30</li>
+                        <li onclick = "set_day(31)" style="padding-left: 5%; padding-top: 5%">31</li>
+                    </ul>
+                </div>
+            </div>
+            <div id = "year">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "y">Year </span>  <span class="caret"></span></button>
+                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                        <li onclick = "set_year(2016)" style="padding-left: 5%;">2016</li>
+                        <li onclick = "set_year(2017)" style="padding-left: 5%; padding-top: 5%">2017</li>
+                        <li onclick = "set_year(2018)" style="padding-left: 5%; padding-top: 5%">2018</li>
+                        <li onclick = "set_year(2019)" style="padding-left: 5%; padding-top: 5%">2019</li>
+                        <li onclick = "set_year(2020)" style="padding-left: 5%; padding-top: 5%">2020</li>
+                        <li onclick = "set_year(2021)" style="padding-left: 5%; padding-top: 5%">2021</li>
+                        <li onclick = "set_year(2022)" style="padding-left: 5%; padding-top: 5%">2022</li>
+                        <li onclick = "set_year(2023)" style="padding-left: 5%; padding-top: 5%">2023</li>
+                        <li onclick = "set_year(2024)" style="padding-left: 5%; padding-top: 5%">2024</li>
+                        <li onclick = "set_year(2025)" style="padding-left: 5%; padding-top: 5%">2025</li>
+                        <li onclick = "set_year(2026)" style="padding-left: 5%; padding-top: 5%">2026</li>
+                    </ul>
+                </div>
+            </div>
+            <div id = "upload">
+                <label for="image">
+                <input type="file" name="image" id= "image" style="display:none;">
+                <img src= "../static/images/upload icon.png" alt="upload pic" style="">
+                </label>
+            </div>
+            <div id = "up_vol">
+                Upload Volunteer Profiles
+            </div>
+            <div id = "submit" onclick="get_new_event_info()">
+                <img src= "../static/images/submit.png" alt="submit pic" style="">
+            </div>
+        </div>
+         -->
     </div>
+
 
 </body>
 </html>
