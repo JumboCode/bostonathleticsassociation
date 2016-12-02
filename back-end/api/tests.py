@@ -1,9 +1,10 @@
 from django.test import TestCase, Client
+from django.contrib.auth.models import User
 from api.models import *
 import os
 
 # Create your tests here.
-class test_Model(TestCase):
+class Model_tests(TestCase):
     def test_volunteer(self):
         store = Volunteer(name="Ian", email="ian@ianluo.com", 
                           phone="1231231234", city="medford",
@@ -35,6 +36,18 @@ class test_Model(TestCase):
 
         retrieve = Attendee.objects.get(notes="Was lit")
         self.assertEqual(retrieve.volunteer.name, "Ian")
+
+
+class API_tests(TestCase):
+
+    def setUp(self):
+        User.objects.create_user(username='test-user', password='asdfasdfasdf')
+
+    def test_token(self):
+        c = Client()
+        response = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'})
+        self.assertIsNotNone(response.json()['token'])
+        self.assertIsNotNone(response.json()['first_name'])
 
 
 class Integration_tests(TestCase):
