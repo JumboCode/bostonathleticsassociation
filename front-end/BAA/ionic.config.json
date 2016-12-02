@@ -4,6 +4,6 @@
   "proxies": [
   {
   	"path": "/api",
-  	"proxyUrl": "http://localhost:8000/api/volunteers"
+  	"proxyUrl": "http://localhost:8000/api/"
   	}]
 }

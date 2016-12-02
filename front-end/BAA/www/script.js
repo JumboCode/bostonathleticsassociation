@@ -1,134 +1,46 @@
-angular.module('starter', ['ionic'])
-    .controller('PopupCtrl',function($scope, $ionicPopup, $timeout, $http) {
-
-      /*$http({
-        method: 'GET',
-        url: '/api/volunteers',
-        withCredentials: true
-      }).then(function successCallback(response) {
-          console.log('hello');
-          console.log(response.data[1]);
-      }, function errorCallback(response) {
-          console.log('error');
-          console.log(response[1].name);
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-      });
-
-      // An alert dialog
-      $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Ionic Popup',
-          template: 'This is alert popup',
-        });
-        alertPopup.then(function(res) {
-          console.log('Thanks');
-        });
-      };
-
-      // Confirm popup code
-      $scope.showConfirm = function() {
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'Ionic Popup',
-          template: 'This is confirm popup'
-        });
-        confirmPopup.then(function(res) {
-          if(res) {
-            console.log('You clicked on "OK" button');
-          } else {
-            console.log('You clicked on "Cancel" button');
-          }
-        });
-      };*/
-
-      // Prompt popup code
-      $scope.showPrompt = function() {
-        console.log('in popup');
-
-
+angular.module('ionicApp', ['ionic'])
+.controller('MyCtrl', function($scope, $ionicPopup, $http) {
       $http({
         method: 'GET',
         url: '/api/volunteers',
         withCredentials: true
       }).then(function successCallback(response) {
-          console.log('in pop up');
-          console.log(response.data[1]);
-          var promptPopup = $ionicPopup.prompt({
-            title: response.data[1].name,
-            template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">iamthebest.michaeljordan</div><hr><div class="row">email</div><br><div class="row">3243423423</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Chicago</div><div class="col col-50">Illinois</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
-          });
+          $scope.items = response.data
+          $scope.data = {
+            showDelete: false
+          };
+          $scope.showPrompt = function(item) {
+            var promptPopup = $ionicPopup.prompt({
+                  title: item.name,
+                  template: '<body><div class="row"> <input type="text" placeholder=" add freetext here" ng-model="item.volunteerComment" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div><div class="row"><div class="col">'+item.email+'<hr style="margin-bottom:0px;"></div></div><div class="row" style="margin-top:0px;"><div class="col" class"label" style="color:gray;">email</div></div><div class="row"><div class="col">'+item.phone+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><div class="row"><div class="col col-50">'+item.city+'<hr></div><div class="col col-50">'+item.state+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><div class="row"><div class="col">'+item.years_of_service+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><div class="row"><div class="col col-50">'+item.jacket_size+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div></body>'
+              }).then(function(response){
+                console.log(document.getElementById("volunteer_comment").value);
+                var note = document.getElementById("volunteer_comment").value;
+                $http({
+                  method: 'POST',
+                  url: '/api/attendees/1',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                     },
+                  data: {"notes" : note},
+                  success: function(result) {
+                    console.log('success')
+                  }
+
+                })
+              });
+          }
+          $scope.changeStatus = function(item){
+            // here we will need to call a function to update the status at the current item on the server side 
+          }
+          console.log(response.data)
       }, function errorCallback(response) {
           console.log('error');
           console.log(response[1].name);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
       });
-
-        //var promptPopup = $ionicPopup.prompt({
-        //  title: 'Volunteer Name',
-        //  template: '<div class="row"> <input type="text" placeholder=" add freetext here" ng-model"data.volunteerComment"> </div><div class="row">julia.grace@tufts.edu</div><hr><div class="row">email</div><br><div class="row">617-763-8095</div><hr><div class="row">phone number</div><hr><div class="row"><div class="col col-50">Medford</div><div class="col col-50">MA</div></div><div class="row"><div class="col col-50"><hr></div><div class="col col-50"><hr></div></div>'
-        //});
-        promptPopup.then(function(res) {
-          if(res) {
-            console.log('Your input is ',res);
-          }
-          else
-          {
-            console.log('Please enter input');
-          }
-        });
-      };
-
-      // showpopup method code
-      $scope.showPopup = function() {
-        $scope.data = {}
-
-        var myPopup = $ionicPopup.show({
-          template: ' Enter Password<input type="password" ng-model="data.userPassword">   <br> Enter Confirm Password  <input type="password" ng-model="data.confirmPassword" > ',
-          title: 'Volunteer Name',
-          subTitle: 'Please use normal things',
-
-          scope: $scope,
-          buttons: [
-            { text: 'Cancel' },
-            {
-              text: '<b>Save</b>',
-              type: 'button-positive',
-              onTap: function(e) {
-                if (!$scope.data.userPassword) {
-                  //don't allow the user to close unless he enters wifi password
-                  e.preventDefault();
-                } else {
-                  return $scope.data;
-                }
-              }
-            },
-          ]
-        });
-        myPopup.then(function(res) {
-
-          if(res){
-
-              if(res.userPassword==res.confirmPassword)
-              {
-                console.log('Password Is Ok');
-              }
-              else
-              {
-                console.log('Password not matched');
-              }
-          }
-          else
-          {
-            console.log('Enter password');
-          }
-
-
-        });
-
-      };
-
-    });
+});
 
 
 

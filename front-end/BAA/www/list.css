@@ -11,3 +11,7 @@ body {
 .hide{
 	display:none;
 }
+
+.popup-title{
+	text-align: left;
+}
