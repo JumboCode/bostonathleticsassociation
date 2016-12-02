@@ -50,11 +50,19 @@ class API_tests(TestCase):
         self.assertIsNotNone(response.json()['first_name'])
 
 
+
+    def test_events(self):
+        # gets an event and a teamcaptain and just tries to check someone in
+        c = Client()
+        token = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'}).json()['token']
+        response = c.get('/api/events/', HTTP_AUTHORIZATION = 'Token ' + token)
+        # lets try to get the list of events through the database as well to check both are fine
+        events = Event.objects.all()
+        self.assertEqual(len(response.json()), len(events))
+        self.assertNotEqual(len(response.json()), 0)
+
+
+
 class Integration_tests(TestCase):
     def test_email(self):
         self.assertIsNotNone(os.getenv('EMAIL_PASS'))
-
-    # def test_homepage(self):
-    #     c = Client()
-    #     response = c.get('/')
-    #     self.assertEqual(response.status_code, 200)
