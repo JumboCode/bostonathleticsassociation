@@ -24,6 +24,11 @@ html, body {
     padding: 0;
 }
 
+#wrapper {
+    height: 100%;
+    width: 1600px;
+}
+
 #left-col {
     color: white;
     float: left;

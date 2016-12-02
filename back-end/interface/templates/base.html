@@ -9,13 +9,14 @@
     {% endblock scripts %}
 </head>
 <body>
-    <div id = "left-col">
-        {% block left-column %}{% endblock left-column %}
-    </div>
+	<div id = "wrapper">
+	    <div id = "left-col">
+	        {% block left-column %}{% endblock left-column %}
+	    </div>
 
-    <div id = "right-col">
-        {% block right-column %}{% endblock right-column %}
-    </div>
-
+	    <div id = "right-col">
+	        {% block right-column %}{% endblock right-column %}
+	    </div>
+	</div>
 </body>
 </html>
