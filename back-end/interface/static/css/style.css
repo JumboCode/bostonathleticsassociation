@@ -53,9 +53,9 @@ html, body {
 }
 
 #login-buttons {
-    padding-top: 30.3rem;
+    padding-top: 500px;
     text-align: center;
-    padding-bottom: 4.6rem;
+    padding-bottom: 45px;
 }
 
 #Username > input {
@@ -66,8 +66,8 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 2rem;
-    width: 22.8rem;
-    height: 4rem;
+    width: 351px;
+    height: 65px;
     padding-bottom: 1rem;
     font-family: FrutigerCELight;
     background: url("../images/signin1.png") no-repeat;
@@ -81,15 +81,15 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 2rem;
-    width: 22.8rem;
-    height: 4rem;
+    width: 351px;
+    height: 65px;
     font-family: FrutigerCELight;
     background: url("../images/signin2.png") no-repeat;
 }
 
 #Event-Search {
     text-align: center;
-    padding-top: 2.8rem;
+    padding-top: 60px;
 }
 
 #search > input {
@@ -99,21 +99,21 @@ html, body {
     outline: none;
     color: #F3F3F3;
     font-size: 1.8rem;
-    width: 23.2rem;
-    height: 3rem;
+    width: 371px;
+    height: 60px;
     font-family: FrutigerCELight;
     background: url("../images/searchbar2.png") no-repeat;
 }
 
 #Events > ul {
-    padding-top: 1rem;
-    padding-left: 4.8rem;
+    padding-top: 12px;
+    padding-left: 85px;
     font-family: FrutigerCERoman;
     font-size: 2rem;
 }
 
 #Events > ul > li {
-    padding-bottom: 3.8rem;
+    padding-bottom: 45px;
     font-family: FrutigerLTRoman;
 }
 
@@ -123,8 +123,8 @@ html, body {
 #New-Event > button {
     background: url("../images/newevent.png") no-repeat center;
     border: none;
-    width: 18.1rem;
-    height: 5rem;
+    width: 280px;
+    height: 70px;
 }
 
 #signin-button {
@@ -134,8 +134,8 @@ html, body {
 #signin-button > button {
     background: url("../images/login.png") no-repeat center;
     border: none;
-    height: 2rem;
-    width: 17rem;
+    height: 70px;
+    width: 275px;
 }
 
 #right-col {
@@ -143,7 +143,7 @@ html, body {
     width: 66%;
     height: 100%;
     background: url("../images/BAALogo.png") no-repeat center;
-    font-size: 12.5rem;
+    font-size: 200px;
     font-family: FrutigerLTBoldCondensed;
     line-height: 175px;
 }
@@ -151,12 +151,12 @@ html, body {
 
 #top-text {
     color: #ED9491;
-    padding-left: .3rem;
+    padding-left: 7px;
     font-weight: bold;
 }
 
 #bottom-text {
     color: #EC7C79;
-    padding-left: .3rem;
+    padding-left: 7px;
     font-weight: bold;
 }
