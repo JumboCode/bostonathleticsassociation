@@ -1,0 +1,9 @@
+[
+{"jacket": "Yes", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "1", "team_captain": "Miller's Team", "phone": "7742751181", "jacket_size": "M"},
+{"jacket": "Yes", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "5", "team_captain": "", "phone": "7742751181", "jacket_size": "M"},
+{"jacket": "No", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "Cancel", "years_of_service": "1", "team_captain": "", "phone": "7742751181", "jacket_size": "L"},
+{"jacket": "No", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "1", "team_captain": "", "phone": "7742751181", "jacket_size": "M"},
+{"jacket": "Yes ", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "2", "team_captain": "Miller's Team", "phone": "7742751182", "jacket_size": "M"},
+{"jacket": "No", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "3", "team_captain": "", "phone": "7742751183", "jacket_size": "XL"},
+{"jacket": "No", "city": "Brookline", "name": "Miller, Mary", "email": "meamiller100@gmail.com", "state": "MA", "status": "OK", "years_of_service": "4", "team_captain": "", "phone": "7742751184", "jacket_size": "M"},
+]

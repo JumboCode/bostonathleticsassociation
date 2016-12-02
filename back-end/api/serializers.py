@@ -1,20 +1,24 @@
-from rest_framework import serializers
 from .models import Volunteer, Event, Attendee
+from django.contrib.auth import get_user_model, authenticate
+from django.conf import settings
+from rest_framework import serializers, exceptions
 
-class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
+class VolunteerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Volunteer
-        fields = ('name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
+        fields = ('id', 'name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
                   'jacket_size', 'status')
+        read_only_fields = ('id',)
 
 
-class EventSerializer(serializers.HyperlinkedModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('name', 'date')
+        fields = ('id', 'name', 'date')
+        read_only_fields = ('id',)
 
-class AttendeeSerializer(serializers.HyperlinkedModelSerializer):
+class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
-        fields = ('volunteer', 'event', 'team_captain', 'at_event', 'notes')
-
+        fields = ('id', 'volunteer', 'event', 'team_captain', 'at_event', 'notes')
+        read_only_fields = ('id',)

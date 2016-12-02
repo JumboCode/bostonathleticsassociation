@@ -5,13 +5,16 @@ class VolunteerAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'city', 'state',
                     'years_of_service', 'jacket', 'jacket_size',
                     'status')
+    readonly_fields = ('id',)
 
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'date')
+    readonly_fields = ('id',)
 
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('get_volunteer', 'get_event', 'at_event', 'get_team_captain', 'notes')
+    readonly_fields = ('id',)
 
     def get_volunteer(self, obj):
         return obj.volunteer.name

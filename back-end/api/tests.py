@@ -1,8 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from api.models import *
+import os
 
 # Create your tests here.
-class Models_Tests(TestCase):
+class test_Model(TestCase):
     def test_volunteer(self):
         store = Volunteer(name="Ian", email="ian@ianluo.com", 
                           phone="1231231234", city="medford",
@@ -34,3 +35,13 @@ class Models_Tests(TestCase):
 
         retrieve = Attendee.objects.get(notes="Was lit")
         self.assertEqual(retrieve.volunteer.name, "Ian")
+
+
+class Integration_tests(TestCase):
+    def test_email(self):
+        self.assertIsNotNone(os.getenv('EMAIL_PASS'))
+
+    # def test_homepage(self):
+    #     c = Client()
+    #     response = c.get('/')
+    #     self.assertEqual(response.status_code, 200)

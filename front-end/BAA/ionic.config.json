@@ -4,6 +4,10 @@
   "proxies": [
   {
   	"path": "/api",
-  	"proxyUrl": "http://localhost:8000/api/volunteers"
-  	}]
+  	"proxyUrl": "http://localhost:8000/api"
+  }, {
+	"path": "/api-token-auth",
+	"proxyUrl": "http://localhost:8000/api-token-auth"
+  }
+  ]	
 }

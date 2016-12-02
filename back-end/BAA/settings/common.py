@@ -39,7 +39,10 @@ INSTALLED_APPS = (
     'api',
     'rest_framework',
     'rest_framework_docs',
+    'django_filters',
+    'crispy_forms',
     'interface',
+    'rest_framework.authtoken'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,11 +103,13 @@ if 'TRAVIS' in os.environ:
 
 REST_FRAMEWORK = {
 
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 # Internationalization
@@ -140,3 +145,8 @@ STATICFILES_FINDERS = [
 # !!! Do not commit secret keys, use environment variables
 
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'baattendence@gmail.com'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS', default='')
+EMAIL_PORT = 587

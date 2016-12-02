@@ -2,10 +2,18 @@
 
 {% load static %}
 
+{% block scripts %}
+    <script src="{% static 'js/main.js' % }"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock scripts %}
+    
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock stylesheets %}
     <span id = "Event-Search"><input type = "text" name = "Event-Search" placeholder = "Search Events"></span><br>
+
 {% block left-column %}
     <div id = "Event-Search">
         <span id = "search"><input type = "text" placeholder = "Search Events"></span><br>
@@ -22,10 +30,11 @@
     </div>
 
     <div id = "New-Event">
-        <button type=submit></button>
+        <button type=submit onclick="add_event()"></button>
     </div>
 {% endblock left-column %}
 
 {% block right-column %}
+
 
 {% endblock right-column %}

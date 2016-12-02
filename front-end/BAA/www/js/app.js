@@ -33,17 +33,20 @@ checkCredentials = function(){
     var url = "api-token-auth";
     request = new XMLHttpRequest();
     request.open("POST", url);
+    request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             token = request.responseText;
             console.log(token);
+            //window.locations.href = "list.html";
+        }
+
+        if (request.readyState == 4 && request.status == 400) {
+            alert("invalid login");
         }
     }
 
     request.send("username=" + user + "&password=" + pass);
-
-    //alert("invalid login");
-	//window.locations.href = "list.html";
 };
 
