@@ -42,6 +42,11 @@ class API_tests(TestCase):
 
     def setUp(self):
         User.objects.create_user(username='test-user', password='asdfasdfasdf')
+        Event(name="Boston Marathon", date="12/01/2017").save()
+        Volunteer(name="John", email="john@doe.com", 
+                          phone="1241231234", city="medfasdford",
+                          jacket="yes", jacket_size="M")
+
 
     def test_token(self):
         c = Client()
@@ -50,9 +55,7 @@ class API_tests(TestCase):
         self.assertIsNotNone(response.json()['first_name'])
 
 
-
     def test_events(self):
-        # gets an event and a teamcaptain and just tries to check someone in
         c = Client()
         token = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'}).json()['token']
         response = c.get('/api/events/', HTTP_AUTHORIZATION = 'Token ' + token)
@@ -62,7 +65,40 @@ class API_tests(TestCase):
         # self.assertNotEqual(len(response.json()), 0)
 
 
-
 class Integration_tests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username='test-user', password='asdfasdfasdf')
+
+        boston_marathon = Event(name="Boston Marathon", date="12/01/2017")
+        boston_marathon.save()
+        john = Volunteer(name="John", email="john@doe.com", 
+                          phone="1241231234", city="medfasdford",
+                          jacket="yes", jacket_size="M")
+        john.save()
+        jack = Volunteer(name="Jack", email="Jack@doe.com", 
+                          phone="1241231234", city="medfasdford",
+                          jacket="yes", jacket_size="M") # jack will be our team cap
+        jack.save()
+
+        Attendee(volunteer=john, event=boston_marathon, at_event=False, notes="", team_captain=jack)
+
     def test_email(self):
         self.assertIsNotNone(os.getenv('EMAIL_PASS'))
+
+    def test_checkin(self):
+        # gets an event and a teamcaptain and just tries to check someone in
+        c = Client()
+        token = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'}).json()['token']
+        events = c.get('/api/events/', HTTP_AUTHORIZATION = 'Token ' + token).json()
+        volunteers = c.get('/api/volunteers/', HTTP_AUTHORIZATION = 'Token ' + token).json()
+
+        # work in progress
+        event = events[0]
+        attendee = c.get('/api/attendees/event/' + str(event['id']) + "/teamcap/" + str(volunteers[0]['id']), HTTP_AUTHORIZATION = 'Token ' + token)
+        # response = c.put('/api/attendees/' + str(attendee['id']) + '/', HTTP_AUTHORIZATION = 'Token ' + token, {'event': event['id'], 'at_event': True, 'notes': 'was lit', 'id': attendee['id'], 'volunteer': volunteers[1]['id']})
+
+
+    # TODO: add groups and make sure they can't do things they aren't supposed to do
+
+
+
