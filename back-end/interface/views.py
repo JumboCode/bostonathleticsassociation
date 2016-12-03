@@ -25,16 +25,14 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            print('asdfsdfsdf')
             return HttpResponseRedirect('/interface/main/')
         else:
             #TODO: failed to login
             pass     
     return render(request, 'signin.html', {})
 
-@login_required(login_url='/')
+#@login_required(login_url='/')
 def main(request):
-    print('main')
     context = {}
     return render(request, "main.html", context)
 

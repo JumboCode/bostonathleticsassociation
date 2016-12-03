@@ -101,8 +101,8 @@ html, body {
     border: 0;
     outline: none;
     color: #F3F3F3;
-    font-size: 1.8rem;
-    width: 371px;
+    font-size: 28px;
+    width: 421px;
     height: 60px;
     font-family: FrutigerCELight;
     background: url("../images/searchbar2.png") no-repeat;
@@ -112,7 +112,7 @@ html, body {
     padding-top: 12px;
     padding-left: 85px;
     font-family: FrutigerCERoman;
-    font-size: 2rem;
+    font-size: 30px;
 }
 
 #Events > ul > li {
