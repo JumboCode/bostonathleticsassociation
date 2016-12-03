@@ -25,7 +25,6 @@ angular.module('starter', ['ionic'])
     });
 })
 
-var token;
 checkCredentials = function(){
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
@@ -37,7 +36,8 @@ checkCredentials = function(){
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            token = request.responseText;
+            var token = request.responseText;
+            localStorage.setItem('token',token)
             console.log(token);
             window.location.href = "list.html";
         }
