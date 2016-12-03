@@ -1,11 +1,12 @@
-from .models import *
-from django.db import IntegrityError
-from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
-from rest_framework import generics
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.core.mail import send_mail
+from django.db import IntegrityError
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from .models import *
+from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
+#from permissions import *
 
 # generic view patterns documented http://www.django-rest-framework.org/tutorial/3-class-based-views/
 
@@ -65,7 +66,8 @@ class NotifyTeamCaptains(APIView):
             try:
                 password = User.objects.make_random_password()
                 new_user = User.objects.create_user(username=attende.team_captain.name,
-                                                    email=attende.team_captain.email, password=password)
+                                                    email=attende.team_captain.email, password=password,)
+               # new_user.user_permissions.add(Team)
 
                 message = "Hello, " + attende.team_captain.name + "\n Your password is:  " + \
                         password + ". \n \n \n Please login at [insert_url_here]"
