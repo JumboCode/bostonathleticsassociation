@@ -261,3 +261,11 @@ html, body {
     box-shadow: 0px 0px 1px 1px #CDCDCD;
 }
 
+#close {
+    position: relative;
+    margin-top: -10px;
+    margin-right: -25px;
+    top: -70px;
+    float: right;
+}
+
