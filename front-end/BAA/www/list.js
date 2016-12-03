@@ -1,13 +1,22 @@
 angular.module('ionicApp', ['ionic'])
+<<<<<<< HEAD
 .controller('MyCtrl', function($scope, $ionicPopup, $http) {
       var token = localStorage.getItem("token")
       console.log(token)
       console.log(token["token"])
+=======
+.controller('MyCtrl', function($scope, $ionicPopup, $http, sharedProperties) {
+      //function Ctrl2($scope, sharedProperties) {
+        //  $scope.token = sharedProperties.getProperty()
+          //console.log($scope.token)
+      //}
+      $scope.token = sharedProperties.getProperty()
+>>>>>>> faddb8e... combined list.js & app.js pages, added token to get request
       $http({
         method: 'GET',
         url: '/api/volunteers',
         headers: {
-          'Authorization': 'Token ' + token
+          'Authorization': 'Token ' + $scope.token
         }
       }).then(function successCallback(response) {
           $scope.items = response.data

@@ -39,7 +39,7 @@ checkCredentials = function(){
             var token = request.responseText;
             localStorage.setItem('token',token)
             console.log(token);
-            window.location.href = "list.html";
+            //window.location.href = "list.html";
         }
 
         if (request.readyState == 4 && request.status == 400) {
