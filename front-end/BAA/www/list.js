@@ -7,7 +7,7 @@ angular.module('ionicApp', ['ionic'])
         method: 'GET',
         url: '/api/volunteers',
         headers: {
-          'Authorization': 'Token 4bae81c59ba63290db534414dfa255b3576b56ec'
+          'Authorization': 'Token ' + token
         }
       }).then(function successCallback(response) {
           $scope.items = response.data
