@@ -15,14 +15,16 @@ class CustomObtainAuthToken(ObtainAuthToken):
         token = Token.objects.get(key=response.data['token'])
         first_name = token.user.get_short_name()
 
-        team_cap = Volunteer.objects.filter(name=first_name)
+        # team_cap = Volunteer.objects.filter(name=first_name)
 
-        qs = Attendee.objects.filter(team_captain__name=team_cap)
+        # qs = Attendee.objects.filter(team_captain__name=team_cap)
 
-        serializer = AttendeeSerializer(qs, many=True)
+        # serializer = AttendeeSerializer(qs, many=True)
 
-        time = datetime.datetime.now()
+        # time = datetime.datetime.now()
 
         #TODO still need to filter by event date
 
-        return Response({'token': token.key, 'first_name': first_name, 'volunteers':serializer.data})
+        # return Response({'token': token.key, 'first_name': first_name, 'volunteers':serializer.data})
+        # TODO: temporary fix things hopefully
+        return Response({'token': token.key, 'first_name': first_name})
