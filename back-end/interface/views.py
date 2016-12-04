@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import render_to_response, redirect
-from django.http import *
-from django.template import RequestContext
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from .models import *
+from .forms import DocumentForm
 
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
@@ -37,5 +38,43 @@ def main(request):
     return render(request, "main.html", context)
 
 def upload_csv(request):
-    return HttpResponse("import csv data here")
+    # if request.method == 'POST':
+    #     form = DocumentForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         print("success")
+    #         # handle_uploaded_file(request.FILES['file'])
+    #         # return HttpResponseRedirect('/interface')
+    # else:
+    #     form = DocumentForm()
+    context = {}
+    return render(request, "list.html", context)
+
+
+
+# from myproject.myapp.models import Document
+# from myproject.myapp.forms import DocumentForm
+
+def list(request):
+
+    # return HttpResponse("testing")
+
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            # return HttpResponseRedirect(reverse('interface.views.list'))
+            return render(request, "list.html", {})
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form-this is breaking for some reason
+    return render(request, "list.html", {})
+    #'documents': documents, 'form': form
 
