@@ -12,10 +12,6 @@ from .forms import DocumentForm
 def view(request, event_id):
     pass
 
-# def index(request):
-#     context = {}
-#     return render(request, "signin.html", context)
-
 def login_view(request):
     logout(request)
     username = password = ''
