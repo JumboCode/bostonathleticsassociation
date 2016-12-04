@@ -66,7 +66,7 @@ class NotifyTeamCaptains(APIView):
             try:
                 password = User.objects.make_random_password()
                 new_user = User.objects.create_user(username=attende.team_captain.name,
-                                                    email=attende.team_captain.email, password=password,)
+                                                    email=attende.team_captain.email, password=password)
                # new_user.user_permissions.add(Team)
 
                 message = "Hello, " + attende.team_captain.name + "\n Your password is:  " + \
