@@ -17,7 +17,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
         team_cap = Volunteer.objects.filter(name=first_name)
 
-        qs = Attendee.objects.filter(team_captain__name=team_cap)
+        qs = Attendee.objects.filter(team_captain=team_cap)
 
         serializer = AttendeeSerializer(qs, many=True)
 
