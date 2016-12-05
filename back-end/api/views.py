@@ -70,7 +70,7 @@ class NotifyTeamCaptains(APIView):
                 password = User.objects.make_random_password()
                 new_user = User.objects.create_user(username=attende.team_captain.name,
                                                     email=attende.team_captain.email, password=password)
-               # team_cap_group.user_set.add(new_user)
+                #team_cap_group.user_set.add(new_user)
 
                 message = "Hello, " + attende.team_captain.name + "\n Your password is:  " + \
                         password + ". \n \n \n Please login at [insert_url_here]"
