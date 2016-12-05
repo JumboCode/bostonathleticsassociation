@@ -31,7 +31,7 @@ angular.module('starter', ['ionic'])
           //console.log($scope.token)
       //}
       //$scope.token = sharedProperties.getProperty()
-      tokenInfo = JSON.parse(getToken());
+      tokenInfo = getToken();
       console.log(tokenInfo.token);
       $http({
         method: 'GET',
