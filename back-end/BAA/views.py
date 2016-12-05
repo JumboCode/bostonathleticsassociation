@@ -13,7 +13,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
-        first_name = str(token.user.get_short_name())
+        first_name = token.user.get_short_name()
 
         team_cap = Volunteer.objects.filter(name=first_name)
 
