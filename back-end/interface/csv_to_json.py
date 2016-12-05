@@ -26,13 +26,3 @@ def parse_csv(csv_file):
 
     jsonfile.close()
 
-    #removes unnecessary team_captain data but also all formatting
-    # with open(filepath, 'r') as data_file:
-    #     data = json.load(data_file)
-
-    # for element in data:
-    #     del element["fields"]["team_captain"]
-
-    # with open(filepath, 'w') as data_file:
-    #     data = json.dump(data, data_file)
-parse_csv(sys.argv[1])
