@@ -26,11 +26,6 @@ angular.module('starter', ['ionic'])
 })
 
 .controller('MyCtrl', function($scope, $ionicPopup, $http) {
-      //function Ctrl2($scope, sharedProperties) {
-        //  $scope.token = sharedProperties.getProperty()
-          //console.log($scope.token)
-      //}
-      //$scope.token = sharedProperties.getProperty()
       tokenInfo = getToken();
       console.log(tokenInfo.token);
       $http({
