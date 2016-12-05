@@ -28,6 +28,7 @@ angular.module('starter', ['ionic'])
 .controller('MyCtrl', function($scope, $ionicPopup, $http) {
       tokenInfo = getToken();
       console.log(tokenInfo.token);
+      console.log(tokenInfo.volunteers);
       $http({
         method: 'GET',
         url: '/api/volunteers',
