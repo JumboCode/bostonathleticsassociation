@@ -21,7 +21,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
         serializer = AttendeeSerializer(qs, many=True)
 
-        # time = datetime.datetime.now()
+        #time = datetime.datetime.now()
 
         #TODO still need to filter by event date
 

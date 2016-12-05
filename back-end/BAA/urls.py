@@ -28,9 +28,9 @@ import interface.views as interface
 
 urlpatterns = [
     url(r'^$', interface.login_view),
+    url(r'^api-token-auth/', CustomObtainAuthToken.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('api.urls')),
     url(r'docs/', include('rest_framework_docs.urls')),
     url(r'^interface/', include('interface.urls')),
-    url(r'^api-token-auth/', CustomObtainAuthToken.as_view())
     ]

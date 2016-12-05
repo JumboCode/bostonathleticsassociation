@@ -63,19 +63,19 @@ class NotifyTeamCaptains(APIView):
 
         subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk= event).name
 
-        team_cap_group = Group.objects.get(name="Team Captain")
+      #  team_cap_group = Group.objects.get(name="Team Captain")
 
-        for attende in Attendee.objects.filter(event=event):
+        for attendee in Attendee.objects.filter(event=event):
             try:
                 password = User.objects.make_random_password()
-                new_user = User.objects.create_user(username=attende.team_captain.name,
-                                                    email=attende.team_captain.email, password=password)
+                new_user = User.objects.create_user(username=attendee.team_captain.name,
+                                                    email=attendee.team_captain.email, password=password)
                 #team_cap_group.user_set.add(new_user)
 
-                message = "Hello, " + attende.team_captain.name + "\n Your password is:  " + \
+                message = "Hello, " + attendee.team_captain.name + "\n Your password is:  " + \
                         password + ". \n \n \n Please login at [insert_url_here]"
 
-                recipient = attende.team_captain.email
+                recipient = attendee.team_captain.email
                 email = "baattendence@gmail.com"
 
                 send_mail(subject=subject, message=message, recipient_list=[recipient],
