@@ -34,7 +34,7 @@
       </label>
       <ion-list >
         <ion-item ng-repeat="item in items | filter:searchQuery" item="item" class="item item-button-right">
-            <button class =" largerB" ng-click="showPrompt(item)"> {{item.name}} </button>
+            <button class =" largerB" ng-click="showPrompt(item)"> {{item.volunteer.name}} </button>
             <div class = 'buttons hide'>
              <button class="button button-icon larger " ng-click="unchecked =!unchecked; changeStatus(item)"  ng-class="{'icon ion-ios-checkmark-outline': !unchecked, 'icon ion-ios-checkmark': unchecked}"></button>
              <!-- <button class="button button-icon ion-ios-close-outline larger "></button> -->
