@@ -68,8 +68,8 @@ class NotifyTeamCaptains(APIView):
         for attendee in Attendee.objects.filter(event=event):
             try:
                 password = User.objects.make_random_password()
-                new_user = User.objects.create_user(username=attendee.team_captain.name,
-                                                    email=attendee.team_captain.email, password=password)
+                new_user = User.objects.create_user(username=attendee.team_captain.name.replace(" ", "."),
+                                                    email=attendee.team_captain.email, password=password,)
                 #team_cap_group.user_set.add(new_user)
 
                 message = "Hello, " + attendee.team_captain.name + "\n Your password is:  " + \

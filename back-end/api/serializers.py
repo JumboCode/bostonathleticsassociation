@@ -18,6 +18,18 @@ class EventSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 class AttendeeSerializer(serializers.ModelSerializer):
+    volunteer = VolunteerSerializer()
+    event = EventSerializer()
+
+    # override the nested volunteer, event fields to PrimareKeyRelatedField on writes
+    def to_internal_value(self, data):
+        self.fields['volunteer'] = serializers.PrimaryKeyRelatedField(queryset=Volunteer.objects.all())
+        return super(AttendeeSerializer, self).to_internal_value(data)
+
+    def to_internal_value(self, data):
+        self.fields['event'] = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
+        return super(AttendeeSerializer, self).to_internal_value(data)
+
     class Meta:
         model = Attendee
         fields = ('id', 'volunteer', 'event', 'team_captain', 'at_event', 'notes')
