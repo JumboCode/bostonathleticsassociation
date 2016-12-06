@@ -156,6 +156,7 @@ function edit_event() {
     new_event_string += '</ul>';
     new_event_string += '</div>';
     new_event_string += '</div>';
+    new_event_string += '<br>';
     new_event_string += '<div id = "upload">';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
