@@ -30,7 +30,7 @@ def login_view(request):
 
 #@login_required(login_url='/')
 def main(request):
-    context = {}
+    context = { }
     return render(request, "main.html", context)
 
 def upload_csv(request):

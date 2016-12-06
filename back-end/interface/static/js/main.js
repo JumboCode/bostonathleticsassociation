@@ -56,15 +56,14 @@ function add_event() {
     new_event_string += '<div id = "upload">';
     new_event_string += '<label for="image">';
     new_event_string += '<input type="file" name = "image" id= "image" class= "file_upload" style="display:none;" onchange="check_file()">';
-
-    new_event_string += '<img src= "../static/images/upload icon.png" alt="upload pic" style="">';
+    new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
     new_event_string += 'Upload Volunteer Profiles';
     new_event_string += '</div>';
     new_event_string += '<div id = "submit" onclick="get_new_event_info()">';
-    new_event_string += '<img src= "../static/images/submit.png" alt="submit pic" style="">';
+    new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
     new_event_string += '</div>';
     new_event_string += '</div>';
 
@@ -90,7 +89,7 @@ function view_past_event() {
     new_event_string += '<label for="image">';
     new_event_string += '<input type="file" name="image" id= "image" style="display:none;">';
     new_event_string += '<br>';
-    new_event_string += '<img src= "../static/images/download icon.png" alt="upload pic" style="">';
+    new_event_string += '<img src= "/static/images/download icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
@@ -165,7 +164,7 @@ function edit_event() {
 
     new_event_string += '</div>';
     new_event_string += '<div id = "submit" onclick="get_new_event_info()">';
-    new_event_string += '<img src= "../static/images/submit.png" alt="submit pic" style="">';
+    new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
     new_event_string += '</div>';
     new_event_string += '</div>';
 
@@ -194,7 +193,7 @@ function remove_upload() {
 	new_event_string += '<label for="image">';
     new_event_string += '<input type="file" name = "image" id= "image" class= "file_upload" style="display:none;" onchange="check_file()">';
 
-    new_event_string += '<img src= "../static/images/upload icon.png" alt="upload pic" style="">';
+    new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
 
     document.getElementById("upload").innerHTML = new_event_string;
@@ -226,3 +225,23 @@ function set_year(n) {
 function close_pop() {
 	document.getElementById("right-col").innerHTML = '';
 }
+
+function fill_year_picker() {
+    var year_string = '';
+    var current_year = new Date().getFullYear();
+
+    for (i = current_year - 10; i <= current_year + 10; i++) {
+        year_string += '<li onclick = "list_events(' + i + ')" style="padding-left: 5%; padding: 2.5%">' + i + '</li>';
+    }
+
+    document.getElementById("yp").innerHTML = year_string;
+}
+
+function list_events(year) {
+    document.getElementById("findyear").innerHTML = year;
+}
+
+
+
+
+

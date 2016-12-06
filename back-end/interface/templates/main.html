@@ -20,13 +20,21 @@
         <span id = "search"><input type = "text" placeholder = "Search Events"></span><br>
     </div>
 
+    <div id = "year_picker">
+        <div class="btn-group" onclick = "fill_year_picker()">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "findyear">Year </span>  <span class="caret"></span></button>
+                <ul id = "yp" class="dropdown-menu scrollable-menu" role="menu"></ul>
+            </button>
+        </div>
+    </div>
+
     <div id = "Events">
         <ul>
-            <li>Boston Marathon</li>
-            <li>Half Marathon</li>
-            <li>Distance Medley</li>
+            <li onclick = "view_past_event()"> Boston Marathon</li>
+            <li onclick = "edit_event()"> Half Marathon</li>
+            <!-- <li>Distance Medley</li>
             <li>Boston 10K</li>
-            <li>Boston 5K</li>
+            <li>Boston 5K</li> -->
         </ul>
     </div>
 
