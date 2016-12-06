@@ -28,6 +28,7 @@ class Volunteer(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=30)
     date = models.CharField(max_length=30)
+    csv = models.FileField(null=True, upload_to='file')
 
     def __str__(self):
         return self.name

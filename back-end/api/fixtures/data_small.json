@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Boston Marathon",
+      "csv": "file/simple_csv_56oKwOt.csv",
       "date": "2016-10-19T09:00:41Z"
     }
   },

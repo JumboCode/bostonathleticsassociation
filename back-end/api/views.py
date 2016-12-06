@@ -1,8 +1,13 @@
 from django.core.mail import send_mail
 from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.parsers import MultiPartParser
+from django.http import HttpResponse, Http404
+
 from django.contrib.auth.models import Group
 
 from .models import *
@@ -23,8 +28,10 @@ class VolunteerDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VolunteerSerializer
 
 class EventList(generics.ListCreateAPIView):
+    parser_classes = (MultiPartParser,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
 
 #returns specific volunteer, ability to update, delete as well
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -35,9 +42,11 @@ class AttendeeList(generics.ListCreateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
 
-#returns specific volunteer, ability to update, delete as well
+    #returns specific volunteer, ability to update, delete as well
+
     serializer_class = AttendeeSerializer
     queryset = Attendee.objects.all()
+
 
 class AttendeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendee.objects.all()
@@ -56,6 +65,42 @@ class FilteredAttendeeList(generics.ListAPIView):
          return queryset
 
 
+class SearchEvent(generics.ListAPIView):
+    serializer_class = EventSerializer
+
+    def get(self, request, name):
+        serializer_class = EventSerializer
+
+        lookup_field = 'name'
+        name = self.kwargs['name']
+
+        try:
+            event = Event.objects.get(name=name)
+            csv_path = event.csv
+            serializer = serializer_class(event, context={'request':request})
+
+        except ObjectDoesNotExist:
+            return Response(status=422)
+
+        return Response(serializer.data)
+
+
+class DownloadFile(APIView):
+
+    def get(self, request, file):
+        file_path = "file/"+self.kwargs['file']+".csv"
+        specific_event = Event.objects.get(csv=file_path)
+
+        #get the event object with the exact file path requested
+
+        file_name = specific_event.csv.name.split('/')[-1]
+        response = HttpResponse(specific_event.csv, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename=%s' %file_name
+
+        return response
+
+
+
 class NotifyTeamCaptains(APIView):
 
     def get(self, request, event):
@@ -68,6 +113,9 @@ class NotifyTeamCaptains(APIView):
         for attendee in Attendee.objects.filter(event=event):
             try:
                 password = User.objects.make_random_password()
+                new_user = User.objects.create_user(username=attendee.team_captain.name,
+                                                    email=attendee.team_captain.email, password=password,)
+               # new_user.user_permissions.add(Team)
                 new_user = User.objects.create_user(username=attendee.team_captain.name.replace(" ", "."),
                                                     email=attendee.team_captain.email, password=password,)
                 #team_cap_group.user_set.add(new_user)
@@ -86,4 +134,4 @@ class NotifyTeamCaptains(APIView):
 
             return Response("all is quiet on the western front")
 
-
+        return Response(status=200)

@@ -9,13 +9,19 @@ class VolunteerSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'phone', 'email', 'city', 'state', 'years_of_service', 'jacket',
                   'jacket_size', 'status')
         read_only_fields = ('id',)
-
+        depth = 1
 
 class EventSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date')
+        fields = ('id', 'name', 'date', 'csv')
         read_only_fields = ('id',)
+        depth = 1
+
+    def get_csv_url(self, obj):
+        return self.context['request'].build_absolute_uri(self.csv)
+
 
 class AttendeeSerializer(serializers.ModelSerializer):
     volunteer = VolunteerSerializer()
@@ -34,3 +40,5 @@ class AttendeeSerializer(serializers.ModelSerializer):
         model = Attendee
         fields = ('id', 'volunteer', 'event', 'team_captain', 'at_event', 'notes')
         read_only_fields = ('id',)
+        depth = 1
+
