@@ -3,6 +3,8 @@ var name;
 var day;
 var month;
 var year;
+var new_file;
+var events;
 
 function add_event() {
 	new_event_string = '';
@@ -101,12 +103,11 @@ function view_past_event(i) {
 }
 
 function edit_event(i) {
-
     var title = events[i].name;
     var month = events[i].date.substr(5,2);
     var day = events[i].date.substr(8,2);
     var year = events[i].date.substr(0,4);
-
+    var new_file = false;
     var index = window.location.origin.length + "/api/events/file/".length;
     var file_path = events[i].csv;
 	var file_name = file_path.substr(index, file_path.length - index);
@@ -124,8 +125,8 @@ function edit_event(i) {
     new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
     new_event_string += '<li onclick = "set_month(1)" style="padding-left: 5%;">1</li>';
 
-    for (i = 2; i <= 12; i++) {
-    	new_event_string += '<li onclick = "set_month(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+    for (j = 2; j <= 12; j++) {
+    	new_event_string += '<li onclick = "set_month(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
 
     new_event_string += '</ul>';
@@ -137,8 +138,8 @@ function edit_event(i) {
     new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
     new_event_string += '<li onclick = "set_day(1)" style="padding-left: 5%;">1</li>';
 
-    for (i = 2; i <= 31; i++) {
-    	new_event_string += '<li onclick = "set_day(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+    for (j = 2; j <= 31; j++) {
+    	new_event_string += '<li onclick = "set_day(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
 
     new_event_string += '</ul>';
@@ -152,8 +153,8 @@ function edit_event(i) {
 
     var current_year = new Date().getFullYear();
 
-    for (i = current_year + 1; i <= current_year + 10; i++) {
-    	new_event_string += '<li onclick = "set_year(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+    for (j = current_year + 1; j <= current_year + 10; j++) {
+    	new_event_string += '<li onclick = "set_year(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
 
     new_event_string += '</ul>';
@@ -164,9 +165,9 @@ function edit_event(i) {
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
     new_event_string += '<span style="margin-right: 20px"><a href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
-    new_event_string += '<span id="remove_upload" onclick="remove_upload()">x</span>';
+    new_event_string += '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
     new_event_string += '</div>';
-    new_event_string += '<div id = "submit" onclick="get_new_event_info()">';
+    new_event_string += '<div id = "submit" onclick="update_event_data('+ i +')">';
     new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
     new_event_string += '</div>';
     new_event_string += '</div>';
@@ -175,7 +176,7 @@ function edit_event(i) {
 }
 
 function check_file() {
-
+    new_file = true;
 	var file_type = document.getElementById("image").files[0].type;
 	file = document.getElementById("image").files[0];
 
@@ -184,7 +185,7 @@ function check_file() {
 		return;
 	}
 
-	var remove = '<span id="remove_upload" onclick="remove_upload()">x</span>';
+	var remove = '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
 
 	var file_name = '<span style="margin-right: 20px">' + document.getElementById("image").files[0].name + '</span>';
 
@@ -215,11 +216,9 @@ function get_new_event_info() {
     data.append("csv", file);
 
     var xhr = new XMLHttpRequest();
-    //xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
-            console.log(this.responseText);
         }
     });
 
@@ -364,7 +363,32 @@ function check_past_date(date) {
     return false;
 }
 
+function update_event_data(i) {
+    var new_event = document.getElementById("new_event").value;
+    document.getElementById("right-col").innerHTML = '';
 
+    var date = year + "-" + month + "-" + day;
+    var url = window.location.origin;
 
+    var data = new FormData();
 
+    if (new_event != "")
+        data.append("name", new_event);
 
+    data.append("date", date);
+
+    if (new_file)
+        data.append("csv", file);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+        }
+    });
+
+    xhr.open("PATCH", url + "/api/events/" + events[i].id + "/");
+    xhr.setRequestHeader("Authorization", window.token);
+
+    xhr.send(data);
+}
