@@ -117,6 +117,12 @@ body {
     background: url("../images/searchbar2.png") no-repeat;
 }
 
+#Events {
+    height: 510px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
 #Events > ul {
     padding-top: 12px;
     padding-left: 85px;
@@ -228,10 +234,9 @@ body {
 }
 
 .scrollable-menu {
-    overflow: auto;
+    height: auto;
     max-height: 200px;
-    /*overflow-x: hidden;*/
-    /*overflow-y: scroll;*/
+    overflow: auto;
 }
 
 .btn-group > ul > li:hover {
@@ -288,11 +293,12 @@ body {
     margin-right: -75px;
     top: -70px;
     float: right;
+    color: #828080;
 }
 
 #year_picker {
     text-align: right;
-    margin-right: 50px;
+    margin-right: 30px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
@@ -314,6 +320,6 @@ body {
 
     #signin-button {
         text-align: center;
-        padding-bottom: 5%;
+        padding-bottom: 4%;
     }
 }

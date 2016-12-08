@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import *
 from .forms import DocumentForm
+from rest_framework.authtoken.models import Token
 
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
@@ -39,7 +40,8 @@ def login_view(request):
 
 #@login_required(login_url='/')
 def main(request):
-    context = {}
+    user_token = Token.objects.get(user=request.user)
+    context = {"token": user_token}
     return render(request, "main.html", context)
 
 def upload_csv(request):

@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block scripts %}
+    <script>
+        window.token = "Token " + "{{token}}";
+    </script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,8 +18,18 @@
 
 {% block left-column %}
     <div id = "Event-Search">
-        <span id = "search"><input onsearch = "get_all_events()" id = "serach_input" type = "search" placeholder = "Search Events"></span><br>
+       <!-- <span id = "search"><input onsearch = "get_all_events()" type = "search" placeholder = "Search Events"></span><br> -->
+        <form class="navbar-form" role="search" onsubmit="get_all_events(); return false;">
+            <div class="input-group add-on">
+            <span id = "search">
+              <input class="form-control" placeholder="Search" id="serach_input" type="text">
+            </span>
+
+            </div>
+        </form>
     </div>
+
+
 
     <div id = "year_picker">
         <div class="btn-group" onclick = "fill_year_picker()">
