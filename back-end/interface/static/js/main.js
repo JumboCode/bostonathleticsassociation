@@ -5,8 +5,6 @@ var month;
 var year;
 
 function add_event() {
-    token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
-
 	new_event_string = '';
 	new_event_string += '<div id = "new"> NEW </div>';
     new_event_string += '<div id = "ev"> EVENT </div>';
@@ -226,7 +224,7 @@ function get_new_event_info() {
     });
 
     xhr.open("POST", url + "/api/events/");
-    xhr.setRequestHeader("Authorization", token);
+    xhr.setRequestHeader("Authorization", window.token);
 
     xhr.send(data);
 }
@@ -282,8 +280,6 @@ function set_year_picker(year) {
 }
 
 function get_all_events() {
-    token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
-
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
@@ -296,7 +292,7 @@ function get_all_events() {
 
     var url = window.location.origin;
     xhr.open("GET", url + "/api/events/");
-    xhr.setRequestHeader("Authorization", token);
+    xhr.setRequestHeader("Authorization", window.token);
 
     xhr.send();
 }
