@@ -11,8 +11,10 @@ from django.http import HttpResponse, Http404
 from .csv_to_json2 import parse_csv
 from .upload_json2 import add_volunteer, parse_json
 from django.core import serializers
-from django.contrib.auth.models import Group
+import csv
 
+from django.contrib.auth.models import Group
+from io import TextIOWrapper
 
 
 from .models import *
@@ -42,20 +44,46 @@ class EventList(generics.ListCreateAPIView):
 
         req_name = request.data.__getitem__('name')
         req_date = request.data.__getitem__('date')
-        req_csv  = request.data.get('csv')
+        req_csv  = request.FILES.get('csv')
 
-        event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
+        weird_csv_work = req_csv
 
-        json_file = parse_csv(req_csv)
+        #event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
 
-        #j2 = serializers.serialize("json", json_file)
 
-        #print(json_file)
-        #parse_json(json_file, event)
+        f = TextIOWrapper(req_csv.file, encoding=request.encoding)
+        reader = csv.reader(f, delimiter=',')
+
+        event = Event.objects.create(name=req_name, date=req_date, csv=None)
+
+
+        for row in reader:
+            print(row)
+            volunteer = Volunteer.objects.get_or_create(
+                name=row[0],
+                status=row[1],
+                city=row[2],
+                state=row[3],
+                phone=row[4],
+                email=row[5],
+                years_of_service=row[6],
+                jacket=row[7],
+                jacket_size=row[8]
+            )
+
+            team_cap_name = row[9]
+
+            try:
+                team_cap = Volunteer.objects.get(name=team_cap_name)
+
+            except ObjectDoesNotExist:
+                team_cap = None
+
+            Attendee.objects.create(volunteer=volunteer[0], team_captain=team_cap, event=event)
 
         serializer = serializer_class(event, context={'request':request})
 
-        return Response("What")
+        return Response(serializer.data)
 
 
 
