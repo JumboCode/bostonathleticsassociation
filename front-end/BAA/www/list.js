@@ -1,10 +1,13 @@
 angular.module('ionicApp', ['ionic'])
 .controller('MyCtrl', function($scope, $ionicPopup, $http) {
+      var token = localStorage.getItem("token")
+      console.log(token)
+      console.log(token["token"])
       $http({
         method: 'GET',
         url: '/api/volunteers',
         headers: {
-          'Authorization': 'Token ' + $scope.token
+        'Authorization': 'Token ' + $scope.token
         }
       }).then(function successCallback(response) {
           $scope.items = response.data

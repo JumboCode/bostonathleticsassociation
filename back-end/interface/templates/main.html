@@ -4,7 +4,6 @@
 
 {% block scripts %}
     <script src="{% static 'js/main.js' %}"></script>
-    <!-- <script src="../static/js/main.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock scripts %}
@@ -13,11 +12,10 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock stylesheets %}
-    <span id = "Event-Search"><input type = "text" name = "Event-Search" placeholder = "Search Events"></span><br>
 
 {% block left-column %}
     <div id = "Event-Search">
-        <span id = "search"><input type = "text" placeholder = "Search Events"></span><br>
+        <span id = "search"><input onsearch = "get_all_events()" id = "serach_input" type = "search" placeholder = "Search Events"></span><br>
     </div>
 
     <div id = "year_picker">
@@ -29,13 +27,7 @@
     </div>
 
     <div id = "Events">
-        <ul>
-            <li onclick = "view_past_event()"> Boston Marathon</li>
-            <li onclick = "edit_event()"> Half Marathon</li>
-            <!-- <li>Distance Medley</li>
-            <li>Boston 10K</li>
-            <li>Boston 5K</li> -->
-        </ul>
+        <ul></ul>
     </div>
 
     <div id = "New-Event">

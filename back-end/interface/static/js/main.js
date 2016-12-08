@@ -4,8 +4,16 @@ var day;
 var month;
 var year;
 var token;
+<<<<<<< HEAD
 
 function add_event() {
+=======
+var file;
+var events;
+
+function add_event() {
+    token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
+>>>>>>> dev
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> NEW </div>';
@@ -72,12 +80,12 @@ function add_event() {
     document.getElementById("right-col").innerHTML = new_event_string;
 }
 
-function view_past_event() {
+function view_past_event(i) {
 
-	var title = "title";
-	var month = "1";
-	var day = "1"; 
-	var year = "2016";
+	var title = events[i].name;
+	var month = events[i].date.substr(5,2);
+	var day = events[i].date.substr(8,2);
+	var year = events[i].date.substr(0,4);
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> PAST </div>';
@@ -102,13 +110,16 @@ function view_past_event() {
     document.getElementById("right-col").innerHTML = new_event_string;
 }
 
-function edit_event() {
+function edit_event(i) {
 
-	var title = "title";
-	var month = "1";
-	var day = "1"; 
-	var year = "2016";
-	var file_name = "fake.csv";
+    var title = events[i].name;
+    var month = events[i].date.substr(5,2);
+    var day = events[i].date.substr(8,2);
+    var year = events[i].date.substr(0,4);
+
+    var index = window.location.origin.length + "/api/events/file/".length;
+    var file_path = events[i].csv;
+	var file_name = file_path.substr(index, file_path.length - index);
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> EDIT </div>';
@@ -162,9 +173,8 @@ function edit_event() {
     new_event_string += '<div id = "upload">';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
-    new_event_string += '<span style="margin-right: 20px">' + file_name + '</span>';
+    new_event_string += '<span style="margin-right: 20px"><a href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
     new_event_string += '<span id="remove_upload" onclick="remove_upload()">x</span>';
-
     new_event_string += '</div>';
     new_event_string += '<div id = "submit" onclick="get_new_event_info()">';
     new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
@@ -175,8 +185,9 @@ function edit_event() {
 }
 
 function check_file() {
+
 	var file_type = document.getElementById("image").files[0].type;
-	console.log(file_type);
+	file = document.getElementById("image").files[0];
 
 	if (file_type != "text/csv") {
 		alert("file must be of type filename.csv")
@@ -195,7 +206,6 @@ function remove_upload() {
 	var new_event_string = '';
 	new_event_string += '<label for="image">';
     new_event_string += '<input type="file" name = "image" id= "image" class= "file_upload" style="display:none;" onchange="check_file()">';
-
     new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
 
@@ -205,17 +215,43 @@ function remove_upload() {
 
 function get_new_event_info() {
 	new_event = document.getElementById("new_event").value;
-	console.log(new_event);
+    document.getElementById("right-col").innerHTML = '';
+    var date = year + "-" + month + "-" + day;
+    var url = window.location.origin;
 
-	document.getElementById("right-col").innerHTML = '';
+    var data = new FormData();
+    data.append("name", new_event);
+    data.append("date", date);
+    data.append("csv", file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+        }
+    });
+
+    xhr.open("POST", url + "/api/events/");
+    xhr.setRequestHeader("authentication", token);
+
+    xhr.send(data);
 }
 
 function set_month(n) {
+    if (n < 10) {
+        n = '0' + n;
+    }
+
 	document.getElementById("m").innerHTML = n;
 	month = n;
 }
 
 function set_day(n) {
+    if (n < 10) {
+        n = '0' + n;
+    }
+
 	document.getElementById("d").innerHTML = n;
 	day = n;
 }
@@ -233,15 +269,110 @@ function fill_year_picker() {
     var year_string = '';
     var current_year = new Date().getFullYear();
 
+    var str = "Year ";
+    year_string += '<li onclick = "set_year_picker(0)" style="padding-left: 5%; padding: 2.5%">Year</li>';
+
     for (i = current_year - 10; i <= current_year + 10; i++) {
-        year_string += '<li onclick = "list_events(' + i + ')" style="padding-left: 5%; padding: 2.5%">' + i + '</li>';
+        year_string += '<li onclick = "set_year_picker(' + i + ')" style="padding-left: 5%; padding: 2.5%">' + i + '</li>';
     }
 
     document.getElementById("yp").innerHTML = year_string;
 }
 
-function list_events(year) {
-    document.getElementById("findyear").innerHTML = year;
+function set_year_picker(year) {
+    if (year == 0) {
+        document.getElementById("findyear").innerHTML = "Year ";
+    } else {
+        document.getElementById("findyear").innerHTML = year;
+    }
+    get_all_events();
+}
+
+function get_all_events() {
+    token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            events = JSON.parse(xhr.responseText);
+            show_sorted();
+        }
+    }   
+
+    var url = window.location.origin;
+    xhr.open("GET", url + "/api/events/");
+    xhr.setRequestHeader("authentication", token);
+
+    xhr.send();
+}
+
+function show_sorted() {
+    year = document.getElementById("findyear").innerHTML;
+    str = document.getElementById("serach_input").value;
+
+    var events_string = "<ul>"; 
+
+    if (str == "" && year != "Year ") {
+        var rxy = new RegExp(year); 
+        for (i=0; i<events.length; i++) {
+            if (rxy.test(events[i].date)) {
+                if (check_past_date(events[i].date))
+                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
+                else
+                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
+            }
+        }
+    } else if (str != "" && year != "Year ") {
+        var rxy = new RegExp(year); 
+        var rxs = new RegExp(str, "i");
+        for (i=0; i<events.length; i++) {
+            if (rxy.test(events[i].date) && rxs.test(events[i].name)) {
+                if (check_past_date(events[i].date))
+                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
+                else
+                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
+            }
+        }
+    } else if (str != "" && year == "Year ") {
+        var rxs = new RegExp(str, "i");
+        for (i=0; i<events.length; i++) {
+            if (rxs.test(events[i].name)) {
+                if (check_past_date(events[i].date))
+                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
+                else
+                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
+            }
+        }
+    }
+
+    events_string += "</ul>";
+    document.getElementById("Events").innerHTML = events_string;
+}
+
+function check_past_date(date) {
+    var d = new Date();
+    var current_year = d.getFullYear();
+    var current_month = d.getMonth() + 1;
+    var current_day = d.getDate();
+
+    if (current_year > parseInt(date.substr(0,4)))
+        return true;
+
+    if (current_year == parseInt(date.substr(0,4))) {
+
+        if (current_month > parseInt(date.substr(5,2)))
+            return true;
+
+        if (current_month == parseInt(date.substr(5,2))) {
+
+            if (current_date > parseInt(date.substr(8,2))) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 

@@ -154,7 +154,7 @@ body {
 
 #right-col {
     float: right;
-    width: 66%;
+    width: 1055px;
     height: 100%;
     background: url("../images/BAALogo.png") no-repeat center;
     font-size: 125px;
@@ -228,9 +228,10 @@ body {
 }
 
 .scrollable-menu {
-    height: auto;
+    overflow: auto;
     max-height: 200px;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    /*overflow-y: scroll;*/
 }
 
 .btn-group > ul > li:hover {
@@ -294,4 +295,25 @@ body {
     margin-right: 50px;
     margin-top: 10px;
     margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 1280px) {
+    #left-col {
+        width: 400px;
+    }
+
+    #right-col {
+        width: 1180px;
+    }
+
+    #search > input {
+        background-size: 350px 60px;
+        width: 350px;
+        height: 60px;
+    }
+
+    #signin-button {
+        text-align: center;
+        padding-bottom: 5%;
+    }
 }

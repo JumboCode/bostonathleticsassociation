@@ -1,3 +1,8 @@
+from django.shortcuts import render, render_to_response, redirect
+from django.http import *
+from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +16,10 @@ from .forms import DocumentForm
 # Create your views here.
 def view(request, event_id):
     pass
+
+# def index(request):
+#     context = {}
+#     return render(request, "signin.html", context)
 
 def login_view(request):
     logout(request)
@@ -26,7 +35,6 @@ def login_view(request):
         else:
             #TODO: failed to login
             return render(request, 'signin.html', {})
-
     return render(request, 'signin.html', {})
 
 #@login_required(login_url='/')
