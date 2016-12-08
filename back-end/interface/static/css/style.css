@@ -117,6 +117,12 @@ body {
     background: url("../images/searchbar2.png") no-repeat;
 }
 
+#Events {
+    height: 510px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
 #Events > ul {
     padding-top: 12px;
     padding-left: 85px;
@@ -228,10 +234,9 @@ body {
 }
 
 .scrollable-menu {
-    overflow: auto;
+    height: auto;
     max-height: 200px;
-    /*overflow-x: hidden;*/
-    /*overflow-y: scroll;*/
+    overflow: auto;
 }
 
 .btn-group > ul > li:hover {
@@ -315,6 +320,6 @@ body {
 
     #signin-button {
         text-align: center;
-        padding-bottom: 5%;
+        padding-bottom: 4%;
     }
 }
