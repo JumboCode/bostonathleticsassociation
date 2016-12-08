@@ -3,8 +3,10 @@ var name;
 var day;
 var month;
 var year;
+var token;
 
 function add_event() {
+
 	new_event_string = '';
 	new_event_string += '<div id = "new"> NEW </div>';
     new_event_string += '<div id = "ev"> EVENT </div>';

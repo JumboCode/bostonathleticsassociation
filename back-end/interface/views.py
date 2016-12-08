@@ -25,12 +25,13 @@ def login_view(request):
             return HttpResponseRedirect('/interface/main/')
         else:
             #TODO: failed to login
-            pass     
+            return render(request, 'signin.html', {})
+
     return render(request, 'signin.html', {})
 
 #@login_required(login_url='/')
 def main(request):
-    context = { }
+    context = {}
     return render(request, "main.html", context)
 
 def upload_csv(request):
