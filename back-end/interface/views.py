@@ -39,7 +39,8 @@ def login_view(request):
 
 #@login_required(login_url='/')
 def main(request):
-    context = {}
+    user_token = Token.objects.get(user=request.user)
+    context = {"token": user_token}
     return render(request, "main.html", context)
 
 def upload_csv(request):

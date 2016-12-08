@@ -3,7 +3,6 @@ var name;
 var day;
 var month;
 var year;
-var token;
 
 function add_event() {
     token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
