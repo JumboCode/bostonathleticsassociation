@@ -4,16 +4,9 @@ var day;
 var month;
 var year;
 var token;
-<<<<<<< HEAD
-
-function add_event() {
-=======
-var file;
-var events;
 
 function add_event() {
     token = "Token 535f5d2d71e05fb5d069205e5f23e256beef149e";
->>>>>>> dev
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> NEW </div>';
