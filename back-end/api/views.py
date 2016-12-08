@@ -3,12 +3,17 @@ from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics
 from rest_framework.response import Response
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser
 from django.http import HttpResponse, Http404
-
+from .csv_to_json2 import parse_csv
+from .upload_json2 import add_volunteer, parse_json
+from django.core import serializers
 from django.contrib.auth.models import Group
+
+
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
@@ -31,6 +36,27 @@ class EventList(generics.ListCreateAPIView):
     parser_classes = (MultiPartParser,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer_class = EventSerializer
+
+        req_name = request.data.__getitem__('name')
+        req_date = request.data.__getitem__('date')
+        req_csv  = request.data.get('csv')
+
+        event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
+
+        json_file = parse_csv(req_csv)
+
+        #j2 = serializers.serialize("json", json_file)
+
+        #print(json_file)
+        #parse_json(json_file, event)
+
+        serializer = serializer_class(event, context={'request':request})
+
+        return Response("What")
+
 
 
 #returns specific volunteer, ability to update, delete as well
@@ -113,8 +139,7 @@ class NotifyTeamCaptains(APIView):
         for attendee in Attendee.objects.filter(event=event):
             try:
                 password = User.objects.make_random_password()
-                new_user = User.objects.create_user(username=attendee.team_captain.name,
-                                                    email=attendee.team_captain.email, password=password,)
+
                # new_user.user_permissions.add(Team)
                 new_user = User.objects.create_user(username=attendee.team_captain.name.replace(" ", "."),
                                                     email=attendee.team_captain.email, password=password,)

@@ -44,15 +44,38 @@ angular.module('starter', ['ionic'])
             showDelete: false
           };
           $scope.showPrompt = function(item) {
+            $scope.data = {}
             var promptPopup = $ionicPopup.prompt({
                   title: item.volunteer.name,
                   //template:'hello',
-                  template: '<body><div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="item.volunteerComment" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div><div class="row"><div class="col">'+item.volunteer.email+'<hr style="margin-bottom:0px;"></div></div><div class="row" style="margin-top:0px;"><div class="col" class"label" style="color:gray;">email</div></div><div class="row"><div class="col">'+item.volunteer.phone+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><div class="row"><div class="col col-50">'+item.volunteer.city+'<hr></div><div class="col col-50">'+item.volunteer.state+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><div class="row"><div class="col">'+item.volunteer.years_of_service+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><div class="row"><div class="col col-50">'+item.volunteer.jacket_size+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div></body>',
+                  template: '<div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="data.notes" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div><div class="row"><div class="col">'+item.volunteer.email+'<hr style="margin-bottom:0px;"></div></div><div class="row" style="margin-top:0px;"><div class="col" class"label" style="color:gray;">email</div></div><div class="row"><div class="col">'+item.volunteer.phone+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><div class="row"><div class="col col-50">'+item.volunteer.city+'<hr></div><div class="col col-50">'+item.volunteer.state+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><div class="row"><div class="col">'+item.volunteer.years_of_service+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><div class="row"><div class="col col-50">'+item.volunteer.jacket_size+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div>',
+                  //<div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="item.notes" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div>
                   //inputType: 'text',
-                  //inputPlaceholder: item.notes,
+                  //inputPlaceholder: '  ' + item.notes
                   //template:'yo'
+                  scope: $scope,
+                  buttons: [
+                  {text: 'Cancel'},
+                  {
+                    text: '<b>Save<b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                      if (!$scope.data.notes){
+                        console.log("nothing");
+                        e.preventDefault();
+                      }else {
+                        return $scope.data.notes;
+                      }
+                    }
+                  }]
+
               });
-            console.log(document.getElementById('volunteer_comment'));
+              promptPopup.then(function(res) {
+              updateNotes(res, item.id);
+              console.log('Tapped!', res);
+            });
+            //console.log("hello");
+            //console.log(document.getElementById("volunteer_comment"));
           }
           $scope.changeStatus = function(item){
             // here we will need to call a function to update the status at the current item on the server side 
@@ -91,6 +114,28 @@ checkCredentials = function(){
     }
 
     request.send("username=" + user + "&password=" + pass);
+};
+
+function updateNotes(res, ID) {
+
+    var url = "/api/attendees/"+ID+"/";
+    request = new XMLHttpRequest();
+    request.open("PATCH", url);
+    request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    console.log(getToken().token);
+    request.setRequestHeader("Authorization", "Token " + getToken().token);
+
+
+    request.onreadystatechange = function() {
+      if (request.readyState == 4 && request.status == 200) {
+          console.log(request.responseText);
+      }
+      if (request.readyState == 4 && request.status == 400) {
+          alert("comment not saved");
+      }
+    }
+    request.send("notes=" + res);
+
 };
 
 function verCheck(){
