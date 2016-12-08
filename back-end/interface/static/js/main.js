@@ -207,7 +207,7 @@ function remove_upload() {
 }
 
 function get_new_event_info() {
-	new_event = document.getElementById("new_event").value;
+	var new_event = document.getElementById("new_event").value;
     document.getElementById("right-col").innerHTML = '';
     var date = year + "-" + month + "-" + day;
     var url = window.location.origin;
@@ -218,15 +218,16 @@ function get_new_event_info() {
     data.append("csv", file);
 
     var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    //xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
+            console.log(this.responseText);
         }
     });
 
     xhr.open("POST", url + "/api/events/");
-    xhr.setRequestHeader("authentication", token);
+    xhr.setRequestHeader("Authorization", token);
 
     xhr.send(data);
 }
