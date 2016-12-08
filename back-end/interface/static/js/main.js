@@ -297,7 +297,7 @@ function get_all_events() {
 
     var url = window.location.origin;
     xhr.open("GET", url + "/api/events/");
-    xhr.setRequestHeader("authentication", token);
+    xhr.setRequestHeader("Authorization", token);
 
     xhr.send();
 }
