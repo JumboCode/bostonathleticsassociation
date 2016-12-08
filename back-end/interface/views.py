@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import *
 from .forms import DocumentForm
+from rest_framework.authtoken.models import Token
 
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
