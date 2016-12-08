@@ -323,3 +323,27 @@ body {
         padding-bottom: 4%;
     }
 }
+
+form {
+    border: none;
+}
+
+.navbar-form {
+
+}
+
+.input-group {
+
+}
+
+.form-control {
+    border: none;
+}
+
+.form-control: focus {
+    border: none;
+}
+
+input {
+    border: none;
+}

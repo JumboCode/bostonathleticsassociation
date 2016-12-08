@@ -18,14 +18,10 @@
 
 {% block left-column %}
     <div id = "Event-Search">
-       <!-- <span id = "search"><input onsearch = "get_all_events()" type = "search" placeholder = "Search Events"></span><br> -->
-        <form class="navbar-form" role="search" onsubmit="get_all_events(); return false;">
-            <div class="input-group add-on">
+        <form role="search" onsubmit="get_all_events(); return false;">
             <span id = "search">
-              <input class="form-control" placeholder="Search" id="serach_input" type="text">
+              <input placeholder="Search" id="serach_input" type="text">
             </span>
-
-            </div>
         </form>
     </div>
 

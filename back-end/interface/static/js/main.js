@@ -164,7 +164,7 @@ function edit_event(i) {
     new_event_string += '<div id = "upload">';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
-    new_event_string += '<span style="margin-right: 20px"><a href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
+    new_event_string += '<span style="margin-right: 20px"><a style="color: #4A4A4A" href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
     new_event_string += '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
     new_event_string += '</div>';
     new_event_string += '<div id = "submit" onclick="update_event_data('+ i +')">';
