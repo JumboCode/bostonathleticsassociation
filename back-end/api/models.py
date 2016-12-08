@@ -39,6 +39,7 @@ class Attendee(models.Model):
     at_event = models.BooleanField(default=False)
     notes = models.TextField(blank=True, null=True)
     team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
+    team_cap_name = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.volunteer.name

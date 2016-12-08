@@ -46,16 +46,11 @@ class EventList(generics.ListCreateAPIView):
         req_date = request.data.__getitem__('date')
         req_csv  = request.FILES.get('csv')
 
-        weird_csv_work = req_csv
-
-        #event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
-
-
         f = TextIOWrapper(req_csv.file, encoding=request.encoding)
         reader = csv.reader(f, delimiter=',')
 
         event = Event.objects.create(name=req_name, date=req_date, csv=None)
-
+        new_attendees = []
 
         for row in reader:
             print(row)
@@ -71,15 +66,22 @@ class EventList(generics.ListCreateAPIView):
                 jacket_size=row[8]
             )
 
-            team_cap_name = row[9]
+            team_cap_name = row[9] or None
 
-            try:
-                team_cap = Volunteer.objects.get(name=team_cap_name)
+            attendee = Attendee.objects.create(volunteer=volunteer[0], team_captain=None, event=event, team_cap_name=team_cap_name)
+            new_attendees.append(attendee)
 
-            except ObjectDoesNotExist:
-                team_cap = None
-
-            Attendee.objects.create(volunteer=volunteer[0], team_captain=team_cap, event=event)
+        for a in new_attendees:
+            cap_name = a.team_cap_name
+            if cap_name:
+                try:
+                    cap = Volunteer.objects.get(name=cap_name)
+                    a.team_captain = cap
+                    a.save()
+                except Volunteer.DoesNotExist:
+                    pass
+        event.csv = req_csv
+        event.save()
 
         serializer = serializer_class(event, context={'request':request})
 
