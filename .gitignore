@@ -8,3 +8,4 @@ node_modules
 front-end/BAA/platforms/*/
 back-end/static/*
 !back-end/static/.gitkeep
+back-end/file/sample_*
