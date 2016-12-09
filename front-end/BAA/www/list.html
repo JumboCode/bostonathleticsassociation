@@ -39,8 +39,8 @@
       <ion-list >
         <ion-item ng-repeat="item in items | filter:searchQuery" item="item" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(item)"> {{item.volunteer.name}} </button>
-            <div class = 'buttons hide'>
-             <img ng-src="{{(item.at_event == '1' || tap ) && 'IN.png' || 'Oval.png'}}" id = "checkin_button" class="button button-icon larger" ng-click="tap=!tap; checkin(item)">
+            <div class = 'buttons ' id="allign-right">
+             <img ng-src="{{(item.at_event == '1' || tap ) && 'IN.png' || 'Oval.png'}}" id = "checkin_button" class=" button-icon larger" ng-click="tap=!tap; checkin(item)">
              <img ng-src="{{(item.at_event == '2' || tapped ) && 'OUT.png' || 'Oval.png'}}" class="button button-icon larger" ng-click="tapped=!tapped; checkout(item)">
            <!--  <img ng-src="{{(item.at_event == '2' || tap && '/OUT.png') || '/Oval.png'}}" class="button button-icon larger" ng-click="tap =!tap; checkout(item)"> -->
              </div>
