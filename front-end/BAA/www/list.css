@@ -11,7 +11,11 @@ body {
 .hide{
 	display:none;
 }
+#buttons-label{
+	text-align:right;
+}
 
 .popup-title{
 	text-align: left;
+	padding-right: 20cm;
 }

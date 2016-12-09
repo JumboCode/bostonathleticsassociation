@@ -14,7 +14,10 @@ class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('get_volunteer', 'get_event', 'at_event', 'get_team_captain', 'notes')
 
     def get_volunteer(self, obj):
-        return obj.volunteer.name
+        if obj.volunteer is not None:
+            return obj.volunteer.name
+        else:
+            return "None"
 
     get_volunteer.short_description = "Volunteer"
     get_volunteer.admin_order_field = "attendee_volunteer"
@@ -26,7 +29,10 @@ class AttendeeAdmin(admin.ModelAdmin):
     get_event.admin_order_field = "attendee_event"
 
     def get_team_captain(self, obj):
-        return obj.team_captain.name
+        if obj.team_captain is not None:
+            return obj.team_captain.name
+        else:
+            return "None"
 
     get_team_captain.short_description = "Team Captain"
     get_team_captain.admin_order_field = "attendee_team_captain"

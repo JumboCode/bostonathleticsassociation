@@ -11,8 +11,10 @@ from django.http import HttpResponse, Http404
 from .csv_to_json2 import parse_csv
 from .upload_json2 import add_volunteer, parse_json
 from django.core import serializers
-from django.contrib.auth.models import Group
+import csv
 
+from django.contrib.auth.models import Group
+from io import TextIOWrapper
 
 
 from .models import *
@@ -42,20 +44,48 @@ class EventList(generics.ListCreateAPIView):
 
         req_name = request.data.__getitem__('name')
         req_date = request.data.__getitem__('date')
-        req_csv  = request.data.get('csv')
+        req_csv  = request.FILES.get('csv')
 
-        event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
+        f = TextIOWrapper(req_csv.file, encoding=request.encoding)
+        reader = csv.reader(f, delimiter=',')
 
-        json_file = parse_csv(req_csv)
+        event = Event.objects.create(name=req_name, date=req_date, csv=None)
+        new_attendees = []
 
-        #j2 = serializers.serialize("json", json_file)
+        for row in reader:
+            print(row)
+            volunteer = Volunteer.objects.get_or_create(
+                name=row[0],
+                status=row[1],
+                city=row[2],
+                state=row[3],
+                phone=row[4],
+                email=row[5],
+                years_of_service=row[6],
+                jacket=row[7],
+                jacket_size=row[8]
+            )
 
-        #print(json_file)
-        #parse_json(json_file, event)
+            team_cap_name = row[9] or None
+
+            attendee = Attendee.objects.create(volunteer=volunteer[0], team_captain=None, event=event, team_cap_name=team_cap_name)
+            new_attendees.append(attendee)
+
+        for a in new_attendees:
+            cap_name = a.team_cap_name
+            if cap_name:
+                try:
+                    cap = Volunteer.objects.get(name=cap_name)
+                    a.team_captain = cap
+                    a.save()
+                except Volunteer.DoesNotExist:
+                    pass
+        event.csv = req_csv
+        event.save()
 
         serializer = serializer_class(event, context={'request':request})
 
-        return Response("What")
+        return Response(serializer.data)
 
 
 
