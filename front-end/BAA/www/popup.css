@@ -22,10 +22,9 @@
 	src: url(/css/Frutiger_CE_45_Light.ttf);
 }
 
-.popup-button {
+.popup-buttons {
 	margin-right: 25px !important;
 	margin-left: 25px !important;
-	width: 25px !important;
 }
 
 hr { 

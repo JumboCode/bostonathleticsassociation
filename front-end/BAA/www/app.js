@@ -92,7 +92,8 @@ angular.module('starter', ['ionic'])
               console.log('Tapped!', res);
             });
           }
-          $scope.checkin = function(item){
+           $scope.checkin = function(item){
+              document.getElementById("#")
               var url = "/api/attendees/"+item.id+"/";
               request = new XMLHttpRequest();
               request.open("PATCH", url);
@@ -108,11 +109,12 @@ angular.module('starter', ['ionic'])
                       alert("there was a problem.");
                   }
                 }
-              request.send("at_event=true");
+              request.send("at_event=1");
 
            
           }
           $scope.checkout = function(item){
+              document.getElementById("checkin_button").src = 'Oval.png'
               var url = "/api/attendees/"+item.id+"/";
               request = new XMLHttpRequest();
               request.open("PATCH", url);
@@ -128,7 +130,7 @@ angular.module('starter', ['ionic'])
                       alert("there was a problem.");
                   }
                 }
-              request.send("at_event=false");
+              request.send("at_event=2");
            
           }
 

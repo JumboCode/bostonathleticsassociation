@@ -3,8 +3,8 @@ body {
 }
 
 .larger{
-	font-size: 200% !important;
-	border:none !important;
+	width: 30% !important;
+	height: -5% !important;
 }
 .largerB{
 	font-size: 110% !important;
