@@ -4,6 +4,7 @@ body {
 
 .larger{
 	font-size: 200% !important;
+	border:none !important;
 }
 .largerB{
 	font-size: 110% !important;
@@ -13,4 +14,38 @@ body {
 }
 #buttons-label{
 	text-align:right;
+}
+
+.header_bar {
+	background-color: #EB9493 !important;
+	/*border-color: darken(#EB9493, 0%) !important;
+	border: solid !important;
+	border-width: 2px !important;*/
+	border: none;
+}
+
+.title {
+	color: white !important;
+	font-family: frutigerLight;
+	font-size: 25px !important;
+}
+
+@font-face {
+	font-family: frutigerLight;
+	src: url(/css/Frutiger_CE_45_Light.ttf);
+}
+
+.in_out {
+	margin-right: 28px;
+	margin-top: 100px !important;
+	color: gray;
+	padding: 10px;
+}
+
+.list .item {
+	border: 0px;
+}
+
+.items_in_list {
+	border: none;
 }
