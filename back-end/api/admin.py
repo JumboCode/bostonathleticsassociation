@@ -5,13 +5,16 @@ class VolunteerAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'city', 'state',
                     'years_of_service', 'jacket', 'jacket_size',
                     'status')
+    readonly_fields = ['id']
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date', 'csv')
+    list_display = ('id', 'name', 'date', 'csv')
+    readonly_fields = ['id']
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('get_volunteer', 'get_event', 'at_event', 'get_team_captain', 'notes')
+    list_display = ('id', 'get_volunteer', 'get_event', 'at_event', 'get_team_captain', 'notes')
+    readonly_fields = ['id']
 
     def get_volunteer(self, obj):
         if obj.volunteer is not None:
