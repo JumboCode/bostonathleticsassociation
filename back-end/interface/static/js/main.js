@@ -384,13 +384,9 @@ function check_past_date(date) {
 
 function update_event_data(i) {
     var new_event = document.getElementById("new_event").value;
-    console.log(new_event);
 
     document.getElementById("right-col").innerHTML = '';
     var date = events[i].date;
-
-    console.log(new_file);
-    console.log(new_event == "");
 
     if (!(day_change || year_change || month_change || 
         !(new_event == "") || new_file)) {
@@ -408,8 +404,6 @@ function update_event_data(i) {
     if (month_change) {
         date = date.substr(0, 5) + month + date.substr(7, 3);
     }
-        
-    console.log(date);
 
     var url = window.location.origin;
 
