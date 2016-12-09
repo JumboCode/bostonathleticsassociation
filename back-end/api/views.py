@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mass_mail
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics
@@ -160,13 +160,14 @@ class DownloadFile(APIView):
 class NotifyTeamCaptains(APIView):
 
     def get(self, request, event):
+
         event = self.kwargs['event']
 
         subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk= event).name
 
         emails = []
 
-      # team_cap_group = Group.objects.get(name="Team Captain")
+        team_cap_group = Group.objects.get(name="Team Captain")
 
         for team_captain in Attendee.objects.filter(event=event)\
                 .values_list('team_captain__name', 'team_captain__email').distinct():
@@ -178,15 +179,16 @@ class NotifyTeamCaptains(APIView):
 
                 new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
 
-                #team_cap_group.user_set.add(new_user)
+                team_cap_group.user_set.add(new_user)
 
                 message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
                           "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
                 recipient = team_captain[1]
-                email = "baattendence@gmail.com"
+                from_email = "baattendence@gmail.com"
 
-                emails.append(subject, message, email, [recipient])
+                email = (subject, message, from_email, [recipient])
+                emails.append(email)
 
             except IntegrityError:
                 user = User.objects.get(username=username)
@@ -196,9 +198,12 @@ class NotifyTeamCaptains(APIView):
                           "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
                 recipient = team_captain[1]
-                email = "baattendence@gmail.com"
+                from_email = "baattendence@gmail.com"
 
-                emails.append(subject, message, email, [recipient])
+                email = (subject, message, from_email, [recipient])
+                emails.append(email)
                 pass
+
+        send_mass_mail(tuple(emails), fail_silently=False)
 
         return Response(status=200)
