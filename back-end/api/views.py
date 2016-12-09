@@ -156,11 +156,9 @@ class DownloadFile(APIView):
         return response
 
 
-
 class NotifyTeamCaptains(APIView):
 
     def get(self, request, event):
-
         event = self.kwargs['event']
 
         subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk= event).name
@@ -169,40 +167,28 @@ class NotifyTeamCaptains(APIView):
 
         team_cap_group = Group.objects.get(name="Team Captain")
 
+        # 0 corresponds to team captain's name, 1 to team captain's email
         for team_captain in Attendee.objects.filter(event=event)\
                 .values_list('team_captain__name', 'team_captain__email').distinct():
-            
-            # 0 corresponds to team captain's name, 1 to team captain's email
-            try:
-                password = User.objects.make_random_password()
-                username = team_captain[0].replace(" ", ".")
 
-                new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
+            password = User.objects.make_random_password()
+            username = team_captain[0].replace(" ", ".")
 
-                team_cap_group.user_set.add(new_user)
-
-                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
-                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
-
-                recipient = team_captain[1]
-                from_email = "baattendence@gmail.com"
-
-                email = (subject, message, from_email, [recipient])
-                emails.append(email)
-
-            except IntegrityError:
+            if User.objects.filter(username=username).exists():
                 user = User.objects.get(username=username)
                 user.set_password(password)
+            else:
+                new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
+                team_cap_group.user_set.add(new_user)
 
-                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
-                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
+            message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+                      "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
-                recipient = team_captain[1]
-                from_email = "baattendence@gmail.com"
+            recipient = team_captain[1]
+            from_email = "baattendence@gmail.com"
 
-                email = (subject, message, from_email, [recipient])
-                emails.append(email)
-                pass
+            email = (subject, message, from_email, [recipient])
+            emails.append(email)
 
         send_mass_mail(tuple(emails), fail_silently=False)
 
