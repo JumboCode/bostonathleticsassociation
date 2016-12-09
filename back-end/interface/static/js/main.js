@@ -374,7 +374,7 @@ function check_past_date(date) {
 
         if (current_month == parseInt(date.substr(5,2))) {
 
-            if (current_date > parseInt(date.substr(8,2))) {
+            if (current_day > parseInt(date.substr(8,2))) {
                 return true;
             }
         }
