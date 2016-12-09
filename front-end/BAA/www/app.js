@@ -48,7 +48,7 @@ angular.module('starter', ['ionic'])
             var promptPopup = $ionicPopup.prompt({
                   title: item.volunteer.name,
                   //template:'hello',
-                  template: '<div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="data.notes" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div><div class="row"><div class="col">'+item.volunteer.email+'<hr style="margin-bottom:0px;"></div></div><div class="row" style="margin-top:0px;"><div class="col" class"label" style="color:gray;">email</div></div><div class="row"><div class="col">'+item.volunteer.phone+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><div class="row"><div class="col col-50">'+item.volunteer.city+'<hr></div><div class="col col-50">'+item.volunteer.state+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><div class="row"><div class="col">'+item.volunteer.years_of_service+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><div class="row"><div class="col col-50">'+item.volunteer.jacket_size+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div>',
+                  template: '<body><br><div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="data.notes" id="volunteer_comment" style="height:50px;padding:12px;text-align:top !important;"></div><br><div class="row"><div class="col">'+item.volunteer.email+'<hr></div></div><div class="row"><div class="col" class"label" style="color:gray;">email</div></div><br><div class="row"><br><div class="col">'+item.volunteer.phone+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><br><div class="row"><div class="col col-50">'+item.volunteer.city+'<hr></div><div class="col col-50">'+item.volunteer.state+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><br><div class="row"><div class="col">'+item.volunteer.years_of_service+'<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><br><div class="row"><div class="col col-50">'+item.volunteer.jacket_size+'<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div><br></body>',
                   //<div class="row"> <input type="text" placeholder="  '+item.notes+'" ng-model="item.notes" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div>
                   //inputType: 'text',
                   //inputPlaceholder: '  ' + item.notes
@@ -57,8 +57,8 @@ angular.module('starter', ['ionic'])
                   buttons: [
                   {text: 'Cancel'},
                   {
-                    text: '<b>Save<b>',
-                    type: 'button-positive',
+                    text: 'Save',
+                    //type: 'button-positive',
                     onTap: function(e) {
                       if (!$scope.data.notes){
                         console.log("nothing");
@@ -71,11 +71,23 @@ angular.module('starter', ['ionic'])
 
               });
               promptPopup.then(function(res) {
+              console.log("index?" + tokenInfo.volunteers.indexOf(item));
+              index = tokenInfo.volunteers.indexOf(item);
+              console.log(res);
+              //res = JSON.stringify(res);
+              console.log("strigify: " + res);
+
+              tokenInfo.volunteers[index].notes = res;
+             // upate = JSON.parse(tokenInfo);
+              console.log("Token Info 4 real:" + tokenInfo);
+
+              //$scope.$apply(function(index) {
+              //    $scope.items[index].notes = item.notes;
+              //});
+              //$scope.items[index].notes = item.notes;
               updateNotes(res, item.id);
               console.log('Tapped!', res);
             });
-            //console.log("hello");
-            //console.log(document.getElementById("volunteer_comment"));
           }
           $scope.checkin = function(item){
               var url = "/api/attendees/"+item.id+"/";
@@ -165,7 +177,7 @@ function updateNotes(res, ID) {
 
     request.onreadystatechange = function() {
       if (request.readyState == 4 && request.status == 200) {
-          console.log(request.responseText);
+          console.log("response: " + request.responseText);
       }
       if (request.readyState == 4 && request.status == 400) {
           alert("comment not saved");
@@ -184,9 +196,9 @@ function verCheck(){
 }
 
 function getToken() {
-    //console.log("Tokennnnn:" + token)
+    console.log("Tokennnnn:" + token);
     tokenInfo = JSON.parse(localStorage.getItem('token'));
-    console.log("Tokennnnn:" + tokenInfo)
+    console.log("Token parsed:" + tokenInfo);
     return tokenInfo;
 }
 
