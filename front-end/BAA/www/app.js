@@ -77,9 +77,46 @@ angular.module('starter', ['ionic'])
             //console.log("hello");
             //console.log(document.getElementById("volunteer_comment"));
           }
-          $scope.changeStatus = function(item){
-            // here we will need to call a function to update the status at the current item on the server side 
+          $scope.checkin = function(item){
+              var url = "/api/attendees/"+item.id+"/";
+              request = new XMLHttpRequest();
+              request.open("PATCH", url);
+              request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+              console.log(getToken().token);
+              request.setRequestHeader("Authorization", "Token " + getToken().token);
+              request.onreadystatechange = function() {
+                  if (request.readyState == 4 && request.status == 200) {
+                      console.log(request.responseText);
+                      console.log('the attendee has been checked in.')
+                  }
+                  if (request.readyState == 4 && request.status == 400) {
+                      alert("there was a problem.");
+                  }
+                }
+              request.send("at_event=true");
+
+           
           }
+          $scope.checkout = function(item){
+              var url = "/api/attendees/"+item.id+"/";
+              request = new XMLHttpRequest();
+              request.open("PATCH", url);
+              request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+              console.log(getToken().token);
+              request.setRequestHeader("Authorization", "Token " + getToken().token);
+              request.onreadystatechange = function() {
+                  if (request.readyState == 4 && request.status == 200) {
+                      console.log(request.responseText);
+                      console.log('the attendee has been checked out.')
+                  }
+                  if (request.readyState == 4 && request.status == 400) {
+                      alert("there was a problem.");
+                  }
+                }
+              request.send("at_event=false");
+           
+          }
+
           //console.log(response.data)
       //}, function errorCallback(response) {
         //  console.log('error');
