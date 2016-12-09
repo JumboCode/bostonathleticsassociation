@@ -2,28 +2,15 @@ import csv, json, sys, os
 from io import StringIO
 from django.db import models
 from .models import *
+from io import TextIOWrapper
 
-def parse_csv(csv_file):
+def parse_csv(csvf, event, encoding):
 
-
-    #csvfile = open(csv_file, 'r')
-
-    #json_file = csv_file.name[0:((len(csv_file) -4))] + ".json"
-    #jsonfile = open(json_file, 'w')
-
-    #data = csv_file.read()
-
-    #fieldnames = ("name", "status", "city", "state", "phone", "email", "years_of_service", "jacket", "jacket_size", "team_captain")
-    csvf = StringIO(csv_file.read().decode('ascii'))
-
-    csvf.seek(0)
-
-    reader = csv.DictReader(csvf, delimiter=',')
-
-    print(reader)
+    f = TextIOWrapper(csvf.file, encoding=encoding)
+    reader = csv.reader(f, delimiter=',')
 
     for row in reader:
-        print("here")
+        print ("here")
         volunter = Volunteer.objects.get_or_create(
             name=row[0],
             staus=row[1],
@@ -36,4 +23,3 @@ def parse_csv(csv_file):
             jacket_size=row[8]
         )
 
-    return

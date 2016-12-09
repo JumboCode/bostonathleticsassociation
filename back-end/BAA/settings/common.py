@@ -104,6 +104,7 @@ if 'TRAVIS' in os.environ:
 REST_FRAMEWORK = {
 
     'DEFAULT_PERMISSION_CLASSES': (
+     #   'rest_framework.permissions.DjangoModelPermissions',
         'rest_framework.permissions.IsAuthenticated',
     ),
 
@@ -117,7 +118,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 

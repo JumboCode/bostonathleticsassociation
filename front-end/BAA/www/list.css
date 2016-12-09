@@ -11,9 +11,6 @@ body {
 .hide{
 	display:none;
 }
-
-
-@font-face {
-    font-family: frutigerBold;
-    src: url(/css/Frutiger_LT_67_Bold_Condensed.ttf);
+#buttons-label{
+	text-align:right;
 }

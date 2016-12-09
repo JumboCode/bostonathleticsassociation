@@ -11,8 +11,10 @@ from django.http import HttpResponse, Http404
 from .csv_to_json2 import parse_csv
 from .upload_json2 import add_volunteer, parse_json
 from django.core import serializers
-from django.contrib.auth.models import Group
+import csv
 
+from django.contrib.auth.models import Group
+from io import TextIOWrapper
 
 
 from .models import *
@@ -42,20 +44,48 @@ class EventList(generics.ListCreateAPIView):
 
         req_name = request.data.__getitem__('name')
         req_date = request.data.__getitem__('date')
-        req_csv  = request.data.get('csv')
+        req_csv  = request.FILES.get('csv')
 
-        event = Event.objects.create(name=req_name, date=req_date, csv=req_csv)
+        f = TextIOWrapper(req_csv.file, encoding=request.encoding)
+        reader = csv.reader(f, delimiter=',')
 
-        json_file = parse_csv(req_csv)
+        event = Event.objects.create(name=req_name, date=req_date, csv=None)
+        new_attendees = []
 
-        #j2 = serializers.serialize("json", json_file)
+        for row in reader:
+            print(row)
+            volunteer = Volunteer.objects.get_or_create(
+                name=row[0],
+                status=row[1],
+                city=row[2],
+                state=row[3],
+                phone=row[4],
+                email=row[5],
+                years_of_service=row[6],
+                jacket=row[7],
+                jacket_size=row[8]
+            )
 
-        #print(json_file)
-        #parse_json(json_file, event)
+            team_cap_name = row[9] or None
+
+            attendee = Attendee.objects.create(volunteer=volunteer[0], team_captain=None, event=event, team_cap_name=team_cap_name)
+            new_attendees.append(attendee)
+
+        for a in new_attendees:
+            cap_name = a.team_cap_name
+            if cap_name:
+                try:
+                    cap = Volunteer.objects.get(name=cap_name)
+                    a.team_captain = cap
+                    a.save()
+                except Volunteer.DoesNotExist:
+                    pass
+        event.csv = req_csv
+        event.save()
 
         serializer = serializer_class(event, context={'request':request})
 
-        return Response("What")
+        return Response(serializer.data)
 
 
 
@@ -134,29 +164,41 @@ class NotifyTeamCaptains(APIView):
 
         subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk= event).name
 
-      #  team_cap_group = Group.objects.get(name="Team Captain")
+        emails = []
 
-        for attendee in Attendee.objects.filter(event=event):
+      # team_cap_group = Group.objects.get(name="Team Captain")
+
+        for team_captain in Attendee.objects.filter(event=event)\
+                .values_list('team_captain__name', 'team_captain__email').distinct():
+            
+            # 0 corresponds to team captain's name, 1 to team captain's email
             try:
                 password = User.objects.make_random_password()
+                username = team_captain[0].replace(" ", ".")
 
-               # new_user.user_permissions.add(Team)
-                new_user = User.objects.create_user(username=attendee.team_captain.name.replace(" ", "."),
-                                                    email=attendee.team_captain.email, password=password,)
+                new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
+
                 #team_cap_group.user_set.add(new_user)
 
-                message = "Hello, " + attendee.team_captain.name + "\n Your password is:  " + \
-                        password + ". \n \n \n Please login at [insert_url_here]"
+                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
-                recipient = attendee.team_captain.email
+                recipient = team_captain[1]
                 email = "baattendence@gmail.com"
 
-                send_mail(subject=subject, message=message, recipient_list=[recipient],
-                          from_email=email, fail_silently=True)
+                emails.append(subject, message, email, [recipient])
 
             except IntegrityError:
-                pass
+                user = User.objects.get(username=username)
+                user.set_password(password)
 
-            return Response("all is quiet on the western front")
+                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
+
+                recipient = team_captain[1]
+                email = "baattendence@gmail.com"
+
+                emails.append(subject, message, email, [recipient])
+                pass
 
         return Response(status=200)

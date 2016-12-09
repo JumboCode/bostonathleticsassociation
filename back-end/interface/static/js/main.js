@@ -5,8 +5,15 @@ var month;
 var year;
 var new_file;
 var events;
+var year_change;
+var day_change;
+var month_change;
 
 function add_event() {
+    year_change = false;
+    month_change = false;
+    day_change = false;
+    new_file = false;
 	new_event_string = '';
 	new_event_string += '<div id = "new"> NEW </div>';
     new_event_string += '<div id = "ev"> EVENT </div>';
@@ -104,13 +111,15 @@ function view_past_event(i) {
 
 function edit_event(i) {
     var title = events[i].name;
-    var month = events[i].date.substr(5,2);
-    var day = events[i].date.substr(8,2);
-    var year = events[i].date.substr(0,4);
-    var new_file = false;
-    var index = window.location.origin.length + "/api/events/file/".length;
+    month = events[i].date.substr(5,2);
+    month_change = false;
+    day = events[i].date.substr(8,2);
+    day_change = false;
+    year = events[i].date.substr(0,4);
+    year_change = false;
+    new_file = false;
     var file_path = events[i].csv;
-	var file_name = file_path.substr(index, file_path.length - index);
+    var file_name = file_path.substring(file_path.lastIndexOf('/')+1);
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> EDIT </div>';
@@ -164,7 +173,7 @@ function edit_event(i) {
     new_event_string += '<div id = "upload">';
     new_event_string += '</div>';
     new_event_string += '<div id = "up_vol">';
-    new_event_string += '<span style="margin-right: 20px"><a href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
+    new_event_string += '<span style="margin-right: 20px"><a style="color: #4A4A4A" href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
     new_event_string += '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
     new_event_string += '</div>';
     new_event_string += '<div id = "submit" onclick="update_event_data('+ i +')">';
@@ -205,7 +214,14 @@ function remove_upload() {
 }
 
 function get_new_event_info() {
-	var new_event = document.getElementById("new_event").value;
+    var new_event = document.getElementById("new_event").value;
+
+    if (!(day_change && year_change && month_change && 
+        !(new_event == "") && new_file)) {
+        alert("Please complete all fields");
+        return;
+    }
+
     document.getElementById("right-col").innerHTML = '';
     var date = year + "-" + month + "-" + day;
     var url = window.location.origin;
@@ -229,6 +245,7 @@ function get_new_event_info() {
 }
 
 function set_month(n) {
+    month_change = true;
     if (n < 10) {
         n = '0' + n;
     }
@@ -238,6 +255,7 @@ function set_month(n) {
 }
 
 function set_day(n) {
+    day_change = true;
     if (n < 10) {
         n = '0' + n;
     }
@@ -247,6 +265,7 @@ function set_day(n) {
 }
 
 function set_year(n) {
+    year_change = true;
 	document.getElementById("y").innerHTML = n;
 	year = n;
 }
@@ -365,15 +384,34 @@ function check_past_date(date) {
 
 function update_event_data(i) {
     var new_event = document.getElementById("new_event").value;
-    document.getElementById("right-col").innerHTML = '';
 
-    var date = year + "-" + month + "-" + day;
+    document.getElementById("right-col").innerHTML = '';
+    var date = events[i].date;
+
+    if (!(day_change || year_change || month_change || 
+        !(new_event == "") || new_file)) {
+        return;
+    }
+        
+    if (day_change) {
+        date = date.substr(0, 8) + day;
+    }
+
+    if (year_change) {
+        date = year + date.substr(4, 6);
+    }
+
+    if (month_change) {
+        date = date.substr(0, 5) + month + date.substr(7, 3);
+    }
+
     var url = window.location.origin;
 
     var data = new FormData();
 
-    if (new_event != "")
+    if (new_event != "") {
         data.append("name", new_event);
+    }
 
     data.append("date", date);
 
@@ -384,6 +422,9 @@ function update_event_data(i) {
 
     xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
+            events[i] = JSON.parse(this.responseText);
+            if (new_event != "")
+                get_all_events();
         }
     });
 
