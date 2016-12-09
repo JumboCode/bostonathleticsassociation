@@ -164,29 +164,41 @@ class NotifyTeamCaptains(APIView):
 
         subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk= event).name
 
-      #  team_cap_group = Group.objects.get(name="Team Captain")
+        emails = []
 
-        for attendee in Attendee.objects.filter(event=event):
+      # team_cap_group = Group.objects.get(name="Team Captain")
+
+        for team_captain in Attendee.objects.filter(event=event)\
+                .values_list('team_captain__name', 'team_captain__email').distinct():
+            
+            # 0 corresponds to team captain's name, 1 to team captain's email
             try:
                 password = User.objects.make_random_password()
+                username = team_captain[0].replace(" ", ".")
 
-               # new_user.user_permissions.add(Team)
-                new_user = User.objects.create_user(username=attendee.team_captain.name.replace(" ", "."),
-                                                    email=attendee.team_captain.email, password=password,)
+                new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
+
                 #team_cap_group.user_set.add(new_user)
 
-                message = "Hello, " + attendee.team_captain.name + "\n Your password is:  " + \
-                        password + ". \n \n \n Please login at [insert_url_here]"
+                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
-                recipient = attendee.team_captain.email
+                recipient = team_captain[1]
                 email = "baattendence@gmail.com"
 
-                send_mail(subject=subject, message=message, recipient_list=[recipient],
-                          from_email=email, fail_silently=True)
+                emails.append(subject, message, email, [recipient])
 
             except IntegrityError:
-                pass
+                user = User.objects.get(username=username)
+                user.set_password(password)
 
-            return Response("all is quiet on the western front")
+                message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+                          "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
+
+                recipient = team_captain[1]
+                email = "baattendence@gmail.com"
+
+                emails.append(subject, message, email, [recipient])
+                pass
 
         return Response(status=200)
