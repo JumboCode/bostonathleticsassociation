@@ -39,11 +39,17 @@ body {
 	src: url(/css/Frutiger_CE_45_Light.ttf);
 }
 
-.in_out {
-	margin-right: 28px;
+.in_out1 {
+	margin-right: 33px;
 	margin-top: 100px !important;
 	color: gray;
-	padding: 6px;
+	padding: 0px;
+}
+.in_out2 {
+	margin-right: 45px;
+	margin-top: 100px !important;
+	color: gray;
+	padding: 0px;
 }
 
 .list .item {
