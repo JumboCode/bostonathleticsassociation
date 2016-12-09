@@ -1,12 +1,37 @@
+.popup-head {
+	height: 60px;
+}
+
 .popup-title{
 
-	margin-left: 8%;
+	text-align: left;
+	color: #EB9493;
+	font-size: 24px !important;
+	padding-top: 9% !important;
+	padding-left: 25px !important;
+	font-family: frutigerBold !important;
+}
+
+@font-face {
+    font-family: frutigerBold;
+    src: url(/css/Frutiger_LT_67_Bold_Condensed.ttf);
+}
+
+@font-face {
+	font-family: frutigerLight;
+	src: url(/css/Frutiger_CE_45_Light.ttf);
+}
+
+.popup-button {
+	margin-right: 25px !important;
+	margin-left: 25px !important;
+	width: 25px !important;
 }
 
 hr { 
     display: block;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     margin-left: auto;
     margin-right: auto;
     border-style: inset;
@@ -23,13 +48,25 @@ input {
 	margin-top: 0px;
 }
 
-div {
-	padding: 0px;
-	border: 25px;
-}
-
 .popup-body{
 
 	margin-right: 8%;
 	margin-left: 8%;
+	font-family: frutigerLight !important;
+}
+
+.popup-buttons .button {
+	height: 8px;
+	background-color: #EB9493 !important; 
+	border: none !important;
+	font-family: frutigerLight !important;
+	color: white;
+}
+
+div {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+	font-family: frutigerLight !important;
 }

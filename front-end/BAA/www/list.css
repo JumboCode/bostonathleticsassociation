@@ -12,6 +12,8 @@ body {
 	display:none;
 }
 
-.popup-title{
-	text-align: left;
+
+@font-face {
+    font-family: frutigerBold;
+    src: url(/css/Frutiger_LT_67_Bold_Condensed.ttf);
 }
