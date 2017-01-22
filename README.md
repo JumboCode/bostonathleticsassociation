@@ -15,6 +15,7 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 * Julia Grace
 * Michael Morisi
 * Andrew Hoiberg
+* Shanshan Duan
 
 ## 3. Branching (IMPORTANT!)
 
