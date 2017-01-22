@@ -25,12 +25,14 @@ This is the Backend server running Django for this project. This server will ser
  5. Create a virtual environment with python3 by running `virtualenv -p python3 env`
  6. Activate your virtual environment with `source env/bin/activate`
  7. Use the correct settings by running `export DJANGO_SETTINGS_MODULE=BAA.settings.dev` on dev environments.
+ 8. Create a temporary email password with `export EMAIL_PASS=asdf`. The actual values will be replaced on the deploy server
  8. Install the python dependencies `pip install -r requirements.txt`
  9. Run `python manage.py migrate` to create/update the databse if necessary. On dev environment, this will create a sqlite3 file to simulate an actual database.
  10. Create a super admin account with: `python manage.py createsuperuser`
  11. Run the server with `python manage.py runserver`
  12. Visit the site at `localhost:8000`
 
+P.S.: Run automated tests with `python manage.py test`
 
 Note: Steps 4, 6, 7 and 11 are necessary every time! The admin page is at `localhost:8000/admin`
 
