@@ -11,6 +11,7 @@ from django.core.urlresolvers import reverse
 from .models import *
 from .forms import DocumentForm
 from rest_framework.authtoken.models import Token
+from api.models import Event
 
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
@@ -41,7 +42,7 @@ def login_view(request):
 #@login_required(login_url='/')
 def main(request):
     user_token = Token.objects.get(user=request.user)
-    entries = Events.objects.all()
+    entries = Event.objects.all()
     context = {"token": user_token, "entries": entries}
     return render(request, "main.html", context)
 
