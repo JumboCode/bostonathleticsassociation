@@ -315,12 +315,14 @@ function get_all_events() {
     xhr.send();
 }
 
-function show_sorted() {
-    year = document.getElementById("findyear").innerHTML;
-    str = document.getElementById("serach_input").value;
-
+function show_sorted(ent) {
+    //year = document.getElementById("findyear").innerHTML;
+    //str = document.getElementById("serach_input").value;
+    //ent = window.context.entries;
+    console.log(ent);
+    alert(ent[0].fields.name);
     var events_string = "<ul>"; 
-
+/*
     if (str == "" && year != "Year ") {
         var rxy = new RegExp(year); 
         for (i=0; i<events.length; i++) {
@@ -352,7 +354,7 @@ function show_sorted() {
                     events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
             }
         }
-    }
+    }*/
 
     events_string += "</ul>";
     document.getElementById("Events").innerHTML = events_string;

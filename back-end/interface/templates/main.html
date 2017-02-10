@@ -7,6 +7,11 @@
         window.token = "Token " + "{{token}}";
     </script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        ent = JSON.parse("{{entries}}");
+        console.log(ent);
+        //window.onload = show_sorted({{entries}});
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock scripts %}
@@ -19,6 +24,7 @@
 {% block left-column %}
     <div id = "Events">
         <ul></ul>
+        {{entries}}
     </div>
 
     <div id = "New-Event">
