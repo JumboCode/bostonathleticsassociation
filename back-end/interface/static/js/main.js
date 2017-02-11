@@ -79,12 +79,12 @@ function add_event() {
     document.getElementById("right-col").innerHTML = new_event_string;
 }
 
-function view_past_event(i) {
+function view_past_event(i, events) {
 
-	var title = events[i].name;
-	var month = events[i].date.substr(5,2);
-	var day = events[i].date.substr(8,2);
-	var year = events[i].date.substr(0,4);
+	var title = events[i].fields.name;
+	var month = events[i].fields.date.substr(5,2);
+	var day = events[i].fields.date.substr(8,2);
+	var year = events[i].fields.date.substr(0,4);
 
 	new_event_string = '';
 	new_event_string += '<div id = "new"> PAST </div>';
@@ -109,16 +109,16 @@ function view_past_event(i) {
     document.getElementById("right-col").innerHTML = new_event_string;
 }
 
-function edit_event(i) {
-    var title = events[i].name;
-    month = events[i].date.substr(5,2);
+function edit_event(i, events) {
+    var title = events[i].fields.name;
+    month = events[i].fields.date.substr(5,2);
     month_change = false;
-    day = events[i].date.substr(8,2);
+    day = events[i].fields.date.substr(8,2);
     day_change = false;
-    year = events[i].date.substr(0,4);
+    year = events[i].fields.date.substr(0,4);
     year_change = false;
     new_file = false;
-    var file_path = events[i].csv;
+    var file_path = events[i].fields.csv;
     var file_name = file_path.substring(file_path.lastIndexOf('/')+1);
 
 	new_event_string = '';
@@ -158,7 +158,7 @@ function edit_event(i) {
     new_event_string += '<div class="btn-group">';
     new_event_string += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "y">'+ year +'</span>  <span class="caret"></span></button>';
     new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
-    new_event_string += '<li onclick = "set_year(2016)" style="padding-left: 5%;">2016</li>';
+    new_event_string += '<li onclick = "set_year(2017)" style="padding-left: 5%;">2017</li>';
 
     var current_year = new Date().getFullYear();
 
@@ -176,7 +176,7 @@ function edit_event(i) {
     new_event_string += '<span style="margin-right: 20px"><a style="color: #4A4A4A" href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
     new_event_string += '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
     new_event_string += '</div>';
-    new_event_string += '<div id = "submit" onclick="update_event_data('+ i +')">';
+    new_event_string += '<div id = "submit" onclick="update_event_data('+ i +', ent)">';
     new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
     new_event_string += '</div>';
     new_event_string += '</div>';
@@ -316,45 +316,13 @@ function get_all_events() {
 }
 
 function show_sorted(ent) {
-    //year = document.getElementById("findyear").innerHTML;
-    //str = document.getElementById("serach_input").value;
-    //ent = window.context.entries;
-    console.log(ent);
-    alert(ent[0].fields.name);
     var events_string = "<ul>"; 
-/*
-    if (str == "" && year != "Year ") {
-        var rxy = new RegExp(year); 
-        for (i=0; i<events.length; i++) {
-            if (rxy.test(events[i].date)) {
-                if (check_past_date(events[i].date))
-                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
+    for (i=0; i<ent.length; i++) {
+                if (check_past_date(ent[i].fields.date))
+                    events_string += '<li onclick = "view_past_event('+ i + ', ent)">' + ent[i].fields.name + '</li>';
                 else
-                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
-            }
-        }
-    } else if (str != "" && year != "Year ") {
-        var rxy = new RegExp(year); 
-        var rxs = new RegExp(str, "i");
-        for (i=0; i<events.length; i++) {
-            if (rxy.test(events[i].date) && rxs.test(events[i].name)) {
-                if (check_past_date(events[i].date))
-                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
-                else
-                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
-            }
-        }
-    } else if (str != "" && year == "Year ") {
-        var rxs = new RegExp(str, "i");
-        for (i=0; i<events.length; i++) {
-            if (rxs.test(events[i].name)) {
-                if (check_past_date(events[i].date))
-                    events_string += '<li onclick = "view_past_event('+ i +')">' + events[i].name + '</li>';
-                else
-                    events_string += '<li onclick = "edit_event('+ i +')">' + events[i].name + '</li>';
-            }
-        }
-    }*/
+                    events_string += '<li onclick = "edit_event('+ i +', ent)">' + ent[i].fields.name + '</li>';
+    }
 
     events_string += "</ul>";
     document.getElementById("Events").innerHTML = events_string;
@@ -384,11 +352,11 @@ function check_past_date(date) {
     return false;
 }
 
-function update_event_data(i) {
+function update_event_data(i, events) {
     var new_event = document.getElementById("new_event").value;
 
     document.getElementById("right-col").innerHTML = '';
-    var date = events[i].date;
+    var date = events[i].fields.date;
 
     if (!(day_change || year_change || month_change || 
         !(new_event == "") || new_file)) {
@@ -424,13 +392,15 @@ function update_event_data(i) {
 
     xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
-            events[i] = JSON.parse(this.responseText);
+            events[i].fields = JSON.parse(this.responseText);
             if (new_event != "")
                 get_all_events();
         }
     });
-
-    xhr.open("PATCH", url + "/api/events/" + events[i].id + "/");
+    console.log(events);
+console.log(events[i].fields.id);
+    //xhr.open("PATCH", url + "/api/events/" + events[i].fields.id + "/"); There is no id
+    xhr.open("PATCH", url + "/api/events/" + i+1 + "/");
     xhr.setRequestHeader("Authorization", window.token);
 
     xhr.send(data);

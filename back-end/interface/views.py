@@ -13,6 +13,8 @@ from .forms import DocumentForm
 from rest_framework.authtoken.models import Token
 from api.models import Event
 from django.core import serializers
+import json
+from django.utils.safestring import mark_safe
 #from api.serializers import EventSerializer
 
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
@@ -44,9 +46,8 @@ def login_view(request):
 #@login_required(login_url='/')
 def main(request):
     user_token = Token.objects.get(user=request.user)
-    #serializer_class = EventSerializer
-    #serializer = serializer_class(Event.objects.all(), context={'request':request})
     entries = serializers.serialize("json", Event.objects.all())
+    entries = mark_safe(entries)
     context = {"token": user_token, "entries": entries}
     return render(request, "main.html", context)
 
