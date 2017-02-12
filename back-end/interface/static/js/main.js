@@ -397,10 +397,9 @@ function update_event_data(i, events) {
                 get_all_events();
         }
     });
-    console.log(events);
-console.log(events[i].fields.id);
     //xhr.open("PATCH", url + "/api/events/" + events[i].fields.id + "/"); There is no id
-    xhr.open("PATCH", url + "/api/events/" + i+1 + "/");
+    id = i + 1;
+    xhr.open("PATCH", url + "/api/events/" + id + "/");
     xhr.setRequestHeader("Authorization", window.token);
 
     xhr.send(data);
