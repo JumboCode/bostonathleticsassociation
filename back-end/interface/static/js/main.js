@@ -181,6 +181,8 @@ function edit_event(i, events) {
     new_event_string += '</div>';
     new_event_string += '</div>';
 
+    new_event_string += '<button type="button" onclick = "delete_event(' + i +', ent)">delete</button>';
+
     document.getElementById("right-col").innerHTML = new_event_string;
 }
 
@@ -403,5 +405,41 @@ function update_event_data(i, events) {
     xhr.open("PATCH", url + "/api/events/" + events[i].pk + "/");
     xhr.setRequestHeader("Authorization", window.token);
 
+    xhr.send(data);
+}
+
+
+function delete_event(i, events) {
+    var new_event = document.getElementById("new_event").value;
+
+    document.getElementById("right-col").innerHTML = '';
+    var date = events[i].fields.date;
+
+
+    var xhr = new XMLHttpRequest();
+
+    var data = new FormData();
+
+    if (new_event != "") {
+        data.append("name", new_event);
+    }
+
+    data.append("date", date);
+
+    if (new_file)
+        data.append("csv", file);
+
+    var url = window.location.origin;
+
+    xhr.addEventListener("readystatechange", function () {
+        console.log("changing ready state");
+    if (this.readyState === 4) {
+        console.log("hallo");
+            window.location.reload(true);
+        }
+    });
+
+    xhr.open("DELETE", url + "/api/events/" + events[i].pk + "/");
+    xhr.setRequestHeader("Authorization", window.token);
     xhr.send(data);
 }
