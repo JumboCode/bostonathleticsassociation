@@ -44,6 +44,9 @@ function add_event() {
     	new_event_string += '<li onclick = "set_day(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
     }
 
+    var current_year = new Date().getFullYear();
+    console.log(current_year);
+
     new_event_string += '</ul>';
     new_event_string += '</div>';
     new_event_string += '</div>';
@@ -51,9 +54,7 @@ function add_event() {
     new_event_string += '<div class="btn-group">';
     new_event_string += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "y">Year </span>  <span class="caret"></span></button>';
     new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
-    new_event_string += '<li onclick = "set_year(2016)" style="padding-left: 5%;">2016</li>';
-
-    var current_year = new Date().getFullYear();
+    new_event_string += '<li onclick = "set_year('+ current_year + ')" style="padding-left: 5%;">' + current_year +'</li>';
 
     for (i = current_year + 1; i <= current_year + 10; i++) {
     	new_event_string += '<li onclick = "set_year(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
