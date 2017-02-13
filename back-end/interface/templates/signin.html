@@ -12,8 +12,8 @@
 	<form name="LoginForm" action = "/" method="post">
 		{% csrf_token %}
 	    <div id = "login-buttons">
-	        <span id = "Username"><input type = "text" name = "username" placeholder = "Username"></span><br>
-	        <span id = "Password"><input type = "password" name = "password" placeholder = "Password"></span><br>
+	        <span id = "Username"><input type = "text" autocomplete = "off" name = "username" placeholder = "Username"></span><br>
+	        <span id = "Password"><input type = "password" autocomplete = "off" name = "password" placeholder = "Password"></span><br>
 	    </div>
 
          <div id = "signin-button">

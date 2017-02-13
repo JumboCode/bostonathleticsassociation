@@ -45,7 +45,6 @@ function add_event() {
     }
 
     var current_year = new Date().getFullYear();
-    console.log(current_year);
 
     new_event_string += '</ul>';
     new_event_string += '</div>';
