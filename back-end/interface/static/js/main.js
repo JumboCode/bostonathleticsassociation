@@ -236,6 +236,7 @@ function get_new_event_info() {
 
     xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
+        window.location.reload(true);
         }
     });
 
