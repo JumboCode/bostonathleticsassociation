@@ -318,6 +318,7 @@ function get_all_events() {
 
 function show_sorted(ent) {
     var events_string = "<ul>"; 
+    console.log(ent);
     for (i=0; i<ent.length; i++) {
                 if (check_past_date(ent[i].fields.date))
                     events_string += '<li onclick = "view_past_event('+ i + ', ent)">' + ent[i].fields.name + '</li>';
@@ -399,8 +400,7 @@ function update_event_data(i, events) {
         }
     });
     //xhr.open("PATCH", url + "/api/events/" + events[i].fields.id + "/"); There is no id
-    id = i + 1;
-    xhr.open("PATCH", url + "/api/events/" + id + "/");
+    xhr.open("PATCH", url + "/api/events/" + events[i].pk + "/");
     xhr.setRequestHeader("Authorization", window.token);
 
     xhr.send(data);

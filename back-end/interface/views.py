@@ -46,7 +46,7 @@ def login_view(request):
 #@login_required(login_url='/')
 def main(request):
     user_token = Token.objects.get(user=request.user)
-    entries = serializers.serialize("json", Event.objects.all())
+    entries = serializers.serialize("json", Event.objects.all().order_by('date'))
     entries = mark_safe(entries)
     context = {"token": user_token, "entries": entries}
     return render(request, "main.html", context)
