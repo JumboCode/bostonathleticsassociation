@@ -161,6 +161,7 @@ body {
 
 #right-col {
     /*float: right;*/
+    display: block;
     float: left;
     width: 1055px;
     height: 100%;
@@ -170,6 +171,9 @@ body {
     line-height: 100px;
 }
 
+#right-col-content {
+    display: none;
+}
 
 #top-text {
     color: #ED9491;
