@@ -33,6 +33,49 @@
 {% endblock left-column %}
 
 {% block right-column %}
-
-
+<div id = "right-col-content">
+	<div id = "new"> NEW </div>
+	<div id = "ev"> EVENT </div> 
+	<div id = "box">
+		<input type = "text" id = "new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
+		<div id = "month">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "m">Month </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "day">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "d">Day </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="daylist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "year">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "y">Year </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "upload">
+			<label for="image">
+				<input type="file" name = "image" id= "image" class= "file_upload" style="display:none;" onchange="check_file()">
+				<img src= "/static/images/upload icon.png" alt="upload pic" style="">
+			</label>
+		</div>
+		<div id = "up_vol">Upload Volunteer Profiles</div>
+		<div id = "submit" onclick="get_new_event_info()">
+			<img src= "/static/images/submit.png" alt="submit pic" style="">
+		</div>
+		</div>
+	</div>
+</div>
 {% endblock right-column %}
