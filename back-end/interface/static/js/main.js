@@ -29,7 +29,7 @@ function add_event() {
     }
     $("#yearlist").html(new_event_string);
 
-    $("#right-col-content").toggle();
+    $("#right-col-content-add").toggle();
     year_change = false;
     month_change = false;
     day_change = false;
@@ -63,7 +63,7 @@ function view_past_event(i) {
     new_event_string += '</div>';
     new_event_string += '</div>';
 
-    //document.getElementById("right-col").innerHTML = new_event_string;
+    document.getElementById("right-col").innerHTML = new_event_string;
 }
 
 function edit_event(i) {
