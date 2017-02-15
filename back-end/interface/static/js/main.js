@@ -60,7 +60,7 @@ function view_past_event(i, events) {
     new_event_string += '</div>';
     new_event_string += '</div>';
 
-    //document.getElementById("right-col").innerHTML = new_event_string;
+    document.getElementById("right-col").innerHTML = new_event_string;
 }
 
 function edit_event(i, events) {
