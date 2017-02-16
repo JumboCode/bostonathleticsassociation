@@ -16,6 +16,9 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 * Michael Morisi
 * Andrew Hoiberg
 * Shanshan Duan
+* Tati Doyle
+* Pulkit Jain
+* Phillip Wang
 
 ## 3. Branching (IMPORTANT!)
 
