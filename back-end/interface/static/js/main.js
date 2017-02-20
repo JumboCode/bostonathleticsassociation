@@ -148,6 +148,7 @@ function check_file() {
 
     if (!document.getElementById("image").files[0].name.match(/.(csv)$/i)) {
         alert('File must be of type .csv!');
+        new_file = false;
         return;
     }
 
