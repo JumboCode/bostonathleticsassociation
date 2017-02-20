@@ -156,6 +156,7 @@ li:hover {
 
 #New-Event {
     text-align: center;
+    align-items:center;
 }
 
 #New-Event > button {
@@ -163,6 +164,8 @@ li:hover {
     border: none;
     width: 280px;
     height: 70px;
+  
+    bottom: 20px;
 }
 
 #signin-button {

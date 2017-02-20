@@ -143,13 +143,14 @@ function edit_event(i, events) {
 
 function check_file() {
     new_file = true;
-	var file_type = document.getElementById("image").files[0].type;
+
 	file = document.getElementById("image").files[0];
 
-	if (file_type != "text/csv") {
-		alert("file must be of type filename.csv")
-		return;
-	}
+    if (!document.getElementById("image").files[0].name.match(/.(csv)$/i)) {
+        alert('File must be of type .csv!');
+        return;
+    }
+
 
 	var remove = '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
 
@@ -162,7 +163,7 @@ function remove_upload() {
 
 	var new_event_string = '';
 	new_event_string += '<label for="image">';
-    new_event_string += '<input type="file" name = "image" id= "image" class= "file_upload" style="display:none;" onchange="check_file()">';
+    new_event_string += '<input type="file" name = "image" id= "image" accept= ".csv" class= "file_upload" style="display:none;" onchange="check_file()">';
     new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
 
