@@ -20,6 +20,7 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 * Pulkit Jain
 * Phillip Wang
 * Brendan Fahey
+* Emily Sim
 
 ## 3. Branching (IMPORTANT!)
 
