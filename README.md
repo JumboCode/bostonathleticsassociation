@@ -19,6 +19,7 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 * Tati Doyle
 * Pulkit Jain
 * Phillip Wang
+* Brendan Fahey
 
 ## 3. Branching (IMPORTANT!)
 
