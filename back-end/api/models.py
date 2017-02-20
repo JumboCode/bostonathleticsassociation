@@ -12,7 +12,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 class Volunteer(models.Model):
-    name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
     phone = models.CharField(max_length=20)
     city = models.CharField(max_length=30)
@@ -21,6 +22,8 @@ class Volunteer(models.Model):
     jacket = models.CharField(max_length=30)
     jacket_size = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
+    job_descrip = models.CharField(max_length=50)
+    active = models.CharField(max_length=30)
 
     def __str__(self):
        return self.name
@@ -40,6 +43,9 @@ class Attendee(models.Model):
     notes = models.TextField(blank=True, null=True)
     team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
     team_cap_name = models.CharField(max_length=50, null=True)
+    assignment_id = models.IntegerField()
+    general_event_id = models.IntegerField()
+    specific_event_id = models.IntegerField()
 
     def __str__(self):
         return self.volunteer.name

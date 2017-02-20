@@ -34,7 +34,9 @@ def EventListPost(self, request, *args, **kwargs):
     reader = csv.reader(f, delimiter=',')
 
     event = Event.objects.create(name=req_name, date=req_date, csv=None)
+
     new_attendees = []
+    captains = []
 
     for row in reader:
         print(row)
@@ -47,23 +49,28 @@ def EventListPost(self, request, *args, **kwargs):
             email=row[5],
             years_of_service=row[6],
             jacket=row[7],
-            jacket_size=row[8]
+            jacket_size=row[8],
+            team_captain=row[9]
         )
 
-        team_cap_name = row[9] or None
+        if row[9] == "TRUE":
+            attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None, 
+                event=event, assignment_id=row[10])
+            captains.append(attendee)
 
-        attendee = Attendee.objects.create(volunteer=volunteer[0], team_captain=None, event=event, team_cap_name=team_cap_name)
-        new_attendees.append(attendee)
+        else:
+            attendee = Attendee.objects.create(volunteer=a, team_captain=None,              
+                                               event=event, assignment_id=row[10])
+            new_attendees.append(attendee)
 
     for a in new_attendees:
-        cap_name = a.team_cap_name
-        if cap_name:
-            try:
-                cap = Volunteer.objects.get(name=cap_name)
-                a.team_captain = cap
+        for cap in captains:
+            if cap.assignment_id == a.assignment_id:
+                # need to check what happens if two captains have the same name - 
+                # use assignment id to resolve?
+                a.team_captain = Volunteer.objects.get(cap_name=cap.name)
                 a.save()
-            except Volunteer.DoesNotExist:
-                pass
+
     event.csv = req_csv
     event.save()
 
