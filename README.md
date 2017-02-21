@@ -1,9 +1,9 @@
-# JumboCode Boston Athletics Association Fall 2016
+# JumboCode Boston Athletics Association Spring 2017
 
 
 ## 1. About
 
-We are the JumboCode team working on a check in system for the Boston Athletics Association (BAA) for Fall 2016 at Tufts University.
+We are the JumboCode team working on a check in system for the Boston Athletics Association (BAA) for Spring 2017 at Tufts University.
 
 ## 2. Members
 
@@ -16,6 +16,11 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 * Michael Morisi
 * Andrew Hoiberg
 * Shanshan Duan
+* Tati Doyle
+* Pulkit Jain
+* Phillip Wang
+* Brendan Fahey
+* Emily Sim
 
 ## 3. Branching (IMPORTANT!)
 

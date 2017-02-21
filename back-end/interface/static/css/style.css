@@ -1,347 +1,354 @@
-    @font-face {
-        font-family: FrutigerCELight;
-        src: url("../fonts/Frutiger CE 45 Light.ttf");
+@font-face {
+    font-family: FrutigerCELight;
+    src: url("../fonts/Frutiger CE 45 Light.ttf");
+}
+
+@font-face {
+    font-family: FrutigerCERoman;
+    src: url("../fonts/Frutiger CE 55 Roman.ttf");
+}
+
+@font-face {
+    font-family: FrutigerLTBoldCondensed;
+    src: url("../fonts/Frutiger LT 67 Bold Condensed.ttf");
+}
+
+@font-face {
+    font-family: FrutigerLTRoman;
+    src: url("../fonts/Frutiger LT 55 Roman.ttf");
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow: auto;
+}
+
+
+#wrapper {
+    height: 100%;
+    width: 1600px;
+}
+
+#left-col {
+    color: white;
+    float: left;
+    width: 518px;
+    /*height: 100%;*/
+    min-height: 100%;
+    height: auto !important;
+    background-color: #EC9591;
+    font-size: 2rem;
+    font-family: FrutigerCELight;
+}
+
+::-webkit-input-placeholder {
+   color: #F3F3F3;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #F3F3F3;
+        background: transparent;
     }
+}
 
-    @font-face {
-        font-family: FrutigerCERoman;
-        src: url("../fonts/Frutiger CE 55 Roman.ttf");
-    }
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
-    @font-face {
-        font-family: FrutigerLTBoldCondensed;
-        src: url("../fonts/Frutiger LT 67 Bold Condensed.ttf");
-    }
+:-moz-placeholder { /* Firefox 18- */
+   color: #F3F3F3;  
+}
 
-    @font-face {
-        font-family: FrutigerLTRoman;
-        src: url("../fonts/Frutiger LT 55 Roman.ttf");
-    }
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #F3F3F3;  
+}
 
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+:-ms-input-placeholder {  
+   color: #F3F3F3;  
+}
 
-    html {
-        overflow: hidden;
-    }
+#login-buttons {
+    padding-top: 95%;
+    text-align: center;
+    padding-bottom: 45px;
+}
 
-    body {
-        overflow: auto;
-    }
+#Username > input {
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    outline: none;
+    color: #F3F3F3;
+    font-size: 2rem;
+    width: 351px;
+    height: 65px;
+    padding-bottom: 1rem;
+    font-family: FrutigerCELight;
+    background: url("../images/signin1.png") no-repeat;
+}
 
+#Password > input {
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    outline: none;
+    color: #F3F3F3;
+    font-size: 2rem;
+    width: 351px;
+    height: 65px;
+    font-family: FrutigerCELight;
+    background: url("../images/signin2.png") no-repeat;
+}
 
-    #wrapper {
-        height: 100%;
-        width: 1600px;
-    }
+#Event-Search {
+    text-align: center;
+    padding-top: 40px;
+}
 
+#search > input {
+    padding-left: 50px;
+    padding-right: 25px;
+    border: 0;
+    outline: none;
+    color: #F3F3F3;
+    font-size: 28px;
+    font-family: FrutigerCELight;
+    background: url("../images/searchbar2.png") no-repeat;
+    background-size: auto !important;
+}
+
+#Events {
+    max-height: 475px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+#Events > ul {
+    padding-top: 12px;
+    padding-left: 85px;
+    font-family: FrutigerCERoman;
+    font-size: 30px;
+
+}
+
+li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#Events > ul > li {
+    padding-bottom: 45px;
+    font-family: FrutigerLTRoman;
+}
+
+#New-Event {
+    text-align: center;
+    align-items:center;
+}
+
+#New-Event > button {
+    background: url("../images/newevent.png") no-repeat center;
+    border: none;
+    width: 280px;
+    height: 70px;
+  
+    bottom: 20px;
+}
+
+#signin-button {
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+#signin-button > button {
+    background: url("../images/login.png") no-repeat center;
+    border: none;
+    height: 70px;
+    width: 275px;
+}
+
+#right-col {
+    /*float: right;*/
+    display: block;
+    float: left;
+    width: 1055px;
+    height: 100%;
+    background: url("../images/BAALOGO.png") no-repeat center;
+    font-size: 125px;
+    font-family: FrutigerLTBoldCondensed;
+    line-height: 100px;
+}
+
+#right-col-content-add {
+    display: none;
+}
+
+#top-text {
+    color: #ED9491;
+    padding-left: 7px;
+    font-weight: bold;
+}
+
+#bottom-text {
+    color: #EC7C79;
+    padding-left: 7px;
+    font-weight: bold;
+}
+
+#box {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    line-height: 20px !important;
+    font-size: 1.7rem !important;
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px #CDCDCD;
+    margin-left: 10px;
+    width: 600px;
+    opacity: .85;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#new {
+    color: #EC9591;
+}
+
+#ev {
+    color: #EEC3BC;
+}
+
+#month {
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#day {
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#year {
+    width: 33%;
+    float: left;
+    margin-bottom: 2.3rem;
+}
+
+#up_vol {
+    color: #4A4A4A;
+    opacity: .60;
+    font-size: 1.7rem;
+}
+
+#submit {
+    margin-top: 4.6rem;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.btn-group > ul > li:hover {
+    background-color: #F7F7F7;
+}
+
+.dropdown-toggle { 
+    min-width: 100px; 
+} 
+
+.caret {
+    color: white;
+    position: absolute;
+    left: 80%;
+    top: 45%;
+}
+
+.btn-default {
+    background-color: #9B9B9B !important;
+}
+
+#year_picker > .btn-group > .btn-default {
+    background-color: #F0ABA6 !important;
+    border: none;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+}
+
+#year_picker > .btn-group > ul > li {
+    color: black;
+}
+
+#year_picker > .btn-group > ul > li:hover {
+    background-color: #F7F7F7;
+}
+
+#m, #d, #y {
+    color: white;
+}
+
+.past {
+    min-width: 100px;
+    background-color: #9B9B9B;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px 1px #CDCDCD;
+}
+
+#close {
+    position: relative;
+    margin-top: 10px;
+    margin-right: -75px;
+    top: -70px;
+    float: right;
+    color: #828080;
+}
+
+#year_picker {
+    text-align: right;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 1280px) {
     #left-col {
-        color: white;
-        float: left;
-        width: 518px;
-        /*height: 100%;*/
-        min-height: 100%;
-        height: auto !important;
-        background-color: #EC9591;
-        font-size: 2rem;
-        font-family: FrutigerCELight;
+        width: 450px;
     }
 
-    ::-webkit-input-placeholder {
-       color: #F3F3F3;
-    }
-
-    @-webkit-keyframes autofill {
-        to {
-            color: #F3F3F3;
-            background: transparent;
-        }
-    }
-
-    input:-webkit-autofill {
-        -webkit-animation-name: autofill;
-        -webkit-animation-fill-mode: both;
-    }
-
-    :-moz-placeholder { /* Firefox 18- */
-       color: #F3F3F3;  
-    }
-
-    ::-moz-placeholder {  /* Firefox 19+ */
-       color: #F3F3F3;  
-    }
-
-    :-ms-input-placeholder {  
-       color: #F3F3F3;  
-    }
-
-    #login-buttons {
-        padding-top: 95%;
-        text-align: center;
-        padding-bottom: 45px;
-    }
-
-    #Username > input {
-        background-color: rgba(255, 255, 255, 0);
-        padding-left: 10px;
-        padding-right: 10px;
-        border: 0;
-        outline: none;
-        color: #F3F3F3;
-        font-size: 2rem;
-        width: 351px;
-        height: 65px;
-        padding-bottom: 1rem;
-        font-family: FrutigerCELight;
-        background: url("../images/signin1.png") no-repeat;
-    }
-
-    #Password > input {
-        background-color: rgba(255, 255, 255, 0);
-        padding-left: 10px;
-        padding-right: 10px;
-        border: 0;
-        outline: none;
-        color: #F3F3F3;
-        font-size: 2rem;
-        width: 351px;
-        height: 65px;
-        font-family: FrutigerCELight;
-        background: url("../images/signin2.png") no-repeat;
-    }
-
-    #Event-Search {
-        text-align: center;
-        padding-top: 40px;
+    #right-col {
+        width: 1000px;
     }
 
     #search > input {
-        padding-left: 50px;
-        padding-right: 25px;
-        border: 0;
-        outline: none;
-        color: #F3F3F3;
-        font-size: 28px;
-        font-family: FrutigerCELight;
-        background: url("../images/searchbar2.png") no-repeat;
-        background-size: auto !important;
-    }
-
-    #Events {
-        max-height: 475px;
-        overflow: auto;
-        padding-bottom: 10px;
-    }
-
-    #Events > ul {
-        padding-top: 12px;
-        padding-left: 85px;
-        font-family: FrutigerCERoman;
-        font-size: 30px;
-
-    }
-
-    li:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    #Events > ul > li {
-        padding-bottom: 45px;
-        font-family: FrutigerLTRoman;
-    }
-
-    #New-Event {
-        text-align: center;
-    }
-
-    #New-Event > button {
-        background: url("../images/newevent.png") no-repeat center;
-        border: none;
-        width: 280px;
-        height: 70px;
+        background-size: 350px 60px;
+        width: 350px;
+        height: 60px;
     }
 
     #signin-button {
         text-align: center;
-        padding-bottom: 10%;
+        padding-bottom: 4%;
     }
-
-    #signin-button > button {
-        background: url("../images/login.png") no-repeat center;
-        border: none;
-        height: 70px;
-        width: 275px;
-    }
-
-    #right-col {
-        /*float: right;*/
-        float: left;
-        width: 1055px;
-        height: 100%;
-        background: url("../images/BAALOGO.png") no-repeat center;
-        font-size: 125px;
-        font-family: FrutigerLTBoldCondensed;
-        line-height: 100px;
-    }
-
-
-    #top-text {
-        color: #ED9491;
-        padding-left: 7px;
-        font-weight: bold;
-    }
-
-    #bottom-text {
-        color: #EC7C79;
-        padding-left: 7px;
-        font-weight: bold;
-    }
-
-    #box {
-        padding-top: 6rem;
-        padding-bottom: 4rem;
-        padding-left: 8rem;
-        padding-right: 8rem;
-        line-height: 20px !important;
-        font-size: 1.7rem !important;
-        background-color: white;
-        box-shadow: 0px 0px 3px 3px #CDCDCD;
-        margin-left: 10px;
-        width: 600px;
-        opacity: .85;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    #new {
-        color: #EC9591;
-    }
-
-    #ev {
-        color: #EEC3BC;
-    }
-
-    #month {
-        width: 33%;
-        float: left;
-        margin-bottom: 2.3rem;
-    }
-
-    #day {
-        width: 33%;
-        float: left;
-        margin-bottom: 2.3rem;
-    }
-
-    #year {
-        width: 33%;
-        float: left;
-        margin-bottom: 2.3rem;
-    }
-
-    #up_vol {
-        color: #4A4A4A;
-        opacity: .60;
-        font-size: 1.7rem;
-    }
-
-    #submit {
-        margin-top: 4.6rem;
-    }
-
-    .scrollable-menu {
-        height: auto;
-        max-height: 200px;
-        overflow: auto;
-    }
-
-    .btn-group > ul > li:hover {
-        background-color: #F7F7F7;
-    }
-
-    .dropdown-toggle { 
-        min-width: 100px; 
-    } 
-
-    .caret {
-        color: white;
-        position: absolute;
-        left: 80%;
-        top: 45%;
-    }
-
-    .btn-default {
-        background-color: #9B9B9B !important;
-    }
-
-    #year_picker > .btn-group > .btn-default {
-        background-color: #F0ABA6 !important;
-        border: none;
-        height: 40px;
-        color: white;
-        font-size: 20px;
-    }
-
-    #year_picker > .btn-group > ul > li {
-        color: black;
-    }
-
-    #year_picker > .btn-group > ul > li:hover {
-        background-color: #F7F7F7;
-    }
-
-    #m, #d, #y {
-        color: white;
-    }
-
-    .past {
-        min-width: 100px;
-        background-color: #9B9B9B;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        border-radius: 3px;
-        box-shadow: 0px 0px 1px 1px #CDCDCD;
-    }
-
-    #close {
-        position: relative;
-        margin-top: 10px;
-        margin-right: -75px;
-        top: -70px;
-        float: right;
-        color: #828080;
-    }
-
-    #year_picker {
-        text-align: right;
-        margin-right: 30px;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    @media only screen and (max-width: 1280px) {
-        #left-col {
-            width: 450px;
-        }
-
-        #right-col {
-            width: 1000px;
-        }
-
-        #search > input {
-            background-size: 350px 60px;
-            width: 350px;
-            height: 60px;
-        }
-
-        #signin-button {
-            text-align: center;
-            padding-bottom: 4%;
-        }
-    }
+}
 
 
