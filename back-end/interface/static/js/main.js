@@ -12,22 +12,22 @@ var month_change;
 function add_event() {
 	new_event_string = '';
     for (i = 1; i <= 12; i++) {
-        new_event_string += '<li onclick = "set_month(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+        new_event_string += '<li onclick = "set_month(' + i + ',\'add\')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
     }
-    $("#monthlist").html(new_event_string);
+    $("#add-monthlist").html(new_event_string);
     new_event_string = '';
     for (i = 1; i <= 31; i++) {
-        new_event_string += '<li onclick = "set_day(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+        new_event_string += '<li onclick = "set_day(' + i + ',\'add\')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
     }
-    $("#daylist").html(new_event_string);
+    $("#add-daylist").html(new_event_string);
     new_event_string = '';
     var current_year = new Date().getFullYear();
     for (i = current_year; i <= current_year + 10; i++) {
-        new_event_string += '<li onclick = "set_year(' + i + ')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
+        new_event_string += '<li onclick = "set_year(' + i + ',\'add\')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
     }
-    $("#yearlist").html(new_event_string);
+    $("#add-yearlist").html(new_event_string);
 
-    $("#right-col-content-add").toggle();
+    $("#right-col-content-add").toggle("show");
     year_change = false;
     month_change = false;
     day_change = false;
@@ -39,8 +39,9 @@ function view_past_event(i, events) {
 	var month = events[i].fields.date.substr(5,2);
 	var day = events[i].fields.date.substr(8,2);
 	var year = events[i].fields.date.substr(0,4);
-    $('past-event').html = title;
+    $('past_event').html = title;
     $('view-date').html = month + '/' + day + '/' + year;
+    $("#right-col-content-view").toggle("show");
 }
 
 function edit_event(i, events) {
@@ -54,78 +55,37 @@ function edit_event(i, events) {
     new_file = false;
     var file_path = events[i].fields.csv;
     var file_name = file_path.substring(file_path.lastIndexOf('/')+1);
-
-	new_event_string = '';
-	new_event_string += '<div id = "new"> EDIT </div>';
-    new_event_string += '<div id = "ev"> EVENT </div>';
-	new_event_string += '<div id = "box">';
-	new_event_string += '<div id = "close" onclick = "close_pop()"> x </div>';
-	new_event_string += '<input type = "text" id = "new_event" placeholder = "' + title + '"style="border:none; font-size: 3.3rem; width: 100%; text-align: center">';
-	new_event_string += '<hr style="position:relative; top:-10px">';
-	new_event_string += '<div id = "month">'; 
-    new_event_string += '<div class="btn-group">';
-    new_event_string += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "m">' + month +'</span><span class="caret"></span></button>';
-    new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
-    new_event_string += '<li onclick = "set_month(1)" style="padding-left: 5%;">1</li>';
-
-    for (j = 2; j <= 12; j++) {
-    	new_event_string += '<li onclick = "set_month(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
+    new_event_string = '';
+    $("#edit-new_event").prop("placeholder", title);
+	$("#edit-m").html(month);
+    for (j = 1; j <= 12; j++) {
+    	new_event_string += '<li onclick = "set_month(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
-
-    new_event_string += '</ul>';
-    new_event_string += '</div>';
-    new_event_string += '</div>';
-    new_event_string += '<div id = "day">';
-    new_event_string += '<div class="btn-group">';
-    new_event_string += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "d">'+ day +'</span>  <span class="caret"></span></button>';
-    new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
-    new_event_string += '<li onclick = "set_day(1)" style="padding-left: 5%;">1</li>';
-
-    for (j = 2; j <= 31; j++) {
-    	new_event_string += '<li onclick = "set_day(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
+    $("#edit-monthlist").html(new_event_string);
+    new_event_string = '';
+    $("#edit-d").html(day);
+    for (j = 1; j <= 31; j++) {
+    	new_event_string += '<li onclick = "set_day(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
-
-    new_event_string += '</ul>';
-    new_event_string += '</div>';
-    new_event_string += '</div>';
-    new_event_string += '<div id = "year">';
-    new_event_string += '<div class="btn-group">';
-    new_event_string += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "y">'+ year +'</span>  <span class="caret"></span></button>';
-    new_event_string += '<ul class="dropdown-menu scrollable-menu" role="menu">';
-    new_event_string += '<li onclick = "set_year(2017)" style="padding-left: 5%;">2017</li>';
-
+    $("#edit-daylist").html(new_event_string);
+    new_event_string = '';
+    $("#edit-y").html(year);
     var current_year = new Date().getFullYear();
-
-    for (j = current_year + 1; j <= current_year + 10; j++) {
-    	new_event_string += '<li onclick = "set_year(' + j + ')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
+    for (j = current_year; j <= current_year + 10; j++) {
+    	new_event_string += '<li onclick = "set_year(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
     }
-
-    new_event_string += '</ul>';
-    new_event_string += '</div>';
-    new_event_string += '</div>';
-    new_event_string += '<br>';
-    new_event_string += '<div id = "upload">';
-    new_event_string += '</div>';
-    new_event_string += '<div id = "up_vol">';
-    new_event_string += '<span style="margin-right: 20px"><a style="color: #4A4A4A" href="'+ file_path + '" download="' + file_name + '">' + file_name + '</a></span>';
-    new_event_string += '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
-    new_event_string += '</div>';
-    new_event_string += '<div id = "submit" onclick="update_event_data('+ i +', ent)">';
-    new_event_string += '<img src= "/static/images/submit.png" alt="submit pic" style="">';
-    new_event_string += '</div>';
-    new_event_string += '</div>';
-
-    new_event_string += '<button type="button" onclick = "delete_event(' + i +', ent)">delete</button>';
-
-    document.getElementById("right-col").innerHTML = new_event_string;
+    $("#edit_yearlist").html(new_event_string);
+    $("#file_name").prop("href", file_path);
+    $("#file_name").prop("download", file_name);
+    $("#file_name").html(file_name);
+    $("#right-col-content-edit").toggle("show");
 }
 
-function check_file() {
+function check_file(func) {
     new_file = true;
+	file = $("#"+func+"-image").prop("files")[0];
 
-	file = document.getElementById("image").files[0];
-
-    if (!document.getElementById("image").files[0].name.match(/.(csv)$/i)) {
+    if (!$("#"+func+"-image").prop("files")[0].name.match(/.(csv)$/i)) {
         alert('File must be of type .csv!');
         new_file = false;
         return;
@@ -134,12 +94,12 @@ function check_file() {
 
 	var remove = '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
 
-	var file_name = '<span style="margin-right: 20px">' + document.getElementById("image").files[0].name + '</span>';
+	var file_name = '<span style="margin-right: 20px">' + $("#"+func+"-image").prop("files")[0].name + '</span>';
 
-	document.getElementById("up_vol").innerHTML = file_name + remove; 
+	$("#"+func+"-up_vol").html(file_name + remove); 
 }
 
-function remove_upload() {
+function remove_upload(func) {
 
 	var new_event_string = '';
 	new_event_string += '<label for="image">';
@@ -147,8 +107,8 @@ function remove_upload() {
     new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
 
-    document.getElementById("upload").innerHTML = new_event_string;
-    document.getElementById("up_vol").innerHTML = "Upload Volunteer Profiles";
+    document.getElementById("#"+func+"upload").innerHTML = new_event_string;
+    document.getElementById("#"+func+"up_vol").innerHTML = "Upload Volunteer Profiles";
 }
 
 function get_new_event_info() {
@@ -183,29 +143,29 @@ function get_new_event_info() {
     xhr.send(data);
 }
 
-function set_month(n) {
+function set_month(n, func) {
     month_change = true;
     if (n < 10) {
         n = '0' + n;
     }
 
-	document.getElementById("m").innerHTML = n;
+	$("#"+func+"-m").html(n);
 	month = n;
 }
 
-function set_day(n) {
+function set_day(n, func) {
     day_change = true;
     if (n < 10) {
         n = '0' + n;
     }
 
-	document.getElementById("d").innerHTML = n;
+	$("#"+func+"-d").html(n);
 	day = n;
 }
 
-function set_year(n) {
+function set_year(n, func) {
     year_change = true;
-	document.getElementById("y").innerHTML = n;
+	$("#"+func+"-y").html(n);
 	year = n;
 }
 

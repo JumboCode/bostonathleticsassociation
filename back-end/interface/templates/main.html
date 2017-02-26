@@ -37,7 +37,7 @@
 	<div class = "new"> NEW </div>
 	<div class = "ev"> EVENT </div> 
 	<div id = "box">
-		<input type = "text" id = "new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
+		<input type = "text" id = "add-new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
 		<div class = "month">
 			<div class="btn-group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -96,6 +96,43 @@
     		Download Volunteer Profiles
     	</div>
     </div>
+</div>
+<div id = "right-col-content-edit">
+    <div id = "new"> EDIT </div>
+    <div id = "ev"> EVENT </div>
+	<div id = "box">
+		<div id = "close" onclick = "close_pop()"> x </div>
+		<input type = "text" id = "edit-new_event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center">
+		<hr style="position:relative; top:-10px">
+		<div id = "month">
+   			<div class="btn-group">
+    			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-m"></span><span class="caret"></span></button>
+    			<ul id = "view-monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+   			</div>
+   		</div>
+    <div id = "edit-day">
+    	<div class="btn-group">
+    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-d"></span>  <span class="caret"></span></button>
+    		<ul id = "edit-monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+
+    	</div>
     </div>
+    <div id = "edit-year">
+    	<div class="btn-group">
+    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-y"><span>  <span class="caret"></span></button>
+    		<ul id = "edit-yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul></ul>
+    	</div>
+    </div>
+    <br>
+    <div id = "edit-upload"></div>
+    <div id = "edit-up_vol">
+		<span id = "file_name" style="margin-right: 20px"><a style="color: #4A4A4A"></a></span>
+    	<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>
+    </div>
+    <div id = "edit-submit" onclick="update_event_data('+ i +', ent)">
+    	<img src= "/static/images/submit.png" alt="submit pic" style="">
+    </div>
+    </div>
+	<button type="button" onclick = "delete_event(' + i +', ent)">delete</button>
 </div>
 {% endblock right-column %}
