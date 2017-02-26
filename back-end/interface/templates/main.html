@@ -78,4 +78,24 @@
 		</div>
 	</div>
 </div>
+<div id = "right-col-content-view">
+	<div id = "new"> EDIT </div>
+    <div id = "ev"> EVENT </div>
+	<div id = "box">
+		<div id = "close" onclick = "close_pop()"> x </div>
+		<div id = "past_event" style = "text-align: center; font-size: 3.3rem; padding: 11px"></div>
+		<hr style="position:relative; top:-10px">
+    	<p id = "view-date"></p>
+    	<div id = "upload">
+    		<label for="image">
+    			<input type="file" name="image" id= "image" style="display:none;">
+    			<br>
+    			<img src= "/static/images/download icon.png" alt="upload pic" style="">
+    		</label>
+    	</div>
+    	<div id = "up_vol">
+    		Download Volunteer Profiles
+    	</div>
+    </div>
+</div>
 {% endblock right-column %}

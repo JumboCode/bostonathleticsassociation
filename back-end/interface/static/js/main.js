@@ -35,33 +35,12 @@ function add_event() {
 }
 
 function view_past_event(i, events) {
-
 	var title = events[i].fields.name;
 	var month = events[i].fields.date.substr(5,2);
 	var day = events[i].fields.date.substr(8,2);
 	var year = events[i].fields.date.substr(0,4);
-
-	new_event_string = '';
-	new_event_string += '<div id = "new"> PAST </div>';
-    new_event_string += '<div id = "ev"> EVENT </div>';
-	new_event_string += '<div id = "box">';
-	new_event_string += '<div id = "close" onclick = "close_pop()"> x </div>';
-	new_event_string += '<div id = "past_event" style = "text-align: center; font-size: 3.3rem; padding: 11px">' + title + '</div>';
-	new_event_string += '<hr style="position:relative; top:-10px">';
-    new_event_string += month + '/' + day + '/' + year;
-    new_event_string += '<div id = "upload">';
-    new_event_string += '<label for="image">';
-    new_event_string += '<input type="file" name="image" id= "image" style="display:none;">';
-    new_event_string += '<br>';
-    new_event_string += '<img src= "/static/images/download icon.png" alt="upload pic" style="">';
-    new_event_string += '</label>';
-    new_event_string += '</div>';
-    new_event_string += '<div id = "up_vol">';
-    new_event_string += 'Download Volunteer Profiles';
-    new_event_string += '</div>';
-    new_event_string += '</div>';
-
-    document.getElementById("right-col").innerHTML = new_event_string;
+    $('past-event').html = title;
+    $('view-date').html = month + '/' + day + '/' + year;
 }
 
 function edit_event(i, events) {
