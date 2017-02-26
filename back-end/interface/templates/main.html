@@ -65,37 +65,37 @@
 				<ul id="add-yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
 			</div>
 		</div>
-		<div id = "upload">
-			<label for="image">
-				<input type="file" name = "image" id= "image" class= "file_upload" accept = ".csv" style="display:none;" onchange="check_file()">
+		<div id = "add-upload">
+			<label for="add-image">
+				<input type="file" name = "image" id= "add-image" class= "file_upload" accept = ".csv" style="display:none;" onchange="check_file('add')">
 				<img src= "/static/images/upload icon.png" alt="upload pic" style="">
 			</label>
 		</div>
-		<div id = "up_vol">Upload Volunteer Profiles</div>
-		<div id = "submit" onclick="get_new_event_info()">
+		<div id = "add-up_vol">Upload Volunteer Profiles</div>
+		<div id = "add-submit" onclick="get_new_event_info()">
 			<img src= "/static/images/submit.png" alt="submit pic" style="">
 		</div>
 		</div>
 	</div>
-</div>
 <div id = "right-col-content-view">
-	<div id = "new"> EDIT </div>
-    <div id = "ev"> EVENT </div>
+	<div class = "new"> PAST </div>
+    <div class = "ev"> EVENT </div>
 	<div id = "box">
 		<div id = "close" onclick = "close_pop()"> x </div>
 		<div id = "past_event" style = "text-align: center; font-size: 3.3rem; padding: 11px"></div>
 		<hr style="position:relative; top:-10px">
     	<p id = "view-date"></p>
-    	<div id = "upload">
-    		<label for="image">
-    			<input type="file" name="image" id= "image" style="display:none;">
+    	<div id = "view-upload">
+    		<label for="view-image">
+    			<input type="file" name="image" id= "view-image" style="display:none;">
     			<br>
     			<img src= "/static/images/download icon.png" alt="upload pic" style="">
     		</label>
     	</div>
-    	<div id = "up_vol">
+    	<div id = "view-up_vol">
     		Download Volunteer Profiles
     	</div>
+    </div>
     </div>
 </div>
 {% endblock right-column %}
