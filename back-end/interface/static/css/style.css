@@ -224,11 +224,11 @@ li:hover {
     margin-bottom: 10px;
 }
 
-#new {
+.new {
     color: #EC9591;
 }
 
-#ev {
+.ev {
     color: #EEC3BC;
 }
 
