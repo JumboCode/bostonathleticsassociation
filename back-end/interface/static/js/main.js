@@ -37,17 +37,22 @@ function add_event() {
 }
 
 function view_past_event(i, events) {
+    $("#right-col-content-edit").toggle(false);
+    $("#right-col-content-add").toggle(false);
 	var title = events[i].fields.name;
 	var month = events[i].fields.date.substr(5,2);
 	var day = events[i].fields.date.substr(8,2);
 	var year = events[i].fields.date.substr(0,4);
-    $('past_event').html = title;
-    $('view-date').html = month + '/' + day + '/' + year;
-
-    $("#right-col-content-edit").toggle(false);
-    $("#right-col-content-add").toggle(false);
-    $("#right-col-content-view").toggle("show");
-
+    var date = month + '/' + day + '/' + year;
+    var init_title = $('#past_event').html();
+    var init_date = $('#view-date').html();
+    console.log(init_title + " " + init_date);
+    $('#past_event').html(title);
+    $('#view-date').html(date);
+    if (($('#right-col-content-view').css('display') != 'block') ||
+        (init_title == title && init_date == date)) {
+        $("#right-col-content-view").toggle("show");
+    }
 }
 
 function edit_event(i, events) {
@@ -99,9 +104,7 @@ function check_file(func) {
         new_file = false;
         return;
     }
-
-
-	var remove = '<span id="remove_upload" onclick="remove_upload()"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
+	var remove = '<span id="remove_upload" onclick="remove_upload(\''+func+'\')"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>';
 
 	var file_name = '<span style="margin-right: 20px">' + $("#"+func+"-image").prop("files")[0].name + '</span>';
 
@@ -111,13 +114,12 @@ function check_file(func) {
 function remove_upload(func) {
 
 	var new_event_string = '';
-	new_event_string += '<label for="image">';
-    new_event_string += '<input type="file" name = "image" id= "image" accept= ".csv" class= "file_upload" style="display:none;" onchange="check_file()">';
+	new_event_string += '<label for="'+func+'-image">';
+    new_event_string += '<input type="file" name = "image" id= "'+func+'-image" accept= ".csv" class= "file_upload" style="display:none;" onchange="check_file(\''+func+'\')">';
     new_event_string += '<img src= "/static/images/upload icon.png" alt="upload pic" style="">';
     new_event_string += '</label>';
-
-    document.getElementById("#"+func+"upload").innerHTML = new_event_string;
-    document.getElementById("#"+func+"up_vol").innerHTML = "Upload Volunteer Profiles";
+    $("#"+func+"-upload").html(new_event_string);
+    $("#"+func+"-up_vol").html("Upload Volunteer Profiles");
 }
 
 function get_new_event_info() {
