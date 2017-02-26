@@ -250,7 +250,7 @@ li:hover {
     margin-bottom: 2.3rem;
 }
 
-#add-up_vol, #view-up_vol {
+#add-up_vol, #view-up_vol, #edit-up_vol {
     color: #4A4A4A;
     opacity: .60;
     font-size: 1.7rem;
@@ -302,6 +302,10 @@ li:hover {
 }
 
 #add-m, #add-d, #add-y {
+    color: white;
+}
+
+#edit-m, #edit-d, #edit-y {
     color: white;
 }
 

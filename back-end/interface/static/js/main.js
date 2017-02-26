@@ -27,6 +27,8 @@ function add_event() {
     }
     $("#add-yearlist").html(new_event_string);
 
+    $("#right-col-content-view").toggle(false);
+    $("#right-col-content-edit").toggle(false);
     $("#right-col-content-add").toggle("show");
     year_change = false;
     month_change = false;
@@ -41,7 +43,11 @@ function view_past_event(i, events) {
 	var year = events[i].fields.date.substr(0,4);
     $('past_event').html = title;
     $('view-date').html = month + '/' + day + '/' + year;
+
+    $("#right-col-content-edit").toggle(false);
+    $("#right-col-content-add").toggle(false);
     $("#right-col-content-view").toggle("show");
+
 }
 
 function edit_event(i, events) {
@@ -78,6 +84,9 @@ function edit_event(i, events) {
     $("#file_name").prop("href", file_path);
     $("#file_name").prop("download", file_name);
     $("#file_name").html(file_name);
+
+    $("#right-col-content-add").toggle(false);
+    $("#right-col-content-view").toggle(false);
     $("#right-col-content-edit").toggle("show");
 }
 
@@ -112,7 +121,7 @@ function remove_upload(func) {
 }
 
 function get_new_event_info() {
-    var new_event = document.getElementById("new_event").value;
+    var new_event = document.getElementById("add-new_event").value;
 
     if (!(day_change && year_change && month_change && 
         !(new_event == "") && new_file)) {
@@ -170,7 +179,10 @@ function set_year(n, func) {
 }
 
 function close_pop() {
-	document.getElementById("right-col").innerHTML = '';
+    $("#right-col-content-add").toggle(false);
+    $("#right-col-content-edit").toggle(false);
+    $("#right-col-content-view").toggle(false);
+
 }
 
 function fill_year_picker() {
