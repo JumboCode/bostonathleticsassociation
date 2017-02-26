@@ -54,6 +54,18 @@ body {
    color: #F3F3F3;
 }
 
+@-webkit-keyframes autofill {
+    to {
+        color: #F3F3F3;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
 :-moz-placeholder { /* Firefox 18- */
    color: #F3F3F3;  
 }
@@ -129,6 +141,12 @@ body {
     padding-left: 85px;
     font-family: FrutigerCERoman;
     font-size: 30px;
+
+}
+
+li:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #Events > ul > li {
@@ -138,6 +156,7 @@ body {
 
 #New-Event {
     text-align: center;
+    align-items:center;
 }
 
 #New-Event > button {
@@ -145,6 +164,8 @@ body {
     border: none;
     width: 280px;
     height: 70px;
+  
+    bottom: 20px;
 }
 
 #signin-button {
@@ -161,15 +182,19 @@ body {
 
 #right-col {
     /*float: right;*/
+    display: block;
     float: left;
     width: 1055px;
     height: 100%;
-    background: url("../images/BAALogo.png") no-repeat center;
+    background: url("../images/BAALOGO.png") no-repeat center;
     font-size: 125px;
     font-family: FrutigerLTBoldCondensed;
     line-height: 100px;
 }
 
+#right-col-content-add {
+    display: none;
+}
 
 #top-text {
     color: #ED9491;

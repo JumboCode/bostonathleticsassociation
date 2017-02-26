@@ -7,9 +7,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-    <!-- your app's js -->
-    <script src="app.js"></script>
-     <!--<script src="list.js"></script>-->
+    <script src="list.js"></script>
    
     <link href="list.css" rel="stylesheet">
     <link href="popup.css" rel="stylesheet">
@@ -38,10 +36,10 @@
       </div>
       <ion-list >
         <ion-item ng-repeat="item in items | filter:searchQuery" item="item" class="item item-button-right">
-            <button class =" largerB" ng-click="showPrompt(item)"> {{item.volunteer.name}} </button>
+            <button class =" largerB" ng-click="showPrompt(item)"> {{item.name}} </button>
             <div class = 'buttons' id="allign-right">
-             <img ng-src="{{(item.at_event == '1' || tap ) && 'IN.png' || 'Oval.png'}}" id = "checkin_button" class=" button-icon larger" ng-click="tap=!tap; checkin(item)">
-             <img ng-src="{{(item.at_event == '2' || tapped ) && 'OUT.png' || 'Oval.png'}}" class="button button-icon larger" ng-click="tapped=!tapped; checkout(item)">
+                <img ng-src="{{(item.at_event == '1' || tap ) && 'IN.png' || 'Oval.png'}}" id = "checkin_button" class=" button-icon larger" ng-click="tap=!tap; checkin(item)">
+                <img ng-src="{{(item.at_event == '2' || tapped ) && 'OUT.png' || 'Oval.png'}}" class="button button-icon larger" ng-click="tapped=!tapped; checkout(item)">
            <!--  <img ng-src="{{(item.at_event == '2' || tap && '/OUT.png') || '/Oval.png'}}" class="button button-icon larger" ng-click="tap =!tap; checkout(item)"> -->
              </div>
 

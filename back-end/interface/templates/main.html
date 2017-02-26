@@ -8,6 +8,12 @@
     </script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        ent = JSON.parse('{{entries}}');
+        window.onload = function() {
+            window.document.body.onload = show_sorted(ent);
+        }
+    </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock scripts %}
     
@@ -17,22 +23,6 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-    <div id = "Event-Search">
-        <form role="search" onsubmit="get_all_events(); return false;">
-            <span id = "search">
-              <input placeholder="Search" id="serach_input" type="text"style="width:420px">
-            </span>
-        </form>
-    </div>
-
-    <div id = "year_picker">
-        <div class="btn-group" onclick = "fill_year_picker()">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "findyear">Year </span>  <span class="caret"></span></button>
-                <ul id = "yp" class="dropdown-menu scrollable-menu" role="menu"></ul>
-            </button>
-        </div>
-    </div>
-
     <div id = "Events">
         <ul></ul>
     </div>
@@ -43,6 +33,49 @@
 {% endblock left-column %}
 
 {% block right-column %}
-
-
+<div id = "right-col-content-add">
+	<div id = "new"> NEW </div>
+	<div id = "ev"> EVENT </div> 
+	<div id = "box">
+		<input type = "text" id = "new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
+		<div id = "month">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "m">Month </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "day">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "d">Day </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="daylist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "year">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id = "y">Year </span>
+					<span class="caret"></span>
+				</button>
+				<ul id="yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+			</div>
+		</div>
+		<div id = "upload">
+			<label for="image">
+				<input type="file" name = "image" id= "image" class= "file_upload" accept = ".csv" style="display:none;" onchange="check_file()">
+				<img src= "/static/images/upload icon.png" alt="upload pic" style="">
+			</label>
+		</div>
+		<div id = "up_vol">Upload Volunteer Profiles</div>
+		<div id = "submit" onclick="get_new_event_info()">
+			<img src= "/static/images/submit.png" alt="submit pic" style="">
+		</div>
+		</div>
+	</div>
+</div>
 {% endblock right-column %}
