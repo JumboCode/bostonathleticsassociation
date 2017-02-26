@@ -232,19 +232,19 @@ li:hover {
     color: #EEC3BC;
 }
 
-#month {
+.month {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
 }
 
-#day {
+.day {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
 }
 
-#year {
+.year {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
@@ -301,7 +301,7 @@ li:hover {
     background-color: #F7F7F7;
 }
 
-#m, #d, #y {
+#add-m, #add-d, #add-y {
     color: white;
 }
 
