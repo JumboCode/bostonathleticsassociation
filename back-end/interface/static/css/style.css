@@ -192,7 +192,7 @@ li:hover {
     line-height: 100px;
 }
 
-#right-col-content-add {
+#right-col-content-add, #right-col-content-view, #right-col-content-edit {
     display: none;
 }
 
@@ -224,39 +224,39 @@ li:hover {
     margin-bottom: 10px;
 }
 
-#new {
+.new {
     color: #EC9591;
 }
 
-#ev {
+.ev {
     color: #EEC3BC;
 }
 
-#month {
+.month {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
 }
 
-#day {
+.day {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
 }
 
-#year {
+.year {
     width: 33%;
     float: left;
     margin-bottom: 2.3rem;
 }
 
-#up_vol {
+#add-up_vol, #view-up_vol, #edit-up_vol {
     color: #4A4A4A;
     opacity: .60;
     font-size: 1.7rem;
 }
 
-#submit {
+#add-submit, #view-submit {
     margin-top: 4.6rem;
 }
 
@@ -301,7 +301,11 @@ li:hover {
     background-color: #F7F7F7;
 }
 
-#m, #d, #y {
+#add-m, #add-d, #add-y {
+    color: white;
+}
+
+#edit-m, #edit-d, #edit-y {
     color: white;
 }
 
