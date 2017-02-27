@@ -46,7 +46,6 @@ function view_past_event(i, events) {
     var date = month + '/' + day + '/' + year;
     var init_title = $('#past_event').html();
     var init_date = $('#view-date').html();
-    console.log(init_title + " " + init_date);
     $('#past_event').html(title);
     $('#view-date').html(date);
     if (($('#right-col-content-view').css('display') != 'block') ||
@@ -131,7 +130,6 @@ function get_new_event_info() {
         return;
     }
 
-    document.getElementById("right-col").innerHTML = '';
     var date = year + "-" + month + "-" + day;
     var url = window.location.origin;
 
@@ -267,9 +265,7 @@ function check_past_date(date) {
 }
 
 function update_event_data(i, events) {
-    var new_event = document.getElementById("new_event").value;
-
-    document.getElementById("right-col").innerHTML = '';
+    var new_event = document.getElementById("edit-new_event").value;
     var date = events[i].fields.date;
 
     if (!(day_change || year_change || month_change || 
@@ -320,9 +316,8 @@ function update_event_data(i, events) {
 
 
 function delete_event(i, events) {
-    var new_event = document.getElementById("new_event").value;
+    var new_event = document.getElementById("edit-new_event").value;
 
-    document.getElementById("right-col").innerHTML = '';
     var date = events[i].fields.date;
 
 

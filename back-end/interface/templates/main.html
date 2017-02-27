@@ -127,10 +127,10 @@
 		<span id = "file_name" style="margin-right: 20px"><a style="color: #4A4A4A"></a></span>
     	<span id="remove_upload" onclick="remove_upload('edit')"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>
     </div>
-    <div id = "edit-submit" onclick="update_event_data('+ i +', ent)">
+    <div id = "edit-submit" onclick="update_event_data(i, ent)">
     	<img src= "/static/images/submit.png" alt="submit pic" style="">
     </div>
     </div>
-	<button type="button" onclick = "delete_event(' + i +', ent)">delete</button>
+	<button type="button" onclick = "delete_event(i, ent)">delete</button>
 </div>
 {% endblock right-column %}
