@@ -7,20 +7,22 @@ We are the JumboCode team working on a check in system for the Boston Athletics 
 
 ## 2. Members
 
-* Jenna Kubiak
-* Dani Kupfer
-* Ian Luo
-* Ryan Osgood
-* Spencer Perry
-* Julia Grace
-* Michael Morisi
-* Andrew Hoiberg
-* Shanshan Duan
-* Tati Doyle
-* Pulkit Jain
-* Phillip Wang
-* Brendan Fahey
-* Emily Sim
+* [Yuki Zaninovich](https://github.com/yzan424)
+* [Jenna Kubiak](https://github.com/jkubia03)
+* [Dani Kupfer](https://github.com/dkupfer)
+* [Ian Luo](https://github.com/holeyness)
+* [Ryan Osgood](https://github.com/ryan-0)
+* [Spencer Perry](https://github.com/sperrys)
+* [Julia Grace](https://github.com/jgrace03)
+* [Michael Morisi](https://github.com/mcmorisi)
+* [Andrew Hoiberg](https://github.com/ahoiberg)
+* [Shanshan Duan](https://www.linkedin.com/in/shanshan-duan-b0a32ba5)
+* [Tati Doyle](https://github.com/tdoyle01)
+* [Pulkit Jain](https://github.com/pulkitjain10)
+* [Phillip Wang](https://github.com/Philipwzj)
+* [Brendan Fahey](https://github.com/bmfahey)
+* [Emily Sim](https://github.com/emily-sim)
+* [Vivian Chen](https://github.com/vivianchen896)
 
 ## 3. Branching (IMPORTANT!)
 
