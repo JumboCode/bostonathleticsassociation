@@ -10,6 +10,10 @@ var day_change;
 var month_change;
 
 function add_event() {
+    if (($('#right-col-content-edit').css('display') == 'block'))
+        $("#right-col-content-edit").toggle("show");
+    if (($('#right-col-content-view').css('display') == 'block'))
+        $("#right-col-content-view").toggle("show");
 	new_event_string = '';
     for (i = 1; i <= 12; i++) {
         new_event_string += '<li onclick = "set_month(' + i + ',\'add\')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
@@ -27,9 +31,13 @@ function add_event() {
     }
     $("#add-yearlist").html(new_event_string);
 
-    $("#right-col-content-view").toggle(false);
-    $("#right-col-content-edit").toggle(false);
-    $("#right-col-content-add").toggle("show");
+    if (($('#right-col-content-add').css('display') != 'block')) {
+        $("#right-col-content-add").toggle("show");
+    }
+    else {
+        $("#right-col-content-add").toggle("show");
+        $("#right-col-content-add").toggle("show");
+    }
     year_change = false;
     month_change = false;
     day_change = false;
@@ -37,8 +45,10 @@ function add_event() {
 }
 
 function view_past_event(i, events) {
-    $("#right-col-content-edit").toggle(false);
-    $("#right-col-content-add").toggle(false);
+    if (($('#right-col-content-edit').css('display') == 'block'))
+        $("#right-col-content-edit").toggle("show");
+    if (($('#right-col-content-add').css('display') == 'block'))
+        $("#right-col-content-add").toggle("show");
 	var title = events[i].fields.name;
 	var month = events[i].fields.date.substr(5,2);
 	var day = events[i].fields.date.substr(8,2);
@@ -49,12 +59,20 @@ function view_past_event(i, events) {
     $('#past_event').html(title);
     $('#view-date').html(date);
     if (($('#right-col-content-view').css('display') != 'block') ||
-        (init_title == title && init_date == date)) {
+        ((init_title == title && init_date == date))) {
+        $("#right-col-content-view").toggle("show");
+    }
+    else {
+        $("#right-col-content-view").toggle("show");
         $("#right-col-content-view").toggle("show");
     }
 }
 
 function edit_event(i, events) {
+    if (($('#right-col-content-view').css('display') == 'block'))
+        $("#right-col-content-view").toggle("show");
+    if (($('#right-col-content-add').css('display') == 'block'))
+        $("#right-col-content-add").toggle("show");
     var title = events[i].fields.name;
     month = events[i].fields.date.substr(5,2);
     month_change = false;
@@ -86,12 +104,15 @@ function edit_event(i, events) {
     }
     $("#edit_yearlist").html(new_event_string);
     $("#file_name").prop("href", file_path);
-    $("#file_name").prop("download", file_name);
+    $("#file_name").prop("downloasd", file_name);
     $("#file_name").html(file_name);
-
-    $("#right-col-content-add").toggle(false);
-    $("#right-col-content-view").toggle(false);
-    $("#right-col-content-edit").toggle("show");
+    if (($('#right-col-content-edit').css('display') != 'block')) {
+        $("#right-col-content-edit").toggle("show");
+    }
+    else {
+        $("#right-col-content-edit").toggle("show");
+        $("#right-col-content-edit").toggle("show");
+    }
 }
 
 function check_file(func) {
