@@ -371,4 +371,46 @@ li:hover {
     }
 }
 
+#delete-button {
+    background-color: blue !important;
+    color: white;
+    width: 250px;
+    height: 60px;
+    box-shadow: 5px 5px 2px #cacdd1;
+    margin-bottom: 20px;
+}
+
+#gen-report-button {
+    background-color: white !important;
+    color: grey;
+    width: 250px;
+    height: 60px;
+    box-shadow: 5px 5px 2px #cacdd1;
+        margin-bottom: 20px;
+}
+
+#user-pass-button {
+    background-color: white !important;
+    color: grey;
+    width: 250px;
+    height: 60px;
+    box-shadow: 5px 5px 2px #cacdd1;
+        margin-bottom: 20px;
+}
+
+.btn.btn-default {
+    font-size: 20px;
+}
+
+#name {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#date {
+    margin-bottom: 30px;
+    color: grey;
+}
+
+
 

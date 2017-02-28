@@ -84,24 +84,8 @@ function edit_event(i, events) {
     var file_path = events[i].fields.csv;
     var file_name = file_path.substring(file_path.lastIndexOf('/')+1);
     new_event_string = '';
-    $("#edit-new_event").prop("placeholder", title);
-	$("#edit-m").html(month);
-    for (j = 1; j <= 12; j++) {
-    	new_event_string += '<li onclick = "set_month(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
-    }
-    $("#edit-monthlist").html(new_event_string);
-    new_event_string = '';
-    $("#edit-d").html(day);
-    for (j = 1; j <= 31; j++) {
-    	new_event_string += '<li onclick = "set_day(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
-    }
-    $("#edit-daylist").html(new_event_string);
-    new_event_string = '';
-    $("#edit-y").html(year);
-    var current_year = new Date().getFullYear();
-    for (j = current_year; j <= current_year + 10; j++) {
-    	new_event_string += '<li onclick = "set_year(' + j + '\'edit\')" style="padding-left: 5%; padding-top: 5%">' + j + '</li>';
-    }
+    $("#name").html("<p>" + title + "</p>");
+	$("#date").html("<p>" + month + "/" + day + "/" + year + "</p>");
     $("#edit_yearlist").html(new_event_string);
     $("#file_name").prop("href", file_path);
     $("#file_name").prop("downloasd", file_name);

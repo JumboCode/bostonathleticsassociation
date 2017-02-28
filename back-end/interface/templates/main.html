@@ -77,60 +77,22 @@
 		</div>
 		</div>
 	</div>
-<div id = "right-col-content-view">
-	<div class = "new"> PAST </div>
-    <div class = "ev"> EVENT </div>
-	<div id = "box">
-		<div id = "past_event" style = "text-align: center; font-size: 3.3rem; padding: 11px"></div>
-		<hr style="position:relative; top:-10px">
-    	<p id = "view-date"></p>
-    	<div id = "view-upload">
-    		<label for="view-image">
-    			<input type="file" name="image" id= "view-image" style="display:none;">
-    			<br>
-    			<img src= "/static/images/download icon.png" alt="upload pic" style="">
-    		</label>
-    	</div>
-    	<div id = "view-up_vol">
-    		Download Volunteer Profiles
-    	</div>
-    </div>
-</div>
 <div id = "right-col-content-edit">
     <div class = "new"> EDIT </div>
     <div class = "ev"> EVENT </div>
 	<div id = "box">
-		<input type = "text" id = "edit-new_event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center">
-		<hr style="position:relative; top:-10px">
-		<div class = "month">
-   			<div class="btn-group">
-    			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-m"></span><span class="caret"></span></button>
-    			<ul id = "view-monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
-   			</div>
-   		</div>
-    <div class = "day">
-    	<div class="btn-group">
-    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-d"></span>  <span class="caret"></span></button>
-    		<ul id = "edit-monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
-
-    	</div>
+	<div class = "row" id = "name"></div>
+	<div class = "row" id = "date"></div>
+	<div class = "row">
+    	<button type="button" class = "btn btn-default" id = "user-pass-button" onclick = "TODO">Send Username/Password</button>
     </div>
-    <div class = "year">
-    	<div class="btn-group">
-    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id = "edit-y"><span>  <span class="caret"></span></button>
-    		<ul id = "edit-yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul></ul>
-    	</div>
+    <div class = "row">
+    	<button type="button" class = "btn btn-default" id = "gen-report-button" onclick = "TODO">Generate Report</button>
     </div>
-    <br>
-    <div id = "edit-upload"></div>
-    <div id = "edit-up_vol">
-		<span id = "file_name" style="margin-right: 20px"><a style="color: #4A4A4A"></a></span>
-    	<span id="remove_upload" onclick="remove_upload('edit')"><img src= "/static/images/remove_csv.png" alt="remove csv" style="height: 20px; width: 20px"></span>
-    </div>
-    <div id = "edit-submit" onclick="update_event_data(i, ent)">
-    	<img src= "/static/images/submit.png" alt="submit pic" style="">
+    <div class = "row">
+    	<button type="button" class = "btn btn-default" id = "delete-button" onclick = "delete_event(i, ent)">Delete Event</button>
     </div>
     </div>
-	<button type="button" onclick = "delete_event(i, ent)">delete</button>
+	
 </div>
 {% endblock right-column %}
