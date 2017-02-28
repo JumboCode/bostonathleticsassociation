@@ -78,6 +78,22 @@ input:-webkit-autofill {
    color: #F3F3F3;  
 }
 
+
+
+#edit-new_event::-webkit-input-placeholder {
+   color: grey;
+}
+#edit-new_event:-moz-placeholder { /* Firefox 18- */
+   color: grey;  
+}
+
+#edit-new_event::-moz-placeholder {  /* Firefox 19+ */
+   color: grey;  
+}
+
+#edit-new_event:-ms-input-placeholder {  
+   color: grey;  
+}
 #login-buttons {
     padding-top: 95%;
     text-align: center;
