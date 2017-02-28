@@ -22,7 +22,6 @@ class Volunteer(models.Model):
     jacket = models.CharField(max_length=30)
     jacket_size = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
-    job_descrip = models.CharField(max_length=50)
     active = models.CharField(max_length=30)
 
     def __str__(self):
@@ -46,6 +45,8 @@ class Attendee(models.Model):
     assignment_id = models.IntegerField()
     general_event_id = models.IntegerField()
     specific_event_id = models.IntegerField()
+    job_descrip = models.CharField(max_length=50)
+
 
     def __str__(self):
         return self.volunteer.name
