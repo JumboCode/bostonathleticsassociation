@@ -20,12 +20,6 @@ from django.utils.safestring import mark_safe
 #https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
 # Create your views here.
-def view(request, event_id):
-    pass
-
-# def index(request):
-#     context = {}
-#     return render(request, "signin.html", context)
 
 def login_view(request):
     logout(request)
@@ -43,7 +37,7 @@ def login_view(request):
             return render(request, 'signin.html', {})
     return render(request, 'signin.html', {})
 
-#@login_required(login_url='/')
+@login_required(login_url='/')
 def main(request):
     user_token = Token.objects.get(user=request.user)
     entries = serializers.serialize("json", Event.objects.all().order_by('date'))
@@ -51,6 +45,7 @@ def main(request):
     context = {"token": user_token, "entries": entries}
     return render(request, "main.html", context)
 
+@login_required(login_url='/')
 def upload_csv(request):
     # if request.method == 'POST':
     #     form = DocumentForm(request.POST, request.FILES)
@@ -65,11 +60,8 @@ def upload_csv(request):
 
 
 
-# from myproject.myapp.models import Document
-# from myproject.myapp.forms import DocumentForm
-
+@login_required
 def list(request):
-
     # return HttpResponse("testing")
 
     # Handle file upload

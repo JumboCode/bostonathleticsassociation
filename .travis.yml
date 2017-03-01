@@ -22,6 +22,7 @@ before_script:
 
 script:
   - python back-end/manage.py test api
+  - python back-end/manage.py test interface
 
 notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
