@@ -86,6 +86,12 @@ function edit_event(i, events) {
     new_event_string = '';
     $("#name").html("<p>" + title + "</p>");
 	$("#date").html("<p>" + month + "/" + day + "/" + year + "</p>");
+    $("#delete-button").attr("onclick","delete_event(" + i + ",  ent)");
+    $("#user-pass-button").attr("onclick", "send_email(" + i + ", ent)");
+
+
+
+
     $("#edit_yearlist").html(new_event_string);
     $("#file_name").prop("href", file_path);
     $("#file_name").prop("downloasd", file_name);
@@ -321,35 +327,25 @@ function update_event_data(i, events) {
 
 
 function delete_event(i, events) {
-    var new_event = document.getElementById("edit-new_event").value;
-
-    var date = events[i].fields.date;
-
 
     var xhr = new XMLHttpRequest();
-
-    var data = new FormData();
-
-    if (new_event != "") {
-        data.append("name", new_event);
-    }
-
-    data.append("date", date);
-
-    if (new_file)
-        data.append("csv", file);
 
     var url = window.location.origin;
 
     xhr.addEventListener("readystatechange", function () {
-        console.log("changing ready state");
     if (this.readyState === 4) {
-        console.log("hallo");
             window.location.reload(true);
         }
     });
 
     xhr.open("DELETE", url + "/api/events/" + events[i].pk + "/");
     xhr.setRequestHeader("Authorization", window.token);
-    xhr.send(data);
+    xhr.send();
+}
+
+function send_email(i, events) {
+    $("#user-pass-button").attr("class", "btn btn-default disabled");
+    $.get(window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/", function() {
+        $("#user-pass-button").attr("class", "btn btn-default active");
+    });
 }
