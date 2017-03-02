@@ -40,6 +40,118 @@ function checkCredentials() {
         if (request.readyState == 4 && request.status == 200) {
             token = JSON.parse(request.responseText)['token'];
             console.log(token);
+
+            // TODO: Here's where we would parse the attendees list
+            var attendees = [
+                                  {
+                                    "id": 1,
+                                    "volunteer": {
+                                      "id": 1,
+                                      "name": "Babe Ruth",
+                                      "phone": "434324324234",
+                                      "email": "spencer.perry@tufts.edu",
+                                      "city": "Home Run",
+                                      "state": "Maryland",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "XS",
+                                      "status": "Ok"
+                                    },
+                                    "event": {
+                                      "id": 1,
+                                      "name": "Boston Marathon",
+                                      "date": "2016-10-19T09:00:41Z",
+                                      "csv": "http://localhost:8000/api/attendees/file/simple_csv_56oKwOt.csv"
+                                    },
+                                    "team_captain": {
+                                      "id": 3,
+                                      "name": "Earl Sweatshirt",
+                                      "email": "sweatshirt@aol.com",
+                                      "phone": "3943288904",
+                                      "city": "LA",
+                                      "state": "Cali",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "M",
+                                      "status": "3"
+                                    },
+                                    "at_event": 1,
+                                    "notes": "Made it to the event"
+                                  },
+                                  {
+                                    "id": 2,
+                                    "volunteer": {
+                                      "id": 3,
+                                      "name": "Earl Sweatshirt",
+                                      "phone": "3943288904",
+                                      "email": "sweatshirt@aol.com",
+                                      "city": "LA",
+                                      "state": "Cali",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "M",
+                                      "status": "3"
+                                    },
+                                    "event": {
+                                      "id": 1,
+                                      "name": "Boston Marathon",
+                                      "date": "2016-10-19T09:00:41Z",
+                                      "csv": "http://localhost:8000/api/attendees/file/simple_csv_56oKwOt.csv"
+                                    },
+                                    "team_captain": {
+                                      "id": 1,
+                                      "name": "Babe Ruth",
+                                      "email": "spencer.perry@tufts.edu",
+                                      "phone": "434324324234",
+                                      "city": "Home Run",
+                                      "state": "Maryland",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "XS",
+                                      "status": "Ok"
+                                    },
+                                    "at_event": 1,
+                                    "notes": "What"
+                                  },
+                                  {
+                                    "id": 3,
+                                    "volunteer": {
+                                      "id": 2,
+                                      "name": "Michael Jordan",
+                                      "phone": "3243423423",
+                                      "email": "iamthebest@michaeljordan.com",
+                                      "city": "Chicago",
+                                      "state": "Illinois",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "L",
+                                      "status": "Ok"
+                                    },
+                                    "event": {
+                                      "id": 1,
+                                      "name": "Boston Marathon",
+                                      "date": "2016-10-19T09:00:41Z",
+                                      "csv": "http://localhost:8000/api/attendees/file/simple_csv_56oKwOt.csv"
+                                    },
+                                    "team_captain": {
+                                      "id": 1,
+                                      "name": "Babe Ruth",
+                                      "email": "spencer.perry@tufts.edu",
+                                      "phone": "434324324234",
+                                      "city": "Home Run",
+                                      "state": "Maryland",
+                                      "years_of_service": "4",
+                                      "jacket": "Yes",
+                                      "jacket_size": "XS",
+                                      "status": "Ok"
+                                    },
+                                    "at_event": 1,
+                                    "notes": "sjcidsoj"
+                                  }
+                                ];
+            // console.log(attendees);
+            localStorage.setItem("attendees", attendees);
+
             localStorage.setItem("token", token);
             verCheck();
             window.location.href = "list.html";
@@ -59,12 +171,8 @@ function verCheck(){
     var LS = localStorage.getItem('token');
     if (LS == "True") {
         window.location.href("list.html")
-    } else{``
+    } else{
     }
 }
 
-function getToken() {
-    tokenInfo = JSON.parse(localStorage.getItem('token'));
-    return tokenInfo;
-}
 

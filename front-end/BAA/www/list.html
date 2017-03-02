@@ -3,25 +3,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Volunteers</title>
-      <!-- ionic/angularjs js -->
+
+    <!--Javascripts-->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="list.js"></script>
-   
+    <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.js"></script>
+
+    <!--Stylesheets-->
     <link href="list.css" rel="stylesheet">
     <link href="popup.css" rel="stylesheet">
-   <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
-    <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.js"></script>
-    <!--<script src="list.js"></script>-->
-
+    <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
   </head>
 
   <body ng-controller="MyCtrl">
     
     <ion-header-bar class="header_bar">
       <h1 class="title">Volunteers</h1>
-
     </ion-header-bar>
 
     <ion-content>
@@ -31,27 +29,17 @@
         <input type = 'search' placeholder = "search" ng-model = "searchQuery"/>
       </label>
       <div id="buttons-label">
-      <hr style="height:4pt; visibility:hidden;" />
-      <text><span class = "in_out1"> in </span><span class = "in_out2"> out</span></text>
+        <hr style="height:4pt; visibility:hidden;" />
+        <text><span class = "in_out1"> Check in/out </span></text>
       </div>
-      <ion-list >
-        <ion-item ng-repeat="item in items | filter:searchQuery" item="item" class="item item-button-right">
-            <button class =" largerB" ng-click="showPrompt(item)"> {{item.name}} </button>
-            <div class = 'buttons' id="allign-right">
-                <img ng-src="{{(item.at_event == '1' || tap ) && 'IN.png' || 'Oval.png'}}" id = "checkin_button" class=" button-icon larger" ng-click="tap=!tap; checkin(item)">
-                <img ng-src="{{(item.at_event == '2' || tapped ) && 'OUT.png' || 'Oval.png'}}" class="button button-icon larger" ng-click="tapped=!tapped; checkout(item)">
-           <!--  <img ng-src="{{(item.at_event == '2' || tap && '/OUT.png') || '/Oval.png'}}" class="button button-icon larger" ng-click="tap =!tap; checkout(item)"> -->
-             </div>
-
-
-        <!--   <a class="btn pull-right" ng-class="{true: 'btn-primary', false: 'btn-danger'}[!patient.archived]" ng-click="patient.archived = !patient.archived">{{!patient.archived && 'Archive' || 'Unarchive'}} patient</a> -->
-            <!--  <img src = 'IN.png' class="button button-icon larger" ng-click="unchecked=!unchecked; checkin(item)"  ng-src="{'Oval.png': unchecked, 'IN.png': !unchecked}"></button> -->
-            <!--  <button class="button button-icon larger " ng-click=" tapped =!tapped; checkout(item)"  ng-class="{'icon ion-ios-checkmark-outline': !tapped, 'icon ion-ios-checkmark': tapped}"></button> -->
-             <!-- <button class="button button-icon ion-ios-close-outline larger "></button> -->
-        </ion-item>
-
+      <ion-list class = "list_c">
+          <ion-item ng-repeat="attendee in attendees" class="item item-button-right">
+            <button class =" largerB" ng-click="showPrompt(attendee)"> {{attendee.volunteer.name}}</button>
+            <div class = 'buttons' id="align-right">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+            </div>
+          </ion-item>
       </ion-list>
-
     </ion-content>
       
   </body>
