@@ -34,48 +34,65 @@
 
 {% block right-column %}
 <div id = "right-col-content-add">
-	<div id = "new"> NEW </div>
-	<div id = "ev"> EVENT </div> 
+	<div class = "new"> NEW </div>
+	<div class = "ev"> EVENT </div> 
 	<div id = "box">
-		<input type = "text" id = "new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
-		<div id = "month">
+		<input type = "text" id = "add-new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
+		<div class = "month">
 			<div class="btn-group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					<span id = "m">Month </span>
+					<span id = "add-m">Month </span>
 					<span class="caret"></span>
 				</button>
-				<ul id="monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+				<ul id="add-monthlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
 			</div>
 		</div>
-		<div id = "day">
+		<div class = "day">
 			<div class="btn-group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					<span id = "d">Day </span>
+					<span id = "add-d">Day </span>
 					<span class="caret"></span>
 				</button>
-				<ul id="daylist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+				<ul id="add-daylist" class="dropdown-menu scrollable-menu" role="menu"></ul>
 			</div>
 		</div>
-		<div id = "year">
+		<div class = "year">
 			<div class="btn-group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					<span id = "y">Year </span>
+					<span id = "add-y">Year </span>
 					<span class="caret"></span>
 				</button>
-				<ul id="yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
+				<ul id="add-yearlist" class="dropdown-menu scrollable-menu" role="menu"></ul>
 			</div>
 		</div>
-		<div id = "upload">
-			<label for="image">
-				<input type="file" name = "image" id= "image" class= "file_upload" accept = ".csv" style="display:none;" onchange="check_file()">
+		<div id = "add-upload">
+			<label for="add-image">
+				<input type="file" name = "image" id= "add-image" class= "file_upload" accept = ".csv" style="display:none;" onchange="check_file('add')">
 				<img src= "/static/images/upload icon.png" alt="upload pic" style="">
 			</label>
 		</div>
-		<div id = "up_vol">Upload Volunteer Profiles</div>
-		<div id = "submit" onclick="get_new_event_info()">
+		<div id = "add-up_vol">Upload Volunteer Profiles</div>
+		<div id = "add-submit" onclick="get_new_event_info()">
 			<img src= "/static/images/submit.png" alt="submit pic" style="">
 		</div>
 		</div>
 	</div>
+<div id = "right-col-content-edit">
+    <div class = "new"> EDIT </div>
+    <div class = "ev"> EVENT </div>
+	<div id = "box">
+	<div class = "row" id = "name"></div>
+	<div class = "row" id = "date"></div>
+	<div class = "row">
+    	<button type="button" class = "btn btn-default" id = "user-pass-button" onclick = "TODO">Send Username/Password</button>
+    </div>
+    <div class = "row">
+    	<button type="button" class = "btn btn-default" id = "gen-report-button" onclick = "TODO">Generate Report</button>
+    </div>
+    <div class = "row">
+    	<button type="button" class = "btn btn-default" id = "delete-button" onclick = "delete_event(i, ent)">Delete Event</button>
+    </div>
+    </div>
+	
 </div>
 {% endblock right-column %}
