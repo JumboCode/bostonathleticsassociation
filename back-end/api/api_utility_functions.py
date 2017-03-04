@@ -146,7 +146,7 @@ def NotifyTeamCaptainsGet(self, request, event):
             .values_list('team_captain__name', 'team_captain__email').distinct():
 
         password = User.objects.make_random_password()
-        username = team_captain[0].replace(" ", ".")
+        username = team_captain[1]
 
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)

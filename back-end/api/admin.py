@@ -2,23 +2,21 @@ from django.contrib import admin
 from api import models
 
 class VolunteerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'city', 'state',
-                    'years_of_service', 'jacket', 'jacket_size',
-                    'status')
+    list_display = ('first_name', 'last_name', 'email', 'phone', 'city', 'state')
     readonly_fields = ['id']
-
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'date', 'csv')
     readonly_fields = ['id']
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'get_volunteer', 'get_event', 'at_event', 'get_team_captain', 'notes')
+    list_display = ('id', 'get_volunteer', 'get_event', 'status', 'get_team_captain',
+                    'notes', 'assignment_id', 'general_event_id', 'specific_event_id', 'job_descrip')
     readonly_fields = ['id']
 
     def get_volunteer(self, obj):
         if obj.volunteer is not None:
-            return obj.volunteer.name
+            return obj.volunteer.first_name + " " + obj.volunteer.last_name
         else:
             return "None"
 
@@ -33,7 +31,7 @@ class AttendeeAdmin(admin.ModelAdmin):
 
     def get_team_captain(self, obj):
         if obj.team_captain is not None:
-            return obj.team_captain.name
+            return obj.team_captain.first_name + " " + obj.team_captain.last_name
         else:
             return "None"
 

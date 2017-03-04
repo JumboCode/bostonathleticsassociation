@@ -13,15 +13,12 @@
     "model": "api.volunteer",
     "pk": 1,
     "fields": {
-      "name": "Babe Ruth",
+      "first_name":"Babe",
+      "last_name":"Ruth",
       "phone": "434324324234",
       "email": "spencer.perry@tufts.edu",
-      "city": "Home Run",
-      "state": "Maryland",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "XS",
-      "status": "Ok"
+      "city": "Baltimore",
+      "state": "Maryland"
     }
   },
 
@@ -29,15 +26,12 @@
     "model": "api.volunteer",
     "pk": 2,
     "fields": {
-      "name": "Michael Jordan",
+      "first_name": "Michael",
+      "last_name": "Jordan",
       "phone": "3243423423",
       "email": "iamthebest@michaeljordan.com",
       "city": "Chicago",
-      "state": "Illinois",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "L",
-      "status": "Ok"
+      "state": "Illinois"
     }
   },
 
@@ -45,15 +39,12 @@
     "model": "api.volunteer",
     "pk": 3,
     "fields": {
-      "name": "Earl Sweatshirt",
+      "first_name": "Earl",
+      "last_name": "Sweatshirt",
       "phone": "3943288904",
       "email": "sweatshirt@aol.com",
       "city": "LA",
-      "state": "Cali",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "M",
-      "status": "3"
+      "state": "Cali"
     }
   },
 
@@ -64,8 +55,12 @@
       "volunteer": 1,
       "event": 1,
       "team_captain": 3,
-      "at_event": true,
-      "notes": "Made it to the event"
+      "status": 0,
+      "notes": "Made it to the event",
+      "assignment_id": 3,
+      "job_descrip": "Water",
+      "general_event_id": null,
+      "specific_event_id": null
     }
   },
 
@@ -73,11 +68,15 @@
     "model": "api.attendee",
     "pk": 2,
     "fields": {
-      "volunteer": "3",
-      "event": "1",
-      "team_captain": 1,
-      "at_event": true,
-      "notes": "What"
+      "volunteer": 2,
+      "event": 1,
+      "team_captain": 3,
+      "status": 0,
+      "notes": "What",
+      "assignment_id": 3,
+      "job_descrip": "Water",
+      "general_event_id": null,
+      "specific_event_id": null
     }
   },
 
@@ -85,11 +84,15 @@
     "model": "api.attendee",
     "pk": 3,
     "fields": {
-      "volunteer": 2,
+      "volunteer": 3,
       "event": 1,
-      "team_captain": 1,
-      "at_event": true,
-      "notes": "sjcidsoj"
+      "team_captain": 3,
+      "status": 0,
+      "assignment_id": 3,
+      "notes": "Hello, I am the team Captain",
+      "job_descrip": "You are the team Captain",
+      "general_event_id": null,
+      "specific_event_id": null
     }
   }
 ]
