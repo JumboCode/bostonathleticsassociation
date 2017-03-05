@@ -1,7 +1,8 @@
 angular.module('starter', ['ionic'])
     .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
         var token = localStorage.getItem("token");
-        $scope.attendees = localStorage.getItem("attendees");
+        var attendeesTemp = localStorage.getItem("attendees");
+        $scope.attendees = JSON.parse(attendeesTemp);
         console.log($scope.attendees);
         $scope.showPrompt = function (item) {
                 var promptPopup = $ionicPopup.prompt({

@@ -150,8 +150,9 @@ function checkCredentials() {
                                   }
                                 ];
             // console.log(attendees);
-            localStorage.setItem("attendees", attendees);
-
+            localStorage.setItem("attendees",JSON.stringify(attendees));
+            var now = JSON.parse(localStorage.getItem('attendees'));
+            console.log(now);
             localStorage.setItem("token", token);
             verCheck();
             window.location.href = "list.html";
