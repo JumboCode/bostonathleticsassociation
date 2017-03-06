@@ -35,3 +35,5 @@ For this project, we will maintain two branches, `master` and `dev`. The master 
 * [How to create other branches](http://stackoverflow.com/questions/1519006/how-do-you-create-a-remote-git-branchgit )
 
 
+## 4. Setup
+Specific instructions for setting up this repo is in each folder (i.e. back-end/README.md and front-end/READM.md). In order to run the backend Django server, follow the back-end folder's instructions. If you'd like to run an emulation of the front-end mobile app, you would need to follow the back-end instruction first, followed by setting up the mobile dev environment using the front-end instructions.
