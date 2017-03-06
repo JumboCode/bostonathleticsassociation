@@ -33,9 +33,11 @@
         <text><span class = "in_out1"> Check in/out </span></text>
       </div>
       <ion-list class = "list_c">
-          <ion-item ng-repeat="attendee in attendees" class="item item-button-right">
+          <ion-item ng-repeat="attendee in attendees| filter: {volunteer: {name: searchQuery}}" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(attendee)">{{attendee.volunteer.name}}</button>
             <div class = 'buttons' id="align-right">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
               <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
             </div>
           </ion-item>
