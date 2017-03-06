@@ -109,7 +109,7 @@ angular.module('starter', ['ionic'])
                       alert("there was a problem.");
                   }
                 }
-              request.send("status=1");
+              request.send("at_event=1");
 
            
           }
@@ -130,7 +130,7 @@ angular.module('starter', ['ionic'])
                       alert("there was a problem.");
                   }
                 }
-              request.send("status=2");
+              request.send("at_event=2");
            
           }
 
