@@ -1,14 +1,4 @@
-# Jumbocode Boston Athletics Backend
-
-
-## Table of Contents ##
-----------------------------------------------------------
-
-1. About
-2. Setup
-3. Who's doing what?
-
-----------------------------------------------------------
+# Jumbocode Boston Athletics Backend Django API Server
 
 ### 1. About
 
