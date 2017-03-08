@@ -1,3 +1,10 @@
+StatusEnum = {
+    checkedIn : 0,
+    noShow : 1,
+    cancelled : 2
+}
+
+
 angular.module('starter', ['ionic'])
     .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
         var token = localStorage.getItem("token");
@@ -11,7 +18,7 @@ angular.module('starter', ['ionic'])
                 });
         };
 
-        $scope.changeStatus = function (item) {
+        $scope.changeStatus = function (item, status) {
             // Item is a attendee
             var url = "/api/attendees/"+ item.id + "/";
             var request = new XMLHttpRequest();
@@ -19,19 +26,30 @@ angular.module('starter', ['ionic'])
             request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             request.setRequestHeader('Authorization', 'Token ' + token);
 
-            if (item.at_event == 1) {
-                item.at_event = 2;
-                console.log("checked out");
+            if (status = "checkIn") {
+                item.at_event = StatusEnum.checkedIn;
+                console.log("Checked in");
+            } else if (status = "noShow") {
+                item.at_event = StatusEnum.noShow;
+                console.log("noShow");
+            } else if (status = "cancelled") {
+                item.at_event = StatusEnum.cancelled;
+                console.log("cancelled");
             }
-            else {
-                item.at_event = 1;
-                console.log("checked in");
-            }
+
             request.send("at_event=" + String(item.at_event));
         };
 
         $scope.isCheckedIn = function (item) {
-            return item.at_event == 1;
+            return item.at_event == StatusEnum.checkedIn;
+        };
+
+        $scope.isNoShow = function (item) {
+            return item.at_event == StatusEnum.noShow;
+        };
+
+        $scope.isNoShow = function (item) {
+            return item.at_event == StatusEnum.cancelled;
         }
     });
 

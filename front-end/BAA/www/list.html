@@ -36,9 +36,9 @@
           <ion-item ng-repeat="attendee in attendees| filter: {volunteer: {name: searchQuery}}" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(attendee)">{{attendee.volunteer.name}}</button>
             <div class = 'buttons' id="align-right">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'checkIn')">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'noShow')">
+              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee), 'cancelled'">
             </div>
           </ion-item>
       </ion-list>
