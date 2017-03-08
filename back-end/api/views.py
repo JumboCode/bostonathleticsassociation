@@ -18,6 +18,7 @@ import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
 
+# TODO -- Clean up this file, primarily encapsulate the complicated functions into external, ultility file --
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
