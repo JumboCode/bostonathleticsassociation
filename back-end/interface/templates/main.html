@@ -78,19 +78,22 @@
 		</div>
 	</div>
 <div id = "right-col-content-edit">
-    <div class = "new"> EDIT </div>
-    <div class = "ev"> EVENT </div>
 	<div id = "box">
+	<div class = "alert alert-danger fade in" id = "red-alert">Warning! Please do not refresh the page.</div>
+	<div class="alert alert-success alert-dismissable" id = "green-alert">
+  		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  		Success! The data has been sent.
+	</div>
 	<div class = "row" id = "name"></div>
 	<div class = "row" id = "date"></div>
 	<div class = "row">
-    	<button type="button" class = "btn btn-default" id = "user-pass-button" onclick = "TODO">Send Username/Password</button>
+    	<button type="button" class = "btn btn-default" id = "user-pass-button" >Send Username/Password</button>
     </div>
     <div class = "row">
     	<button type="button" class = "btn btn-default" id = "gen-report-button" onclick = "TODO">Generate Report</button>
     </div>
     <div class = "row">
-    	<button type="button" class = "btn btn-default" id = "delete-button" onclick = "delete_event(i, ent)">Delete Event</button>
+    	<button type="button" class = "btn btn-default" id = "delete-button">Delete Event</button>
     </div>
     </div>
 	
