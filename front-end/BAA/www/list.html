@@ -34,11 +34,11 @@
       </div>
       <ion-list class = "list_c">
           <ion-item ng-repeat="attendee in attendees| filter: {volunteer: {name: searchQuery}}" class="item item-button-right">
-            <button class =" largerB" ng-click="showPrompt(attendee)">{{attendee.volunteer.name}}</button>
+            <button class =" largerB" ng-click="showPrompt(attendee.volunteer)">{{attendee.volunteer.name}}</button>
             <div class = 'buttons' id="align-right">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'checkIn')">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'noShow')">
-              <img ng-src="{{(isCheckedIn(attendee) && '/IN.png' || '/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee), 'cancelled'">
+              <img ng-src="{{(isCheckedIn(attendee) && 'css/checkmark-selected.png' || 'css/checkmark-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'checkIn')">
+              <img ng-src="{{(isNoShow(attendee)    && 'css/noshow-selected.png'    || 'css/noshow-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'noShow')">
+              <img ng-src="{{(isCancelled(attendee) && 'css/cancelled-selected.png' || 'css/cancelled-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'cancelled')">
             </div>
           </ion-item>
       </ion-list>

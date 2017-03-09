@@ -1,6 +1,5 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
-	background: url(bg.jpg);
     background-repeat: round;
 }
 
@@ -55,7 +54,6 @@ body {
 	border: 0px;
 	margin: 10px;
 	border-radius: 25px;
-	background-color: floralwhite;
 
 
 }

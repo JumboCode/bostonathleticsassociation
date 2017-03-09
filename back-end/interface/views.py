@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import *
@@ -46,6 +46,7 @@ def main(request):
     return render(request, "main.html", context)
 
 @login_required(login_url='/')
+@user_passes_test(lambda u: u.is_staff, login_url='/')
 def upload_csv(request):
     # if request.method == 'POST':
     #     form = DocumentForm(request.POST, request.FILES)
@@ -61,6 +62,7 @@ def upload_csv(request):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff, login_url='/')
 def list(request):
     # return HttpResponse("testing")
 
