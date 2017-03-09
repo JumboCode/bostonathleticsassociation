@@ -1,6 +1,6 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
-	background: url(/img/bg.jpg);
+	background: url(img/bg.jpg);
     background-repeat: round;
 }
 
@@ -41,7 +41,7 @@ body {
 
 @font-face {
 	font-family: frutigerLight;
-	src: url(/css/Frutiger_CE_45_Light.ttf);
+	src: url(/fonts/Frutiger_CE_45_Light.ttf);
 }
 
 .in_out1 {

@@ -7,12 +7,12 @@
     <!--Javascripts-->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
-    <script src="/js/list.js"></script>
+    <script src="js/list.js"></script>
     <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.js"></script>
 
     <!--Stylesheets-->
-    <link href="/css/list.css" rel="stylesheet">
-    <link href="/css/popup.css" rel="stylesheet">
+    <link href="css/list.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
     <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
   </head>
 
@@ -36,9 +36,9 @@
           <ion-item ng-repeat="attendee in attendees| filter: {volunteer: {name: searchQuery}}" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(attendee.volunteer)">{{attendee.volunteer.name}}</button>
             <div class = 'buttons' id="align-right">
-              <img ng-src="{{(isCheckedIn(attendee) && 'img/checkmark-selected.png' || 'img/checkmark-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'checkIn')">
-              <img ng-src="{{(isNoShow(attendee)    && 'img/noshow-selected.png'    || 'img/noshow-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'noShow')">
-              <img ng-src="{{(isCancelled(attendee) && 'img/cancelled-selected.png' || 'img/cancelled-unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'cancelled')">
+              <img ng-src="{{(isCheckedIn(attendee) && 'img/checkmark_selected.png' || 'img/checkmark_unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'checkIn')">
+              <img ng-src="{{(isNoShow(attendee)    && 'img/noshow_selected.png'    || 'img/noshow_unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'noShow')">
+              <img ng-src="{{(isCancelled(attendee) && 'img/cancelled_selected.png' || 'img/cancelled_unselected.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee, 'cancelled')">
             </div>
           </ion-item>
       </ion-list>

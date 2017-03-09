@@ -14,12 +14,12 @@
 
 @font-face {
     font-family: frutigerBold;
-    src: url(/css/Frutiger_LT_67_Bold_Condensed.ttf);
+    src: url(/fonts/Frutiger_LT_67_Bold_Condensed.ttf);
 }
 
 @font-face {
 	font-family: frutigerLight;
-	src: url(/css/Frutiger_CE_45_Light.ttf);
+	src: url(/fonts/Frutiger_CE_45_Light.ttf);
 }
 
 .popup-buttons {
