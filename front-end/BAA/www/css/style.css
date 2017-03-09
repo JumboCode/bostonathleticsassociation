@@ -14,7 +14,7 @@
 }
 
 .scroll-content {
-	background-image: url("sign_in_background_1024.png");
+	background-image: url("/img/sign_in_background_1024.png");
 	background-size: cover;
 	/*position:relative;*/
 }
@@ -42,8 +42,5 @@
 
 	/*position: absolute;*/
 }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> ef47d66bea9a1761925951a254b6135542cbae5d

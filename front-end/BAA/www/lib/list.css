@@ -1,0 +1,67 @@
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+	background: url(/img/bg.jpg);
+    background-repeat: round;
+}
+
+.larger{
+	width: 70% !important;
+	height: -5% !important;
+	right: -25%;
+}
+.largerB{
+	font-size: 110% !important;
+	margin-right: 10px;
+}
+.hide{
+	display:none;
+}
+#buttons-label{
+	right: 90%;
+	text-align:right !important;
+}
+#allign-right{
+	margin-right: -40px !important;
+	/*padding-right: px !important;*/
+}
+
+.header_bar {
+	background-color: #EB9493 !important;
+	/*border-color: darken(#EB9493, 0%) !important;
+	border: solid !important;
+	border-width: 2px !important;*/
+	border: none;
+}
+
+.title {
+	color: white !important;
+	font-family: frutigerLight;
+	font-size: 25px !important;
+}
+
+@font-face {
+	font-family: frutigerLight;
+	src: url(/css/Frutiger_CE_45_Light.ttf);
+}
+
+.in_out1 {
+	margin-right: 13px;
+	margin-top: 100px !important;
+	color: gray;
+	padding: 0px;
+}
+
+.list .item {
+	border: 0px;
+	margin: 10px;
+	border-radius: 25px;
+	background-color: floralwhite;
+
+
+}
+
+.items_in_list {
+	border: none;
+
+}
+

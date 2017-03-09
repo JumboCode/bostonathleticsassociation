@@ -15,7 +15,7 @@
       }
     </script>-->
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -24,7 +24,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <!-- your app's js -->
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
 </head>
 
 <body ng-app="starter">
@@ -41,12 +41,12 @@
                     <input type="password" placeholder="Password" id="pass">
                 </label>
             </div>
-            <img src=url("user.png")>
-            <img src=url("lock.png")>
+            <img src=url("/img/user.png")>
+            <img src=url("/img/lock.png")>
             <button class="button button-block button-calm" onclick="getCredentials()">Login</button>
-            <br><a href="list.html"> list.html </a>
+            <br><a href="lib/list.html"> list.html </a>
             <br>
-            <a href="profile.html"> profile.html </a>
+            <a href="lib/profile.html"> profile.html </a>
         </ion-content>
     </ion-pane>
 </body>
