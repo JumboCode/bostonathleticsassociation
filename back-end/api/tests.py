@@ -1,7 +1,8 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from api.models import *
+from .models import *
 import os
+
 
 # Create your tests here.
 class Model_tests(TestCase):
