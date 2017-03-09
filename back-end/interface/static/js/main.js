@@ -14,6 +14,7 @@ function add_event() {
         $("#right-col-content-edit").toggle("show");
     if (($('#right-col-content-view').css('display') == 'block'))
         $("#right-col-content-view").toggle("show");
+    $("li").css({"background-color":"rgba(255, 255, 255, 0.0)"});
 	new_event_string = '';
     for (i = 1; i <= 12; i++) {
         new_event_string += '<li onclick = "set_month(' + i + ',\'add\')" style="padding-left: 5%; padding-top: 5%">' + i + '</li>';
@@ -43,7 +44,7 @@ function add_event() {
     day_change = false;
     new_file = false;
 }
-
+/*
 function view_past_event(i, events) {
     if (($('#right-col-content-edit').css('display') == 'block'))
         $("#right-col-content-edit").toggle("show");
@@ -66,13 +67,16 @@ function view_past_event(i, events) {
         $("#right-col-content-view").toggle("show");
         $("#right-col-content-view").toggle("show");
     }
-}
+}*/
 
 function edit_event(i, events) {
     if (($('#right-col-content-view').css('display') == 'block'))
         $("#right-col-content-view").toggle("show");
     if (($('#right-col-content-add').css('display') == 'block'))
         $("#right-col-content-add").toggle("show");
+    $("li").css({"background-color":"rgba(255, 255, 255, 0.0)"});
+    $("#event" + i).css({"background-color":"rgba(255, 255, 255, 0.3)"});
+    
     var title = events[i].fields.name;
     month = events[i].fields.date.substr(5,2);
     month_change = false;
@@ -241,10 +245,7 @@ function show_sorted(ent) {
     var events_string = "<ul>"; 
     console.log(ent);
     for (i=0; i<ent.length; i++) {
-                if (check_past_date(ent[i].fields.date))
-                    events_string += '<li onclick = "view_past_event('+ i + ', ent)">' + ent[i].fields.name + '</li>';
-                else
-                    events_string += '<li onclick = "edit_event('+ i +', ent)">' + ent[i].fields.name + '</li>';
+        events_string += '<li id = "event' + i + '" onclick = "edit_event('+ i +', ent)">' + ent[i].fields.name + '</li>';
     }
 
     events_string += "</ul>";
@@ -345,7 +346,10 @@ function delete_event(i, events) {
 
 function send_email(i, events) {
     $("#user-pass-button").attr("class", "btn btn-default disabled");
+    $("#red-alert").toggle("show");
     $.get(window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/", function() {
         $("#user-pass-button").attr("class", "btn btn-default active");
+        $("#red-alert").toggle(false);
+        $("#green-alert").toggle(true);
     });
 }

@@ -154,7 +154,7 @@ input:-webkit-autofill {
 
 #Events > ul {
     padding-top: 12px;
-    padding-left: 85px;
+
     font-family: FrutigerCERoman;
     font-size: 30px;
 
@@ -166,7 +166,8 @@ li:hover {
 }
 
 #Events > ul > li {
-    padding-bottom: 45px;
+    padding-bottom: 22px;
+    padding-top: 23px;
     font-family: FrutigerLTRoman;
 }
 
@@ -200,7 +201,7 @@ li:hover {
     /*float: right;*/
     display: block;
     float: left;
-    width: 1055px;
+    width: 100%;
     height: 100%;
     background: url("../images/BAALOGO.png") no-repeat center;
     font-size: 125px;
@@ -209,6 +210,10 @@ li:hover {
 }
 
 #right-col-content-add, #right-col-content-view, #right-col-content-edit {
+    display: none;
+}
+
+ #red-alert, #green-alert {
     display: none;
 }
 
@@ -412,5 +417,37 @@ li:hover {
     color: grey;
 }
 
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
+li:hover {
+    background-color: white transparent;   
+}
+
+li.borderless { border-top: 0 none; }
+
+ul {
+    list-style-type: none;
+   width: 100%;
+
+}
+
+li {
+    width: 100%;
+    padding-left: 85px;
+}
+
+/*#Events {
+    background: linear-gradient(135deg, #1e5799 41%,#ced121 57%,#2a3ca3 66%);
+}*/
