@@ -19,13 +19,13 @@ class Volunteer(models.Model):
     city = models.CharField(max_length=30, default=None, null=True)
     state = models.CharField(max_length=30, default=None, null=True)
 
-    def __str__(self):
-        name = self.volunteer.first_name + " " + self.volunteer.last_name
-        return name
+    # def __str__(self):
+       # first_name = self.volunteer.first_name + " " + self.volunteer.last_name
+       #return first_name
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
-    date = models.CharField(max_length=30)
+    date = models.DateField()
     csv = models.FileField(null=True, upload_to='file')
 
     def __str__(self):
@@ -43,7 +43,7 @@ class Attendee(models.Model):
     job_descrip = models.CharField(max_length=50, null=True, default=None)
 
 
-    def __str__(self):
-        name = self.volunteer.first_name + " " + self.volunteer.last_name
-        return name
+    #def __str__(self):
+     #   name = self.volunteer.first_name + " " + self.volunteer.last_name
+     #   return name
 
