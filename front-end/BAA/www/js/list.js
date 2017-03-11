@@ -16,7 +16,8 @@ angular.module('starter', ['ionic'])
             var promptPopup = $ionicPopup.show({
                 title: item.name,
                 scope: $scope,
-                template: '<body><div class="row"> <input type="text" placeholder="Add text Here" ng-model="data.input" id="volunteer_comment" style="height:60px;padding-bottom=20px;"></div><div class="row"><div class="col">' + item.email + '<hr style="margin-bottom:0px;"></div></div><div class="row" style="margin-top:0px;"><div class="col" class"label" style="color:gray;">email</div></div><div class="row"><div class="col">' + item.phone + '<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">phone number</div></div><div class="row"><div class="col col-50">' + item.city + '<hr></div><div class="col col-50">' + item.state + '<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">city</div><div class="col col-50" class="label" style="color:gray;">state</div></div><div class="row"><div class="col">' + item.years_of_service + '<hr></div></div><div class="row"><div class="col" class="label" style="color:gray;">years of working with BAA</div></div><div class="row"><div class="col col-50">' + item.jacket_size + '<hr></div></div><div class="row"><div class="col col-50" class="label" style="color:gray;">jacket size</div></div></body>',
+                cssClass: 'my-custom-popup',
+                template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" id="volunteer_comment"></textarea>',
                 buttons: [{
                     text: 'Confirm',
                     type: 'button-positive',
@@ -68,6 +69,7 @@ angular.module('starter', ['ionic'])
 
 
 function updateNotes(res, ID) {
+    console.log(res);
     var token = localStorage.getItem("token");
     var url = "/api/attendees/" + ID + "/";
     var request = new XMLHttpRequest();

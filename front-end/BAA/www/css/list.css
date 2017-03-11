@@ -85,8 +85,10 @@ body {
 	background-color: #EDEDED;
 	padding-left: 0px;
 	padding-right: 0px;
-	margin-left: 0px !important;
-	margin-right: 0px !important;
+	margin-left: 0px;
+	margin-right: 0px;
+    margin-top: 11%;
+    margin-bottom: 20px;
 }
 
 .items_in_list {
@@ -94,3 +96,29 @@ body {
 
 }
 
+#volunteer_comment {
+	height: 25%;
+    margin-top: 7% !important;
+
+}
+
+.my-custom-popup .popup{
+        width: 90%;
+}
+
+.my-custom-popup .popup-buttons{
+    border-top: 30px !important;
+}
+
+.my-custom-popup .popup-title{
+    padding-top: 5% !important;
+    font-size: 38px !important;
+}
+
+.my-custom-popup .popup-body{
+    padding-top: -5% !important;
+}
+
+textarea {
+    padding: 10px;
+}
