@@ -19,15 +19,19 @@
   <body ng-controller="MyCtrl">
     
     <ion-header-bar class="header_bar">
-      <h1 class="title">Volunteers</h1>
+        <h1 class="title">
+          Volunteers
+          <br>
+          <label class = "item item-input" id = "user-search">
+            <i class = "ion ion-ios-search placeholder-icon"></i>
+            <input type = 'search' placeholder = "search" ng-model = "searchQuery"/>
+          </label>
+        </h1>
     </ion-header-bar>
 
-    <ion-content>
+    <ion-content id="list-content">
       <!-- The list directive is great, but be sure to also checkout the collection repeat directive when scrolling through large lists -->
-      <label class = "item item-input">
-        <i class = "ion ion-ios-search placeholder-icon"></i>
-        <input type = 'search' placeholder = "search" ng-model = "searchQuery"/>
-      </label>
+      
       <div id="buttons-label">
         <hr style="height:4pt; visibility:hidden;" />
         <text><span class = "in_out1"> Check in/out </span></text>

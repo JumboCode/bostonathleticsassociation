@@ -6,7 +6,6 @@ body {
 .larger{
 	width: 70% !important;
 	height: -5% !important;
-	right: -25%;
 }
 .largerB{
 	font-size: 110% !important;
@@ -15,6 +14,18 @@ body {
 .hide{
 	display:none;
 }
+
+#user-search{
+	background-color: #025797 !important;
+	border: none !important;
+	padding-top: 0px;
+	margin-top: -4px;
+}
+
+#user-search > input {
+	color: white !important;
+}
+
 #buttons-label{
 	right: 90%;
 	text-align:right !important;
@@ -25,17 +36,25 @@ body {
 }
 
 .header_bar {
-	background-color: #EB9493 !important;
+	background-color: #025797 !important;
 	/*border-color: darken(#EB9493, 0%) !important;
 	border: solid !important;
 	border-width: 2px !important;*/
 	border: none;
+	height: 95px;
+}
+
+#list-content {
+	padding-top: 20px;
 }
 
 .title {
+	padding-top: 10px;
+	text-align: center !important;
 	color: white !important;
 	font-family: frutigerLight;
 	font-size: 25px !important;
+	height: 100% !important;
 }
 
 @font-face {
@@ -59,7 +78,7 @@ body {
 }
 
 .button {
-	background-color: lightgrey;
+	background-color: #EDEDED;
 	padding-left: 0px;
 	padding-right: 0px;
 	margin-left: 0px;
