@@ -40,7 +40,7 @@ body {
 
 @font-face {
 	font-family: frutigerLight;
-	src: url(/css/Frutiger_CE_45_Light.ttf);
+	src: url(/fonts/Frutiger_CE_45_Light.ttf);
 }
 
 .in_out1 {
@@ -56,6 +56,14 @@ body {
 	border-radius: 25px;
 
 
+}
+
+.button {
+	background-color: lightgrey;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
 .items_in_list {
