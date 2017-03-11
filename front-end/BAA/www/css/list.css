@@ -3,9 +3,17 @@ body {
     background-repeat: round;
 }
 
+#vol {
+	display: block;
+	padding-top: 15px;
+}
+
 .larger{
-	width: 70% !important;
+/*	width: 70% !important;
 	height: -5% !important;
+	*/
+	zoom: 0.5;
+    -moz-transform: scale(0.5);
 }
 .largerB{
 	font-size: 110% !important;
@@ -20,8 +28,11 @@ body {
 	border-radius: 25px;
 	border: none !important;
 	padding-top: 0px;
-	margin-bottom: 2%;
-	margin-top: -4px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1px;
+	margin-top: 10px;
 }
 
 #user-search > input {
@@ -46,11 +57,11 @@ body {
 	border: solid !important;
 	border-width: 2px !important;*/
 	border: none;
-	height: 100px;
+	height: 135px;
 }
 
 #list-content {
-	padding-top: 22px;
+	padding-top: 100px;
 }
 
 .title {
@@ -82,18 +93,49 @@ body {
 
 
 .button {
-	background-color: #EDEDED;
+	height: 86.33px;
 	padding-left: 0px;
 	padding-right: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
     margin-top: 11%;
     margin-bottom: 20px;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+
+#left-button, #mid-button {
+	padding-right: 1px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-right: 1px !important;
+	border-color: #9b9b9b;
 }
 
 .items_in_list {
 	border: none;
 
+}
+
+i {
+	filter: brightness(0) invert(1);
+}
+
+
+input[type="search"]::-webkit-input-placeholder  {
+	color: rgba(255, 255, 255, 0.5) 
+}
+
+input[type="search"]:-moz-placeholder  {
+    color: rgba(255, 255, 255, 0.5) ;
+}
+
+input[type="search"]::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5) ;
+}
+
+input[type="search"]:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5) ;
 }
 
 #volunteer_comment {
