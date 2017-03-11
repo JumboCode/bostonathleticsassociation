@@ -3,6 +3,11 @@ body {
     background-repeat: round;
 }
 
+#vol {
+	display: block;
+	padding-top: 15px;
+}
+
 .larger{
 /*	width: 70% !important;
 	height: -5% !important;
@@ -23,8 +28,11 @@ body {
 	border-radius: 25px;
 	border: none !important;
 	padding-top: 0px;
-	margin-bottom: 2%;
-	margin-top: -4px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1px;
+	margin-top: 10px;
 }
 
 #user-search > input {
@@ -49,11 +57,11 @@ body {
 	border: solid !important;
 	border-width: 2px !important;*/
 	border: none;
-	height: 100px;
+	height: 135px;
 }
 
 #list-content {
-	padding-top: 22px;
+	padding-top: 100px;
 }
 
 .title {
@@ -107,6 +115,27 @@ body {
 .items_in_list {
 	border: none;
 
+}
+
+i {
+	filter: brightness(0) invert(1);
+}
+
+
+input[type="search"]::-webkit-input-placeholder  {
+	color: rgba(255, 255, 255, 0.5) 
+}
+
+input[type="search"]:-moz-placeholder  {
+    color: rgba(255, 255, 255, 0.5) ;
+}
+
+input[type="search"]::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5) ;
+}
+
+input[type="search"]:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5) ;
 }
 
 #volunteer_comment {
