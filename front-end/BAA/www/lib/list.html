@@ -7,12 +7,12 @@
     <!--Javascripts-->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
-    <script src="/js/list.js"></script>
+    <script src="js/list.js"></script>
     <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.js"></script>
 
     <!--Stylesheets-->
-    <link href="/css/list.css" rel="stylesheet">
-    <link href="/css/popup.css" rel="stylesheet">
+    <link href="css/list.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
     <link href="http://code.ionicframework.com/1.1.0/css/ionic.min.css" rel="stylesheet">
   </head>
 
@@ -36,9 +36,9 @@
           <ion-item ng-repeat="attendee in attendees| filter: {volunteer: {name: searchQuery}}" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(attendee)">{{attendee.volunteer.name}}</button>
             <div class = 'buttons' id="align-right">
-              <img ng-src="{{(isCheckedIn(attendee) && '/img/IN.png' || '/img/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
-              <img ng-src="{{(isCheckedIn(attendee) && '/img/IN.png' || '/img/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
-              <img ng-src="{{(isCheckedIn(attendee) && '/img/IN.png' || '/img/Oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+              <img ng-src="{{(isCheckedIn(attendee) && 'img/in.png' || 'img/oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+              <img ng-src="{{(isCheckedIn(attendee) && 'img/in.png' || 'img/oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
+              <img ng-src="{{(isCheckedIn(attendee) && 'img/in.png' || 'img/oval.png')}}" class="button button-icon larger" ng-click="changeStatus(attendee)">
             </div>
           </ion-item>
       </ion-list>
