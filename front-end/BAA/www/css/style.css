@@ -1,14 +1,19 @@
+input[type="text"], input[type="password"] {
+	color: white;
+}
+
 .inputs {
 	width: 100%;
-	padding-top: 339px;
+	padding-top: 270px;
 	padding-left: 17%;
 	padding-right: 17%;
 }
 
 .item-input {
+	border: 0;
 	border-radius: 25px;
 	margin-bottom: 7px;
-	opacity: 0.5;
+	background-color: rgba(255, 255, 255, 0.45);
 }
 
 .scroll-content {
@@ -19,13 +24,13 @@
 
 #userpng {
 	position: absolute;
-	top: 350px;
+	top: 281px;
 	left: 70%;
 }
 
 #lockpng {
 	position: absolute;
-	top: 403px;
+	top: 334px;
 	left: 70%;
 }
 
@@ -39,4 +44,32 @@
 	padding-top: 7%;
 }
 
+#user::-webkit-input-placeholder  {
+    color:    white
+}
+
+#user:-moz-placeholder  {
+    color:    white;
+}
+
+#user::-moz-placeholder {
+    color:    white;
+}
+
+#user:-ms-input-placeholder {
+    color:    white;
+}
+
+#pass::-webkit-input-placeholder {
+    color:    white;
+}
+#pass:-moz-placeholder {
+    color:    white;
+}
+#pass::-moz-placeholder {
+    color:    white;
+}
+#pass:-ms-input-placeholder {
+    color:    white;
+}
 

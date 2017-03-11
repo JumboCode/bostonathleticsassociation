@@ -23,20 +23,18 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-    <div id = "Events">
-        <ul></ul>
-    </div>
-
-    <div id = "New-Event">
-        <button type=submit onclick="add_event()"></button>
+    <div  id = "left-col">
+	    <div id = "Events">
+	        <ul id="old_events"></ul>
+	        	<button id = 'new_event_butt' type=submit onclick='add_event()''></button>
+	    </div>
     </div>
 {% endblock left-column %}
 
 {% block right-column %}
-<div id = "right-col-content-add">
-	<div class = "new"> NEW </div>
-	<div class = "ev"> EVENT </div> 
-	<div id = "box">
+<div  id = "right-col-content-add">
+
+<!--	<div id = "box">-->
 		<input type = "text" id = "add-new_event" placeholder = "New Event" style="border:none; font-size: 3.3rem; width: 100%; text-align: center"><hr style="position:relative; top:-10px">
 		<div class = "month">
 			<div class="btn-group">
@@ -76,9 +74,9 @@
 			<img src= "/static/images/submit.png" alt="submit pic" style="">
 		</div>
 		</div>
-	</div>
+	<!--</div>-->
 <div id = "right-col-content-edit">
-	<div id = "box">
+	<!--<div id = "box">-->
 	<div class = "alert alert-danger fade in" id = "red-alert">Warning! Please do not refresh the page.</div>
 	<div class="alert alert-success alert-dismissable" id = "green-alert">
   		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -95,7 +93,7 @@
     <div class = "row">
     	<button type="button" class = "btn btn-default" id = "delete-button">Delete Event</button>
     </div>
-    </div>
+    <!--</div>-->
 	
 </div>
 {% endblock right-column %}

@@ -1,6 +1,6 @@
 # JumboCode Boston Athletics Association Spring 2017
 
-
+[![Build Status](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation.svg?branch=dev)](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation)
 ## 1. About
 
 We are the JumboCode team working on a check in system for the Boston Athletics Association (BAA) for Spring 2017 at Tufts University.
@@ -36,4 +36,4 @@ For this project, we will maintain two branches, `master` and `dev`. The master 
 
 
 ## 4. Setup
-Specific instructions for setting up this repo is in each folder (i.e. back-end/README.md and front-end/READM.md). In order to run the backend Django server, follow the back-end folder's instructions. If you'd like to run an emulation of the front-end mobile app, you would need to follow the back-end instruction first, followed by setting up the mobile dev environment using the front-end instructions.
+Specific instructions for setting up this repo is in each folder (i.e. back-end/README.md and front-end/README.md). In order to run the backend Django server, follow the back-end folder's instructions. If you'd like to run an emulation of the front-end mobile app, you would need to follow the back-end instruction first, followed by setting up the mobile dev environment using the front-end instructions.
