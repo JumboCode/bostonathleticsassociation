@@ -1,3 +1,7 @@
+input[type="text"], input[type="password"] {
+	color: white;
+}
+
 .inputs {
 	width: 100%;
 	padding-top: 339px;
@@ -6,9 +10,10 @@
 }
 
 .item-input {
+	border: 0;
 	border-radius: 25px;
 	margin-bottom: 7px;
-	opacity: 0.5;
+	background-color: rgba(255, 255, 255, 0.45);
 }
 
 .scroll-content {
@@ -39,4 +44,32 @@
 	padding-top: 7%;
 }
 
+#user::-webkit-input-placeholder  {
+    color:    white
+}
+
+#user:-moz-placeholder  {
+    color:    white;
+}
+
+#user::-moz-placeholder {
+    color:    white;
+}
+
+#user:-ms-input-placeholder {
+    color:    white;
+}
+
+#pass::-webkit-input-placeholder {
+    color:    white;
+}
+#pass:-moz-placeholder {
+    color:    white;
+}
+#pass::-moz-placeholder {
+    color:    white;
+}
+#pass:-ms-input-placeholder {
+    color:    white;
+}
 

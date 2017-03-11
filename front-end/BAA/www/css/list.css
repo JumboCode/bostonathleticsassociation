@@ -22,6 +22,9 @@ body {
 	margin-right: -40px !important;
 	/*padding-right: px !important;*/
 }
+#user {
+	text-decoration-color: white;
+}
 
 .header_bar {
 	background-color: #025797 !important;
@@ -53,9 +56,8 @@ body {
 	border: 0px;
 	margin: 10px;
 	border-radius: 25px;
-
-
 }
+
 
 .button {
 	background-color: #EDEDED;
