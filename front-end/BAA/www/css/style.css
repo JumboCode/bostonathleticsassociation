@@ -4,7 +4,7 @@ input[type="text"], input[type="password"] {
 
 .inputs {
 	width: 100%;
-	padding-top: 339px;
+	padding-top: 270px;
 	padding-left: 17%;
 	padding-right: 17%;
 }
@@ -24,13 +24,13 @@ input[type="text"], input[type="password"] {
 
 #userpng {
 	position: absolute;
-	top: 350px;
+	top: 281px;
 	left: 70%;
 }
 
 #lockpng {
 	position: absolute;
-	top: 403px;
+	top: 334px;
 	left: 70%;
 }
 
