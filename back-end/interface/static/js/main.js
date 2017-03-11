@@ -242,14 +242,13 @@ function get_all_events() {
 }
 
 function show_sorted(ent) {
-    var events_string = "<ul>"; 
+    var events_string = ""; 
     console.log(ent);
     for (i=0; i<ent.length; i++) {
         events_string += '<li id = "event' + i + '" onclick = "edit_event('+ i +', ent)">' + ent[i].fields.name + '</li>';
     }
 
-    events_string += "</ul>";
-    document.getElementById("Events").innerHTML = events_string;
+    document.getElementById("old_events").innerHTML = events_string;
 }
 
 function check_past_date(date) {
@@ -347,9 +346,15 @@ function delete_event(i, events) {
 function send_email(i, events) {
     $("#user-pass-button").attr("class", "btn btn-default disabled");
     $("#red-alert").toggle("show");
-    $.get(window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/", function() {
-        $("#user-pass-button").attr("class", "btn btn-default active");
-        $("#red-alert").toggle(false);
-        $("#green-alert").toggle(true);
+    $.ajax({
+        url: window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/",
+        success: function() {
+            $("#user-pass-button").attr("class", "btn btn-default active");
+            $("#red-alert").toggle(false);
+            $("#green-alert").toggle(true);
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", window.token);
+        }
     });
 }
