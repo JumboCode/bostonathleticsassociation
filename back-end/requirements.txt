@@ -3,3 +3,11 @@ djangorestframework
 drfdocs
 django-filter
 django-crispy-forms
+gunicorn
+appdirs
+packaging
+pyparsing
+six
+dj-database-url
+whitenoise
+psycopg2
