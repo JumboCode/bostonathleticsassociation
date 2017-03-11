@@ -16,9 +16,11 @@ body {
 }
 
 #user-search{
-	background-color: #025797 !important;
+	background-color: rgba(255, 255, 255, 0.25) !important;
+	border-radius: 25px;
 	border: none !important;
 	padding-top: 0px;
+	margin-bottom: 2%;
 	margin-top: -4px;
 }
 
@@ -34,6 +36,9 @@ body {
 	margin-right: -40px !important;
 	/*padding-right: px !important;*/
 }
+#user {
+	text-decoration-color: white;
+}
 
 .header_bar {
 	background-color: #025797 !important;
@@ -41,11 +46,11 @@ body {
 	border: solid !important;
 	border-width: 2px !important;*/
 	border: none;
-	height: 95px;
+	height: 100px;
 }
 
 #list-content {
-	padding-top: 20px;
+	padding-top: 22px;
 }
 
 .title {
@@ -73,16 +78,15 @@ body {
 	border: 0px;
 	margin: 10px;
 	border-radius: 25px;
-
-
 }
+
 
 .button {
 	background-color: #EDEDED;
 	padding-left: 0px;
 	padding-right: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
 }
 
 .items_in_list {
