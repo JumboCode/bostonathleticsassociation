@@ -6,7 +6,6 @@ body {
 .larger{
 	width: 70% !important;
 	height: -5% !important;
-	right: -25%;
 }
 .largerB{
 	font-size: 110% !important;
@@ -25,7 +24,7 @@ body {
 }
 
 .header_bar {
-	background-color: #EB9493 !important;
+	background-color: #025797 !important;
 	/*border-color: darken(#EB9493, 0%) !important;
 	border: solid !important;
 	border-width: 2px !important;*/
@@ -56,6 +55,14 @@ body {
 	border-radius: 25px;
 
 
+}
+
+.button {
+	background-color: #EDEDED;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
 .items_in_list {
