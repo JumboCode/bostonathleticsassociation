@@ -23,12 +23,14 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-    <div  id = "left-col">
 	    <div id = "Events">
-	        <ul id="old_events"></ul>
-	        	<button id = 'new_event_butt' type=submit onclick='add_event()''></button>
+	        	<div>
+	        	<ul id="old_events"></ul>
+	        	</div>
+	    <div id = "new_button">
+	        <button id = 'new_event_butt' type=submit onclick='add_event()''></button>
 	    </div>
-    </div>
+	    </div>
 {% endblock left-column %}
 
 {% block right-column %}
