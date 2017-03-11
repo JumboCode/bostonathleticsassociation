@@ -55,7 +55,8 @@
       "phone": "434324324234",
       "email": "spencer.perry@tufts.edu",
       "city": "Baltimore",
-      "state": "Maryland"
+      "state": "Maryland",
+      "user": null
     }
   },
 
@@ -68,7 +69,8 @@
       "phone": "3243423423",
       "email": "iamthebest@michaeljordan.com",
       "city": "Chicago",
-      "state": "Illinois"
+      "state": "Illinois",
+      "user": null
     }
   },
 
@@ -81,7 +83,8 @@
       "phone": "3943288904",
       "email": "sweatshirt@aol.com",
       "city": "LA",
-      "state": "Cali"
+      "state": "Cali",
+      "user": 2
     }
   },
 

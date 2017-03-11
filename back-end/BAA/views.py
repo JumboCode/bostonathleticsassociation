@@ -17,27 +17,16 @@ class CustomObtainAuthToken(ObtainAuthToken):
         first_name = token.user.get_short_name()
 
         # return the team captain that just logged in successfully
-        # filter by user credentials that just signed in, email
+        # filter by user credentials that just signed in
         email = token.user.get_username()
-        time = datetime.datetime.now()
 
-        event = Event.objects.filter(Q(date=(datetime.date.today() - datetime.timedelta(days=1))) |
-                                    Q(date=datetime.date.today()) |
-                                     Q(date=(datetime.date.today() + datetime.timedelta(
-                                         days=1))))  # but assumes only 1 event per day
+        # get volunteer id tied to user account
+        team_cap_id = token.user.volunteer.id
 
-        #print(event)
-        #print(email)
+        # since volunteers are all unique now, we can just filter by that id
+        volunteers = Attendee.objects.filter(team_captain=team_cap_id)
 
-        volunteers = Attendee.objects.filter(team_captain__email=email, event=event)
         serializer = AttendeeSerializer(volunteers, many=True)
-
-        # signing in only on the day of the event, compare that time
-        # to the time in the db, get the event that is occurring on that day/during that time
-        # (closest future event)
-        # filter attendees based on team captain and event
-
-        #TODO still need to filter by event date
 
         # return the attendees for the teamp captain along with token information
         return Response({'token': token.key, 'first_name':first_name,
