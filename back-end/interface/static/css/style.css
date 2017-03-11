@@ -37,8 +37,8 @@ body {
     height: 100%;
     width: 1600px;
 
-}
-*/
+}*/
+
 #left-col {
     color: white;
     float: left;
@@ -314,7 +314,7 @@ body {
     margin-bottom: 5px;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 128000px) {
     #left-col {
         width: 450px;
     }
