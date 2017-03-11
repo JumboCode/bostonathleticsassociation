@@ -35,7 +35,7 @@ body {
 
 #wrapper {
     height: 100%;
-    width: 1600px;
+    width: 100%;
 
 }
 
@@ -43,11 +43,16 @@ body {
     color: white;
     float: left;
     width: 30%;
-    min-height: 100%;
+   /* min-height: 100%;
     height: auto !important;
-    background-color: #035898;
+    max-height:100%;
+    */background-color: #035898;
     font-size: 2rem;
     font-family: FrutigerCELight;
+top:0;
+bottom:0;
+position:fixed;
+overflow-y: scroll;
 }
 
 ::-webkit-input-placeholder {
@@ -132,11 +137,11 @@ input:-webkit-autofill {
 #Events {
     background-color: #035898;
     height: 100%;
-    overflow: auto;
-    background: url("../images/BAALOGO.png") no-repeat center;
+    /*overflow: auto;*/
+    background: url("../images/BAALOGO.png")  center;
 }
 
-#Events > ul {
+ul {
     padding-top: 12px;
 
     font-family: FrutigerCERoman;
@@ -149,19 +154,19 @@ li:hover {
     cursor: pointer;
 }
 
-#Events > ul > li {
+li {
     padding-bottom: 8%;
     padding-top: 8%;
     font-family: FrutigerLTRoman;
 }
 
-#Events > button {
+/*FEbutton {
     background: url("../images/newevent.png") no-repeat center;
     border: none;
     width: 280px;
     height: 70px;
     bottom: 20px;
-}
+}*/
 
 #signin-button {
     text-align: center;
@@ -180,10 +185,11 @@ li:hover {
     /*float: right;*/
     width: 40%;
     height: 100%;
-  
+    padding-top: 5%;
+     
     font-size: 40px;
     font-family: FrutigerLTBoldCondensed;
-    line-height: 100px;
+    /*line-height: 100px;*/
 }
 
 #right-col-content-add, #right-col-content-view, #right-col-content-edit {
@@ -388,8 +394,28 @@ li {
 }
 
 #new_event_butt {
+    background: url("../images/newevent.png") no-repeat center;
+    border: none;
+    width: 280px;
+    height: 70px;
+    bottom: 20px;
     padding-left: 10%;
     padding-right: 10%;
+    padding-top: 5%;
+    left: 100px;
+
+    position:fixed;
 }
 
+#add-image {
+    cursor:pointer;
+}
+
+#new_button {
+    background-color: #035898;
+}
+
+#old_events {
+    max-height: 70%;
+}
 

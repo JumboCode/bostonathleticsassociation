@@ -4,7 +4,7 @@ StatusEnum = {
     cancelled : 2
 };
 
-
+var domain = "http://localhost:8000/";
 angular.module('starter', ['ionic'])
     .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
         var token = localStorage.getItem("token");
@@ -32,7 +32,7 @@ angular.module('starter', ['ionic'])
 
         $scope.changeStatus = function (item, status) {
             // Item is a attendee
-            var url = "/api/attendees/"+ item.id + "/";
+            var url = domain + "/api/attendees/"+ item.id + "/";
             var request = new XMLHttpRequest();
             request.open("PATCH", url);
             request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -71,7 +71,7 @@ angular.module('starter', ['ionic'])
 function updateNotes(res, ID) {
     console.log(res);
     var token = localStorage.getItem("token");
-    var url = "/api/attendees/" + ID + "/";
+    var url = domain + "/api/attendees/" + ID + "/";
     var request = new XMLHttpRequest();
     request.open("PATCH", url);
     request.setRequestHeader("content-type", "application/x-www-form-urlencoded");

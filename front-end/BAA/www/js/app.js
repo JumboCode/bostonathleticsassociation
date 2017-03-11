@@ -26,12 +26,12 @@ angular.module('starter', ['ionic'])
 })
 
 var token;
-
+var domain = "http://localhost:8000/";
 function checkCredentials() {
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
 
-    var url = "api-token-auth";
+    var url = domain + "api-token-auth" + "/";
     request = new XMLHttpRequest();
     request.open("POST", url);
     request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -164,7 +164,13 @@ function checkCredentials() {
     request.send("username=" + user + "&password=" + pass);
 }
 
+function showKeyboard() {
+    if (window.cordova && window.cordova.plugins.Keyboard){
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+        cordova.plugins.Keyboard.disableScroll(true);
+    }
 
+}
 
 function verCheck(){
     var LS = localStorage.getItem('token');
