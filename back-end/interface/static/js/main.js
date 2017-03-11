@@ -242,14 +242,13 @@ function get_all_events() {
 }
 
 function show_sorted(ent) {
-    var events_string = "<ul>"; 
+    var events_string = ""; 
     console.log(ent);
     for (i=0; i<ent.length; i++) {
         events_string += '<li id = "event' + i + '" onclick = "edit_event('+ i +', ent)">' + ent[i].fields.name + '</li>';
     }
 
-    events_string += "</ul>";
-    document.getElementById("Events").innerHTML = events_string;
+    document.getElementById("old_events").innerHTML = events_string;
 }
 
 function check_past_date(date) {
