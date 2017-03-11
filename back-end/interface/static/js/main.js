@@ -347,9 +347,15 @@ function delete_event(i, events) {
 function send_email(i, events) {
     $("#user-pass-button").attr("class", "btn btn-default disabled");
     $("#red-alert").toggle("show");
-    $.get(window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/", function() {
-        $("#user-pass-button").attr("class", "btn btn-default active");
-        $("#red-alert").toggle(false);
-        $("#green-alert").toggle(true);
+    $.ajax({
+        url: window.location.origin + "/api/notify_captains/event/" + events[i].pk + "/",
+        success: function() {
+            $("#user-pass-button").attr("class", "btn btn-default active");
+            $("#red-alert").toggle(false);
+            $("#green-alert").toggle(true);
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", window.token);
+        }
     });
 }
