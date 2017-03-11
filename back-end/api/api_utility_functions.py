@@ -35,34 +35,32 @@ def EventListPost(self, request, *args, **kwargs):
     new_attendees = []
     captains = []
 
-    # create a volunteer for every person in  csv, if they already exist return their object
+    # create a volunteer for every person in  csv
     # then create a corresponding attendee (specific for the new event) for each volunteer
 
     for row in reader:
         # What happens if volunteer is mostly the same, but one field is updated?
-        volunteer = Volunteer.objects.get_or_create(
+        volunteer = Volunteer.objects.create(
             first_name=row[0],
             last_name= row[1],
-            status=row[2],
-            city=row[3],
-            state=row[4],
-            phone=row[5],
-            email=row[6],
-            years_of_service=row[7],
-            jacket=row[8],
-            jacket_size=row[9],
+            city=row[2],
+            state=row[3],
+            phone=row[4],
+            email=row[5],
+            years_of_service=row[6],
+            user=None
         )
 
-        if row[10] == "TRUE":
-            attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None, 
-                                                event=event, assignment_id=row[11],
-                                               specific_event_id=row[12], job_descript=row[13])
+        if row[7] == "TRUE":
+            attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
+                                               event=event, status=row[8], assignment_id=row[9],
+                                               specific_event_id=row[10], job_descript=row[11])
             captains.append(attendee)
 
         else:
             attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, assignment_id=row[11],
-                                               specific_event_id=row[12], job_descript=row[13])
+                                               event=event, status=row[8], assignment_id=row[9],
+                                               specific_event_id=row[10], job_descript=row[11])
             new_attendees.append(attendee)
 
     # match attendee with their team captain
@@ -139,26 +137,32 @@ def NotifyTeamCaptainsGet(self, request, event):
 
     emails = []
 
-    team_cap_group = Group.objects.get(name="Team Captain")
+    #team_cap_group = Group.objects.get(name="Team Captain")
 
-    # 0 corresponds to team captain's name, 1 to team captain's email
+    # 0 corresponds to team captain's email, 1 to team captain's unique volunteer id
+    # 3 to the team captain's first name
+
     for team_captain in Attendee.objects.filter(event=event)\
-            .values_list('team_captain__name', 'team_captain__email').distinct():
+            .values_list('team_captain__email','team_captain__id', 'team_captain__first_name').distinct():
+
+        print(team_captain)
 
         password = User.objects.make_random_password()
-        username = team_captain[1]
+        username = team_captain[0]
 
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)
             user.set_password(password)
+            user.volunteer = Volunteer.objects.get(pk=team_captain[1])
         else:
-            new_user = User.objects.create_user(username=username, email=team_captain[1], password=password,)
-            team_cap_group.user_set.add(new_user)
+            vol = Volunteer.objects.get(pk=team_captain[1])
+            new_user = User.objects.create_user(username=username, email=team_captain[0],
+                                                password=password, volunteer=vol)
 
-        message = "Hello, " + team_captain[0] + ",\n \n Your username is:  " + username + \
+        message = "Hello, " + team_captain[2] + ",\n \n Your username is:  " + username + \
                   "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
-        recipient = team_captain[1]
+        recipient = team_captain[0]
         from_email = "baattendence@gmail.com"
 
         email = (subject, message, from_email, [recipient])

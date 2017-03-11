@@ -1,9 +1,16 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from api import models
 
 class VolunteerAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'phone', 'city', 'state')
+    list_display = ('id','first_name', 'last_name', 'email', 'phone', 'city', 'state', 'user')
     readonly_fields = ['id']
+
+class VolunteerInline(admin.StackedInline):
+    model = models.Volunteer
+    can_delete = False
+    verbose_name_plural = 'Volunteer'
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'date', 'csv')
@@ -38,6 +45,11 @@ class AttendeeAdmin(admin.ModelAdmin):
     get_team_captain.short_description = "Team Captain"
     get_team_captain.admin_order_field = "attendee_team_captain"
 
+class UserAdmin(BaseUserAdmin):
+    inlines = (VolunteerInline,)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 admin.site.register(models.Volunteer, VolunteerAdmin)
 admin.site.register(models.Event, EventAdmin)
 admin.site.register(models.Attendee, AttendeeAdmin)

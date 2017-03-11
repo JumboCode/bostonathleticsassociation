@@ -6,7 +6,7 @@ from rest_framework import serializers, exceptions
 class VolunteerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Volunteer
-        fields = ('id', 'first_name', 'last_name' 'phone', 'email', 'city', 'state')
+        fields = ('id', 'first_name', 'last_name', 'phone', 'email', 'city', 'state')
         read_only_fields = ('id',)
         depth = 1
 
@@ -37,8 +37,8 @@ class AttendeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Attendee
-        fields = ('id', 'volunteer', 'event', 'team_captain', 'at_event', 'notes', 'assignment_id',
-            'general_event_id', 'specific_event_id', 'job_descript')
+        fields = ('id', 'volunteer', 'event', 'team_captain', 'status', 'notes', 'assignment_id',
+            'general_event_id', 'specific_event_id', 'job_descrip')
         read_only_fields = ('id',)
         depth = 1
 

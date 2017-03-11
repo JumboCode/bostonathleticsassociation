@@ -17,24 +17,25 @@ import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
 
-
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
 #from permissions import *
 
 # generic view patterns documented http://www.django-rest-framework.org/tutorial/3-class-based-views/
 
-#returns all volunteers
+#returns all volunteers, ability to create a volunteer
 class VolunteerList(generics.ListCreateAPIView):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
-
 
 #returns specific volunteer, ability to update, delete as well
 class VolunteerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
 
+
+
+#returns all events, custom function for creation
 class EventList(generics.ListCreateAPIView):
     parser_classes = (MultiPartParser,)
     queryset = Event.objects.all()
@@ -43,33 +44,29 @@ class EventList(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         return EventListPost(self, request, *args, **kwargs)
 
-
-
 #returns specific volunteer, ability to update, delete as well
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
+
+
+#returns all attendees, ability to create as well
 class AttendeeList(generics.ListCreateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
 
-    #returns specific volunteer, ability to update, delete as well
-
-    serializer_class = AttendeeSerializer
-    queryset = Attendee.objects.all()
-
-
+#returns list of attendees, ability to update, delete as well
 class AttendeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
-
 
 class FilteredAttendeeList(generics.ListAPIView):
     serializer_class = AttendeeSerializer
 
     def get_queryset(self):
         return FilteredAttendeeListGet(self)
+
 
 
 class SearchEvent(generics.ListAPIView):

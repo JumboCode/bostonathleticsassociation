@@ -22,6 +22,17 @@ before_script:
 
 script:
   - python back-end/manage.py test api
+  - python back-end/manage.py test interface
 
 notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
+
+deploy:
+  provider: heroku
+  api_key: "${DEPLOY_API_KEY}"
+  app: floating-castle-71814
+  on: master
+  run:
+    - python manage.py migrate
+    - python manage.py collectstatic --noinput
+    - python manage.py runserver
