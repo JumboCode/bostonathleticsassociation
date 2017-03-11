@@ -47,20 +47,19 @@ def EventListPost(self, request, *args, **kwargs):
             state=row[3],
             phone=row[4],
             email=row[5],
-            years_of_service=row[6],
             user=None
         )
 
-        if row[7] == "TRUE":
+        if row[6] == "TRUE":
             attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=row[8], assignment_id=row[9],
-                                               specific_event_id=row[10], job_descript=row[11])
+                                               event=event, status=row[7], assignment_id=row[8],
+                                               job_descript=row[9])
             captains.append(attendee)
 
         else:
             attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=row[8], assignment_id=row[9],
-                                               specific_event_id=row[10], job_descript=row[11])
+                                               event=event, status=row[7], assignment_id=row[8],
+                                               job_descript=row[9])
             new_attendees.append(attendee)
 
     # match attendee with their team captain

@@ -38,7 +38,7 @@ class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
         fields = ('id', 'volunteer', 'event', 'team_captain', 'status', 'notes', 'assignment_id',
-            'general_event_id', 'specific_event_id', 'job_descrip')
+                'job_descrip')
         read_only_fields = ('id',)
         depth = 1
 

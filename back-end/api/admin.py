@@ -18,7 +18,7 @@ class EventAdmin(admin.ModelAdmin):
 
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_volunteer', 'get_event', 'status', 'get_team_captain',
-                    'notes', 'assignment_id', 'general_event_id', 'specific_event_id', 'job_descrip')
+                    'notes', 'assignment_id', 'job_descrip')
     readonly_fields = ['id']
 
     def get_volunteer(self, obj):

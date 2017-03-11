@@ -39,8 +39,6 @@ class Attendee(models.Model):
     notes = models.TextField(blank=True, null=True)
     team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
     assignment_id = models.IntegerField(null=True, default=None)
-    general_event_id = models.IntegerField(null=True, default=None)
-    specific_event_id = models.IntegerField(null=True, default=None)
     job_descrip = models.CharField(max_length=50, null=True, default=None)
 
 

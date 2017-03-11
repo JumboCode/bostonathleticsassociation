@@ -98,9 +98,7 @@
       "status": 0,
       "notes": "Made it to the event",
       "assignment_id": 3,
-      "job_descrip": "Water",
-      "general_event_id": null,
-      "specific_event_id": null
+      "job_descrip": "Water"
     }
   },
 
@@ -114,9 +112,7 @@
       "status": 0,
       "notes": "What",
       "assignment_id": 3,
-      "job_descrip": "Water",
-      "general_event_id": null,
-      "specific_event_id": null
+      "job_descrip": "Water"
     }
   },
 
@@ -130,9 +126,7 @@
       "status": 0,
       "assignment_id": 3,
       "notes": "Hello, I am the team Captain",
-      "job_descrip": "You are the team Captain",
-      "general_event_id": null,
-      "specific_event_id": null
+      "job_descrip": "You are the team Captain"
     }
   }
 ]
