@@ -24,7 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'pmh*@^!k3l=ofl6d07rl9y@!0nzo*rfsyidqa_8%d^d8otdq-c'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', # Allow domain and subdomains
+]
 
 
 # Application definition
@@ -144,8 +146,6 @@ STATICFILES_FINDERS = [
 ]
 
 # !!! Do not commit secret keys, use environment variables
-
-
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'baattendence@gmail.com'

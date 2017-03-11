@@ -51,7 +51,7 @@ def EventListPost(self, request, *args, **kwargs):
             city=row[2],
             state=row[3],
             phone=row[4],
-            email=row[5],
+            email=row[5].lower(),
             user=None
         )
         statusCode = 0
@@ -143,7 +143,6 @@ def DownloadFileGet(self, request, file):
 # takes an event identifier
 
 def NotifyTeamCaptainsGet(self, request, event):
-    print("HEEEEY")
     event = self.kwargs['event']
     subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk=event).name
 
@@ -156,21 +155,22 @@ def NotifyTeamCaptainsGet(self, request, event):
 
     for team_captain in Attendee.objects.filter(event=event)\
             .values_list('team_captain__email','team_captain__id', 'team_captain__first_name').distinct():
-
-        print(team_captain)
-
         password = User.objects.make_random_password()
-        print(password)
         username = team_captain[0]
 
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)
             user.set_password(password)
             user.volunteer = Volunteer.objects.get(pk=team_captain[1])
+            user.volunteer.save()
+            user.save()
         else:
             vol = Volunteer.objects.get(pk=team_captain[1])
             new_user = User.objects.create_user(username=username, email=team_captain[0],
-                                                password=password, volunteer=vol)
+                                                password=password)
+            new_user.volunteer = vol
+            new_user.volunteer.save()
+            new_user.save()
 
         message = "Hello, " + team_captain[2] + ",\n \n Your username is:  " + username + \
                   "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
