@@ -28,7 +28,7 @@ def EventListPost(self, request, *args, **kwargs):
     req_csv  = request.FILES.get('csv')
 
     f = TextIOWrapper(req_csv.file, encoding=request.encoding)
-    reader = csv.reader(f, delimiter=',')
+    #reader = csv.reader(f, delimiter=',')
 
     event = Event.objects.create(name=req_name, date=req_date, csv=None)
 
@@ -37,6 +37,11 @@ def EventListPost(self, request, *args, **kwargs):
 
     # create a volunteer for every person in  csv
     # then create a corresponding attendee (specific for the new event) for each volunteer
+    has_header = csv.Sniffer().has_header(f.read(1024))
+    f.seek(0)  # rewind
+    reader = csv.reader(f, delimiter=',')
+    if has_header:
+        next(reader)  # skip header row
 
     for row in reader:
         # What happens if volunteer is mostly the same, but one field is updated?
@@ -49,17 +54,25 @@ def EventListPost(self, request, *args, **kwargs):
             email=row[5],
             user=None
         )
+        statusCode = 0
+        if row[7] == "NO SHOW":
+            statusCode = 0
+        elif row[7] == "CANCEL":
+            statusCode = 1
+        elif row[7] == "OK":
+            statusCode = 2
 
-        if row[6] == "TRUE":
+        if row[6] == "YES":
             attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=row[7], assignment_id=row[8],
-                                               job_descript=row[9])
+                                               event=event, status=statusCode, assignment_id=row[8],
+                                               job_descrip=row[9])
             captains.append(attendee)
+            new_attendees.append(attendee)
 
         else:
             attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=row[7], assignment_id=row[8],
-                                               job_descript=row[9])
+                                               event=event, status=statusCode, assignment_id=row[8],
+                                               job_descrip=row[9])
             new_attendees.append(attendee)
 
     # match attendee with their team captain
@@ -130,7 +143,7 @@ def DownloadFileGet(self, request, file):
 # takes an event identifier
 
 def NotifyTeamCaptainsGet(self, request, event):
-
+    print("HEEEEY")
     event = self.kwargs['event']
     subject = "You have been registered as a Team Captain for: " + Event.objects.get(pk=event).name
 
@@ -147,6 +160,7 @@ def NotifyTeamCaptainsGet(self, request, event):
         print(team_captain)
 
         password = User.objects.make_random_password()
+        print(password)
         username = team_captain[0]
 
         if User.objects.filter(username=username).exists():

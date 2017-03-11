@@ -83,6 +83,5 @@ class DownloadFile(APIView):
 
 
 class NotifyTeamCaptains(APIView):
-
     def get(self, request, event):
         return NotifyTeamCaptainsGet(self, request, event)

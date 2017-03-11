@@ -15,7 +15,6 @@ class CustomObtainAuthToken(ObtainAuthToken):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         first_name = token.user.get_short_name()
-
         # return the team captain that just logged in successfully
         # filter by user credentials that just signed in
         email = token.user.get_username()
