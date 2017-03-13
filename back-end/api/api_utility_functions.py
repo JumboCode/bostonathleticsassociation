@@ -52,8 +52,7 @@ def EventListPost(self, request, *args, **kwargs):
             city=row[2],
             state=row[3],
             phone=row[4],
-            email=row[5].lower(),
-            user=None
+            email=row[5].lower()
         )
         statusCode = 0
         if row[7] == "NO SHOW":

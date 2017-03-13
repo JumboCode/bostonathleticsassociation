@@ -20,7 +20,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         email = token.user.get_username()
 
         # get volunteer id tied to user account
-        team_cap_id = token.user.volunteer.id
+        team_cap_id = token.user.profile.volunteer.id
 
         # since volunteers are all unique now, we can just filter by that id
         volunteers = Attendee.objects.filter(team_captain=team_cap_id)
