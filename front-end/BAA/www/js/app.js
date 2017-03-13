@@ -10,12 +10,13 @@ angular.module('starter', ['ionic'])
         if (window.cordova && window.cordova.plugins.Keyboard) {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.Keyboard.show();
+            //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
             // Don't remove this line unless you know what you are doing. It stops the viewport
             // from snapping when text inputs are focused. Ionic handles this internally for
             // a much nicer keyboard experience.
-            cordova.plugins.Keyboard.disableScroll(true);
+            //cordova.plugins.Keyboard.disableScroll(true);
 
         }
         if (window.StatusBar) {
@@ -26,7 +27,7 @@ angular.module('starter', ['ionic'])
 })
 
 var token;
-var domain = "http://localhost:8000/";
+var domain = "";
 function checkCredentials() {
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
@@ -165,9 +166,11 @@ function checkCredentials() {
 }
 
 function showKeyboard() {
-    if (window.cordova && window.cordova.plugins.Keyboard){
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        cordova.plugins.Keyboard.disableScroll(true);
+    console.log("N");
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      console.log("Y");
+      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
 }
