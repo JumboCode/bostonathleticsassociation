@@ -42,7 +42,7 @@ body {
 #left-col {
     color: white;
     float: left;
-    width: 30%;
+    /*width: 30%;*/
    /* min-height: 100%;
     height: auto !important;
     max-height:100%;
@@ -53,6 +53,7 @@ top:0;
 bottom:0;
 position:fixed;
 overflow-y: scroll;
+overflow-x:none;
 background: url("../images/BAALOGO.png") center center no-repeat, linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
 /*background-color: #035898;*/
 }
@@ -192,8 +193,8 @@ li {
     /*float: right;*/
     width: 40%;
     height: 100%;
-    padding-top: 5%;
-     
+    padding-top: 9%;
+    padding-left:20%;
     font-size: 40px;
     font-family: FrutigerLTBoldCondensed;
     /*line-height: 100px;*/
@@ -207,6 +208,7 @@ li {
 
  #red-alert, #green-alert {
     display: none;
+    font-size: 20px;
 }
 
 
@@ -380,13 +382,14 @@ body {
 }
 
 #name {
-    font-size: 30px;
+    font-size: 40px;
     margin-bottom: 10px;
 }
 
 #date {
     margin-bottom: 30px;
     color: grey;
+    font-size: 20px;
 }
 
 ul {
