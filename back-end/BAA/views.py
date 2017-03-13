@@ -26,7 +26,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         volunteers = Attendee.objects.filter(team_captain=team_cap_id)
 
         serializer = AttendeeSerializer(volunteers, many=True)
-        print(serializer.data)
+
         # return the attendees for the teamp captain along with token information
         return Response({'token': token.key, 'first_name':first_name,
                          'volunteers':serializer.data})
