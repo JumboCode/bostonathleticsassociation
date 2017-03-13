@@ -23,13 +23,14 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
-	    <div id = "Events">
-	        	<div id = "events_list">
+	    <div id = "Events">                                               
+	    	<div class="row" id = "events_list">
 	        	<ul id="old_events"></ul>
-	        	</div>
-	    <!--<div id = "new_button">-->
-	        <button id = 'new_event_butt' type=submit onclick='add_event()''></button>
-	    <!--</div>-->
+	       	</div>
+	    	<div class="row" id = "new_button">
+	   		<img src="/static/images/newevent.png" id="new_event_butt" onclick='add_event()' />
+	       <!-- <button id = 'new_event_butt' type=submit onclick='add_event()''></button>-->
+	    	</div>
 	    </div>
 {% endblock left-column %}
 

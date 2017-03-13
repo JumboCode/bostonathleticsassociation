@@ -141,14 +141,14 @@ input:-webkit-autofill {
     min-height: 100%;
     /*overflow: auto;*/
     
-    padding-bottom: 18%;
+    padding-bottom: 20%;
     /*margin-bottom: 10%;*/
 }
 
 ul {
     padding-top: 12px;
     max-height: 80%;
-
+margin-left:-20px;
     font-family: FrutigerCERoman;
     font-size: 30px;
 
@@ -399,22 +399,27 @@ li {
 }
 
 #new_event_butt {
-    background: url("../images/newevent.png") no-repeat center;
+    /*background: url("../images/newevent.png") no-repeat center;*/
     border: none;
-    width: 280px;
+    /*width: 280px;
     height: 70px;
-    bottom: 20px;
-    padding-left: 10%;
+    bottom: 20px;*/
+    /*padding-left: 10%;
     padding-right: 10%;
     padding-top: 25px;
-    padding-bottom: 25px;
-    border-style:solid;
+    padding-bottom: 25px;*/
+    /*border-style:solid;
     border-color: #035898;
-    border-width: 25px 80px 25px 100px;
-    bottom: 0;
-    left:0;
+    border-width: 25px 80px 25px 100px;*/
+    bottom: 20px;
+    left: 85px;
+    z-index: 1;
+    position: fixed;
 
-    position:fixed;
+    display: block;
+ 
+    margin: 0 auto;
+ 
 }
 
 #add-image {
@@ -428,7 +433,7 @@ li {
 }
 
 #old_events {
-    max-height: 70%;
+   /* max-height: 70%;*/
 }
 
 button:hover {
@@ -440,7 +445,10 @@ img:hover {
 }
 
 #events_list {
-    max-height: 80%;
+    /*margin-bottom: -200px;*/
+    z-index: 0;
+    /*padding-bottom: 20%;
+    max-height: 80%;*/
 }
 
 #logo-image {
