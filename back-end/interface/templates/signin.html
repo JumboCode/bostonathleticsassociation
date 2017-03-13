@@ -9,6 +9,7 @@
 {% endblock stylesheets %}
 
 {% block left-column %}
+<div id = "login-left">
 	<form name="LoginForm" action = "/" method="post">
 		{% csrf_token %}
 	    <div id = "login-buttons">
@@ -20,10 +21,10 @@
             <button type = "submit"></button>
         </div>
 	</form>
+    </div>
 {% endblock left-column %}
 
 {% block right-column %}
-    <span id = "top-text">SIGN</span>
-    <br>
-    <span id = "bottom-text">IN</span>
+    <div id = "logo-image">
+    </div>
 {% endblock right-column %}

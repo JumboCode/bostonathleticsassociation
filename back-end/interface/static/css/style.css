@@ -46,13 +46,15 @@ body {
    /* min-height: 100%;
     height: auto !important;
     max-height:100%;
-    */background-color: #035898;
+    */
     font-size: 2rem;
     font-family: FrutigerCELight;
 top:0;
 bottom:0;
 position:fixed;
 overflow-y: scroll;
+background: url("../images/BAALOGO.png") no-repeat center;
+background-color: #035898;
 }
 
 ::-webkit-input-placeholder {
@@ -100,7 +102,7 @@ input:-webkit-autofill {
    color: grey;  
 }
 #login-buttons {
-    padding-top: 95%;
+    padding-top: 70%;
     text-align: center;
     padding-bottom: 45px;
 }
@@ -135,14 +137,17 @@ input:-webkit-autofill {
 }
 
 #Events {
-    background-color: #035898;
-    height: 100%;
+    /*background-color: #035898;*/
+    min-height: 100%;
     /*overflow: auto;*/
-    background: url("../images/BAALOGO.png")  center;
+    
+    padding-bottom: 18%;
+    /*margin-bottom: 10%;*/
 }
 
 ul {
     padding-top: 12px;
+    max-height: 80%;
 
     font-family: FrutigerCERoman;
     font-size: 30px;
@@ -401,8 +406,13 @@ li {
     bottom: 20px;
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 5%;
-    left: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-style:solid;
+    border-color: #035898;
+    border-width: 25px 80px 25px 100px;
+    bottom: 0;
+    left:0;
 
     position:fixed;
 }
@@ -412,10 +422,36 @@ li {
 }
 
 #new_button {
-    background-color: #035898;
+    background-color: #035898 !important;
+    background: none !important;
+
 }
 
 #old_events {
     max-height: 70%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+img:hover {
+    cursor:pointer;
+}
+
+#events_list {
+    max-height: 80%;
+}
+
+#logo-image {
+    float:right;
+    height:80%;
+    width: 50%;
+    right:0;
+    padding-right: 0;
+    background: url("../images/BAALOGO.png")  no-repeat center;  
+
+}
+#login-left {
+    background: linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
+}
