@@ -136,6 +136,11 @@ def DownloadFileGet(self, request, file):
     response['Content-Disposition'] = 'attachment; filename=%s' %file_name
 
     return response
+'''
+def DeleteEventGet(self, request, event):
+    attendee_list = Attendee.objects.filter(event=event)
+    attendee_list.delete()
+'''
 
 
 # Api Call That Creates Usernames and passwords For All Team Captains,

@@ -18,7 +18,7 @@ class Volunteer(models.Model):
     phone = models.CharField(max_length=20, default=None, null=True)
     city = models.CharField(max_length=30, default=None, null=True)
     state = models.CharField(max_length=30, default=None, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     # def __str__(self):
        # first_name = self.volunteer.first_name + " " + self.volunteer.last_name
