@@ -448,8 +448,7 @@ img:hover {
     height:80%;
     width: 50%;
     right:0;
-    padding-right: 0;
-    background: url("../images/BAALOGO.png")  no-repeat center;  
+    padding-right: 0;  
 
 }
 #login-left {
