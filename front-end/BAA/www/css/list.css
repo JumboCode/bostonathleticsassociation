@@ -45,6 +45,8 @@ body {
 .largerB{
 	font-size: 100% !important;
 	margin-right: 10px;
+	font-family: frutigerBold !important;
+	color: #4a4a4a !important;
 }
 .hide{
 	display:none;
@@ -105,12 +107,16 @@ body {
 	src: url(/fonts/Frutiger_CE_45_Light.ttf);
 }
 
+@font-face {
+	font-family: frutigerBold;
+	src: url(/fonts/Frutiger_LT_67_Bold_Condensed.ttf);
+}
+
 .list .item {
 	border: 0px;
 	margin: 10px;
 	border-radius: 25px;
 }
-
 
 .button {
 	padding-left: 0px;

@@ -26,7 +26,8 @@ angular.module('starter', ['ionic'])
 })
 
 var token;
-var domain = "http://localhost:8000/";
+//var domain = "http://localhost:8000/";
+var domain = "";
 function checkCredentials() {
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
