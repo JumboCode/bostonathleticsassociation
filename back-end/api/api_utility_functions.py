@@ -19,6 +19,7 @@ from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerialize
 
 # Api Call that Deals With Creating New Event
 
+
 def EventListPost(self, request, *args, **kwargs):
 
     serializer_class = EventSerializer
@@ -174,7 +175,7 @@ def NotifyTeamCaptainsGet(self, request, event):
             new_user = User.objects.create_user(username=username, email=team_captain[0],
                                                 password=password)
             new_user.profile.volunteer = vol
-            new_user.profile.volunteer.save()
+            new_user.profile.save()
             new_user.save()
 
         message = "Hello, " + team_captain[2] + ",\n \n Your username is:  " + username + \

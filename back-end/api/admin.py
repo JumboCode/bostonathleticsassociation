@@ -1,23 +1,29 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from api import models
+from .models import *
+
 
 class VolunteerAdmin(admin.ModelAdmin):
     list_display = ('id','first_name', 'last_name', 'email', 'phone', 'city', 'state')
     readonly_fields = ['id']
 
+
 class VolunteerInline(admin.StackedInline):
-    model = models.Volunteer
+    model = Volunteer
     can_delete = False
     verbose_name_plural = 'Volunteer'
 
-# class ProfileAdmin(admin.ModelAdmin):
-#     model = models.Profile
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    verbose_name_plural = 'Profile'
+
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'date', 'csv')
     readonly_fields = ['id']
+
 
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_volunteer', 'get_event', 'status', 'get_team_captain',
@@ -48,12 +54,12 @@ class AttendeeAdmin(admin.ModelAdmin):
     get_team_captain.short_description = "Team Captain"
     get_team_captain.admin_order_field = "attendee_team_captain"
 
+
 class UserAdmin(BaseUserAdmin):
-    inlines = (VolunteerInline,)
+    inlines = (ProfileInline,)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-admin.site.register(models.Volunteer, VolunteerAdmin)
-admin.site.register(models.Event, EventAdmin)
-admin.site.register(models.Attendee, AttendeeAdmin)
-# admin.site.register(models.Profile, ProfileAdmin)
+admin.site.register(Volunteer, VolunteerAdmin)
+admin.site.register(Event, EventAdmin)
+admin.site.register(Attendee, AttendeeAdmin)

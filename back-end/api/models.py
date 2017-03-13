@@ -19,19 +19,21 @@ class Volunteer(models.Model):
     city = models.CharField(max_length=30, default=None, null=True)
     state = models.CharField(max_length=30, default=None, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
+
+# Modified User class with a FK to volunteer
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     volunteer = models.ForeignKey(Volunteer, default=None, null=True)
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)       
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)       
-def save_user_profile(sender, instance, created, **kwargs):
-    instance.profile.save()
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
@@ -40,6 +42,7 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Attendee(models.Model):
     volunteer = models.ForeignKey(Volunteer, related_name="volunteer")
