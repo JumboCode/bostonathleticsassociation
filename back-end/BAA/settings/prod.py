@@ -14,4 +14,4 @@ DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-ALLOWED_HOSTS = ['floating-castle-71814.herokuapp.com'] # apparently you need to have this
+ALLOWED_HOSTS = ['floating-castle-71814.herokuapp.com']         # apparently you need to have this
