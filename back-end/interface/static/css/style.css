@@ -53,8 +53,8 @@ top:0;
 bottom:0;
 position:fixed;
 overflow-y: scroll;
-background: url("../images/BAALOGO.png") no-repeat center;
-background-color: #035898;
+background: url("../images/BAALOGO.png") center center no-repeat, linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
+/*background-color: #035898;*/
 }
 
 ::-webkit-input-placeholder {
@@ -143,6 +143,8 @@ input:-webkit-autofill {
     
     padding-bottom: 20%;
     /*margin-bottom: 10%;*/
+
+
 }
 
 ul {
