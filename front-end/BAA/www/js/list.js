@@ -4,7 +4,7 @@ StatusEnum = {
     cancelled : 2
 };
 
-var domain = "http://localhost:8000/";
+var domain = "";
 angular.module('starter', ['ionic'])
     .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
         var token = localStorage.getItem("token");
