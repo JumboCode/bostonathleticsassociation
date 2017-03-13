@@ -166,15 +166,15 @@ def NotifyTeamCaptainsGet(self, request, event):
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)
             user.set_password(password)
-            user.volunteer = Volunteer.objects.get(pk=team_captain[1])
-            user.volunteer.save()
+            user.profile.volunteer = Volunteer.objects.get(pk=team_captain[1])
+            user.profile.volunteer.save()
             user.save()
         else:
             vol = Volunteer.objects.get(pk=team_captain[1])
             new_user = User.objects.create_user(username=username, email=team_captain[0],
                                                 password=password)
-            new_user.volunteer = vol
-            new_user.volunteer.save()
+            new_user.profile.volunteer = vol
+            new_user.profile.volunteer.save()
             new_user.save()
 
         message = "Hello, " + team_captain[2] + ",\n \n Your username is:  " + username + \

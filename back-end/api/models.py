@@ -18,11 +18,20 @@ class Volunteer(models.Model):
     phone = models.CharField(max_length=20, default=None, null=True)
     city = models.CharField(max_length=30, default=None, null=True)
     state = models.CharField(max_length=30, default=None, null=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
-    # def __str__(self):
-       # first_name = self.volunteer.first_name + " " + self.volunteer.last_name
-       #return first_name
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    volunteer = models.ForeignKey(Volunteer, default=None, null=True)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)       
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)       
+def save_user_profile(sender, instance, created, **kwargs):
+    instance.profile.save()
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
