@@ -32,7 +32,6 @@ body {
     overflow: auto;
 }
 
-
 #wrapper {
     height: 100%;
     width: 100%;
@@ -42,24 +41,18 @@ body {
 #left-col {
     color: white;
     float: left;
-    /*width: 30%;*/
-   /* min-height: 100%;
-    height: auto !important;
-    max-height:100%;
-    */
     font-size: 2rem;
     font-family: FrutigerCELight;
-top:0;
-bottom:0;
-position:fixed;
-overflow-y: scroll;
-overflow-x:none;
-background: url("../images/BAALOGO.png") center center no-repeat, linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
-/*background-color: #035898;*/
+    top:0;
+    bottom:0;
+    position:fixed;
+    overflow-y: scroll;
+    overflow-x:none;
+    background: url("../images/BAALOGO.png") center center no-repeat, linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
 }
 
 ::-webkit-input-placeholder {
-   color: #F3F3F3;
+   color: grey;
 }
 
 @-webkit-keyframes autofill {
@@ -86,22 +79,6 @@ input:-webkit-autofill {
    color: #F3F3F3;  
 }
 
-
-
-#edit-new_event::-webkit-input-placeholder {
-   color: grey;
-}
-#edit-new_event:-moz-placeholder { /* Firefox 18- */
-   color: grey;  
-}
-
-#edit-new_event::-moz-placeholder {  /* Firefox 19+ */
-   color: grey;  
-}
-
-#edit-new_event:-ms-input-placeholder {  
-   color: grey;  
-}
 #login-buttons {
     padding-top: 70%;
     text-align: center;
@@ -138,20 +115,14 @@ input:-webkit-autofill {
 }
 
 #Events {
-    /*background-color: #035898;*/
-    min-height: 100%;
-    /*overflow: auto;*/
-    
+    min-height: 100%;    
     padding-bottom: 20%;
-    /*margin-bottom: 10%;*/
-
-
 }
 
 ul {
     padding-top: 12px;
     max-height: 80%;
-margin-left:-20px;
+    margin-left:-20px;
     font-family: FrutigerCERoman;
     font-size: 30px;
 
@@ -168,14 +139,6 @@ li {
     font-family: FrutigerLTRoman;
 }
 
-/*FEbutton {
-    background: url("../images/newevent.png") no-repeat center;
-    border: none;
-    width: 280px;
-    height: 70px;
-    bottom: 20px;
-}*/
-
 #signin-button {
     text-align: center;
     padding-bottom: 10%;
@@ -190,19 +153,17 @@ li {
 
 #right-col {
     display: block;
-    /*float: right;*/
-    width: 40%;
+    width: 50%;
     height: 100%;
     padding-top: 9%;
     padding-left:20%;
     font-size: 40px;
     font-family: FrutigerLTBoldCondensed;
-    /*line-height: 100px;*/
 }
 
 #right-col-content-add, #right-col-content-view, #right-col-content-edit {
     display: none;
-    width:40%;
+    width:50%;
     float:right;
 }
 
@@ -211,20 +172,11 @@ li {
     font-size: 20px;
 }
 
-
 body {
     line-height: 20px !important;
     font-size: 1.7rem !important;
     background-color: white;
     text-align: center;
-}
-
-.new {
-    color: #EC9591;
-}
-
-.ev {
-    color: #EEC3BC;
 }
 
 .month {
@@ -245,13 +197,13 @@ body {
     margin-bottom: 2.3rem;
 }
 
-#add-up_vol, #view-up_vol, #edit-up_vol {
+#add-up_vol {
     color: #4A4A4A;
     opacity: .60;
     font-size: 1.7rem;
 }
 
-#add-submit, #view-submit {
+#add-submit {
     margin-top: 4.6rem;
 }
 
@@ -300,10 +252,6 @@ body {
     color: white;
 }
 
-#edit-m, #edit-d, #edit-y {
-    color: white;
-}
-
 .past {
     min-width: 100px;
     background-color: #9B9B9B;
@@ -320,13 +268,6 @@ body {
     top: -70px;
     float: right;
     color: #828080;
-}
-
-#year_picker {
-    text-align: right;
-    margin-right: 30px;
-    margin-top: 10px;
-    margin-bottom: 5px;
 }
 
 @media only screen and (max-width: 128000px) {
@@ -400,29 +341,15 @@ ul {
 
 li {
     width: 100%;
-    /*padding-left: 85px;*/
 }
 
 #new_event_butt {
-    /*background: url("../images/newevent.png") no-repeat center;*/
     border: none;
-    /*width: 280px;
-    height: 70px;
-    bottom: 20px;*/
-    /*padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 25px;
-    padding-bottom: 25px;*/
-    /*border-style:solid;
-    border-color: #035898;
-    border-width: 25px 80px 25px 100px;*/
     bottom: 20px;
     left: 85px;
     z-index: 1;
     position: fixed;
-
     display: block;
- 
     margin: 0 auto;
  
 }
@@ -437,10 +364,6 @@ li {
 
 }
 
-#old_events {
-   /* max-height: 70%;*/
-}
-
 button:hover {
     cursor: pointer;
 }
@@ -450,10 +373,7 @@ img:hover {
 }
 
 #events_list {
-    /*margin-bottom: -200px;*/
     z-index: 0;
-    /*padding-bottom: 20%;
-    max-height: 80%;*/
 }
 
 #logo-image {
