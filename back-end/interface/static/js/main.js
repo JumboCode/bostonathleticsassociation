@@ -9,6 +9,7 @@ var year_change;
 var day_change;
 var month_change;
 
+/* Adds a new event */
 function add_event() {
     if (($('#right-col-content-edit').css('display') == 'block'))
         $("#right-col-content-edit").toggle("show");
@@ -44,31 +45,8 @@ function add_event() {
     day_change = false;
     new_file = false;
 }
-/*
-function view_past_event(i, events) {
-    if (($('#right-col-content-edit').css('display') == 'block'))
-        $("#right-col-content-edit").toggle("show");
-    if (($('#right-col-content-add').css('display') == 'block'))
-        $("#right-col-content-add").toggle("show");
-	var title = events[i].fields.name;
-	var month = events[i].fields.date.substr(5,2);
-	var day = events[i].fields.date.substr(8,2);
-	var year = events[i].fields.date.substr(0,4);
-    var date = month + '/' + day + '/' + year;
-    var init_title = $('#past_event').html();
-    var init_date = $('#view-date').html();
-    $('#past_event').html(title);
-    $('#view-date').html(date);
-    if (($('#right-col-content-view').css('display') != 'block') ||
-        ((init_title == title && init_date == date))) {
-        $("#right-col-content-view").toggle("show");
-    }
-    else {
-        $("#right-col-content-view").toggle("show");
-        $("#right-col-content-view").toggle("show");
-    }
-}*/
 
+/* Displays event info */
 function edit_event(i, events) {
     if (($('#right-col-content-view').css('display') == 'block'))
         $("#right-col-content-view").toggle("show");
@@ -89,7 +67,7 @@ function edit_event(i, events) {
     var file_name = file_path.substring(file_path.lastIndexOf('/')+1);
     new_event_string = '';
     $("#name").html("<p>" + title + "</p>");
-	$("#date").html("<p>" + month + "/" + day + "/" + year + "</p>");
+    $("#date").html("<p>" + month + "/" + day + "/" + year + "</p>");
     $("#delete-button").attr("onclick","delete_event(" + i + ",  ent)");
     $("#user-pass-button").attr("onclick", "send_email(" + i + ", ent)");
 
@@ -109,6 +87,8 @@ function edit_event(i, events) {
     }
 }
 
+
+/* Checks for csv file extension */
 function check_file(func) {
     new_file = true;
 	file = $("#"+func+"-image").prop("files")[0];
@@ -125,6 +105,7 @@ function check_file(func) {
 	$("#"+func+"-up_vol").html(file_name + remove); 
 }
 
+/* If user clicks 'x', remove csv file */
 function remove_upload(func) {
 
 	var new_event_string = '';
@@ -136,6 +117,7 @@ function remove_upload(func) {
     $("#"+func+"-up_vol").html("Upload Volunteer Profiles");
 }
 
+/* retrieves data from user input boxes */
 function get_new_event_info() {
     var new_event = document.getElementById("add-new_event").value;
 
@@ -193,54 +175,7 @@ function set_year(n, func) {
 	year = n;
 }
 
-function close_pop() {
-    $("#right-col-content-add").toggle(false);
-    $("#right-col-content-edit").toggle(false);
-    $("#right-col-content-view").toggle(false);
-
-}
-
-function fill_year_picker() {
-    var year_string = '';
-    var current_year = new Date().getFullYear();
-
-    var str = "Year ";
-    year_string += '<li onclick = "set_year_picker(0)" style="padding-left: 5%; padding: 2.5%">Year</li>';
-
-    for (i = current_year - 10; i <= current_year + 10; i++) {
-        year_string += '<li onclick = "set_year_picker(' + i + ')" style="padding-left: 5%; padding: 2.5%">' + i + '</li>';
-    }
-
-    document.getElementById("yp").innerHTML = year_string;
-}
-
-function set_year_picker(year) {
-    if (year == 0) {
-        document.getElementById("findyear").innerHTML = "Year ";
-    } else {
-        document.getElementById("findyear").innerHTML = year;
-    }
-    get_all_events();
-}
-
-function get_all_events() {
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            events = JSON.parse(xhr.responseText);
-            show_sorted();
-        }
-    }   
-
-    var url = window.location.origin;
-    xhr.open("GET", url + "/api/events/");
-    xhr.setRequestHeader("Authorization", window.token);
-
-    xhr.send();
-}
-
+/* Retrieves and displays all events */
 function show_sorted(ent) {
     var events_string = ""; 
     console.log(ent);
@@ -251,6 +186,7 @@ function show_sorted(ent) {
     document.getElementById("old_events").innerHTML = events_string;
 }
 
+/* To be used later to not allow sending out emails for past events */
 function check_past_date(date) {
     var d = new Date();
     var current_year = d.getFullYear();
@@ -275,57 +211,7 @@ function check_past_date(date) {
     return false;
 }
 
-function update_event_data(i, events) {
-    var new_event = document.getElementById("edit-new_event").value;
-    var date = events[i].fields.date;
-
-    if (!(day_change || year_change || month_change || 
-        !(new_event == "") || new_file)) {
-        return;
-    }
-        
-    if (day_change) {
-        date = date.substr(0, 8) + day;
-    }
-
-    if (year_change) {
-        date = year + date.substr(4, 6);
-    }
-
-    if (month_change) {
-        date = date.substr(0, 5) + month + date.substr(7, 3);
-    }
-
-    var url = window.location.origin;
-
-    var data = new FormData();
-
-    if (new_event != "") {
-        data.append("name", new_event);
-    }
-
-    data.append("date", date);
-
-    if (new_file)
-        data.append("csv", file);
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-            events[i].fields = JSON.parse(this.responseText);
-            if (new_event != "")
-                get_all_events();
-        }
-    });
-    //xhr.open("PATCH", url + "/api/events/" + events[i].fields.id + "/"); There is no id
-    xhr.open("PATCH", url + "/api/events/" + events[i].pk + "/");
-    xhr.setRequestHeader("Authorization", window.token);
-
-    xhr.send(data);
-}
-
-
+/* Deletes using api endpoint */
 function delete_event(i, events) {
 
     var xhr = new XMLHttpRequest();
@@ -343,6 +229,7 @@ function delete_event(i, events) {
     xhr.send();
 }
 
+/* Notifies team capains */
 function send_email(i, events) {
     $("#user-pass-button").attr("class", "btn btn-default disabled");
     $("#red-alert").toggle("show");
