@@ -10,7 +10,7 @@
 
 {% block left-column %}
 <div id = "login-left">
-	<form name="LoginForm" action = "/" method="post">
+	<form name="LoginForm" action = "/" method="post" autocomplete="off">
 		{% csrf_token %}
 	    <div id = "login-buttons">
 	        <span id = "Username"><input type = "text" autocomplete = "off" name = "username" placeholder = "Username"></span><br>
