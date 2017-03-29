@@ -153,18 +153,18 @@ li {
 
 #right-col {
     display: block;
-    width: 50%;
+    width: 80%;
     height: 100%;
-    padding-top: 20%;
-    padding-left: 60%;
+    padding-top: 9%;
+    padding-left: 20%;
     font-size: 40px;
     font-family: FrutigerLTBoldCondensed;
-    text-align: center;
 }
 
 #right-col-content-add, #right-col-content-view, #right-col-content-edit {
     display: none;
-    width:100%;
+    width:70%;
+    padding-right: 20%;
     float:right;
 }
 
@@ -277,7 +277,7 @@ body {
     }
 
     #right-col {
-        width: 1000px;
+        width: 100%;
     }
 
     #search > input {
@@ -378,11 +378,11 @@ img:hover {
 }
 
 #logo-image {
-    float:right;
     height:80%;
     width: 50%;
     right:0;
     padding-right: 0;  
+    padding-left: 23%;
 
 }
 #login-left {
