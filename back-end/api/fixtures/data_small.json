@@ -1,11 +1,48 @@
 [
   {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$30000$S6o4EcyRADJq$58OR2hLFCkLZbuHXzYzjNh25TT1gtGJDIzEt9+NpcrY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "sweatshirt@aol.com",
+        "first_name": "Earl",
+        "last_name": "Sweatshirt",
+        "email": "sweatshirt@aol.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2017-03-06T02:49:20Z",
+        "groups": [],
+        "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$nip2tsCwzPj4$DhgRs0dEocH1O8/7cnp5JTEw7cCJ3yOTVYg3t2saA8Y=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "markymarky@mark.com",
+      "first_name": "",
+      "last_name": "",
+      "email": "markymarky@mark.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-03-06T02:52:55Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+
+  {
     "model": "api.event",
     "pk": 1,
     "fields": {
       "name": "Boston Marathon",
       "csv": "file/simple_csv_56oKwOt.csv",
-      "date": "2016-10-19T09:00:41Z"
+      "date": "2017-03-08"
     }
   },
 
@@ -13,15 +50,13 @@
     "model": "api.volunteer",
     "pk": 1,
     "fields": {
-      "name": "Babe Ruth",
+      "first_name":"Babe",
+      "last_name":"Ruth",
       "phone": "434324324234",
       "email": "spencer.perry@tufts.edu",
-      "city": "Home Run",
+      "city": "Baltimore",
       "state": "Maryland",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "XS",
-      "status": "Ok"
+      "user": null
     }
   },
 
@@ -29,15 +64,13 @@
     "model": "api.volunteer",
     "pk": 2,
     "fields": {
-      "name": "Michael Jordan",
+      "first_name": "Michael",
+      "last_name": "Jordan",
       "phone": "3243423423",
       "email": "iamthebest@michaeljordan.com",
       "city": "Chicago",
       "state": "Illinois",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "L",
-      "status": "Ok"
+      "user": null
     }
   },
 
@@ -45,15 +78,13 @@
     "model": "api.volunteer",
     "pk": 3,
     "fields": {
-      "name": "Earl Sweatshirt",
+      "first_name": "Earl",
+      "last_name": "Sweatshirt",
       "phone": "3943288904",
       "email": "sweatshirt@aol.com",
       "city": "LA",
       "state": "Cali",
-      "years_of_service": "4",
-      "jacket": "Yes",
-      "jacket_size": "M",
-      "status": "3"
+      "user": 2
     }
   },
 
@@ -64,8 +95,10 @@
       "volunteer": 1,
       "event": 1,
       "team_captain": 3,
-      "at_event": true,
-      "notes": "Made it to the event"
+      "status": 0,
+      "notes": "Made it to the event",
+      "assignment_id": 3,
+      "job_descrip": "Water"
     }
   },
 
@@ -73,11 +106,13 @@
     "model": "api.attendee",
     "pk": 2,
     "fields": {
-      "volunteer": "3",
-      "event": "1",
-      "team_captain": 1,
-      "at_event": true,
-      "notes": "What"
+      "volunteer": 2,
+      "event": 1,
+      "team_captain": 3,
+      "status": 0,
+      "notes": "What",
+      "assignment_id": 3,
+      "job_descrip": "Water"
     }
   },
 
@@ -85,11 +120,13 @@
     "model": "api.attendee",
     "pk": 3,
     "fields": {
-      "volunteer": 2,
+      "volunteer": 3,
       "event": 1,
-      "team_captain": 1,
-      "at_event": true,
-      "notes": "sjcidsoj"
+      "team_captain": 3,
+      "status": 0,
+      "assignment_id": 3,
+      "notes": "Hello, I am the team Captain",
+      "job_descrip": "You are the team Captain"
     }
   }
 ]

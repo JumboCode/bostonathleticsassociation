@@ -12,35 +12,49 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 class Volunteer(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.CharField(max_length=50)
-    phone = models.CharField(max_length=20)
-    city = models.CharField(max_length=30)
-    state = models.CharField(max_length=30)
-    years_of_service = models.CharField(max_length=3)
-    jacket = models.CharField(max_length=30)
-    jacket_size = models.CharField(max_length=30)
-    status = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30, default=None, null=True)
+    last_name = models.CharField(max_length=30, default=None, null=True)
+    email = models.CharField(max_length=50, default=None, null=True)
+    phone = models.CharField(max_length=20, default=None, null=True)
+    city = models.CharField(max_length=30, default=None, null=True)
+    state = models.CharField(max_length=30, default=None, null=True)
 
     def __str__(self):
-       return self.name
+        return '%s %s' % (self.first_name, self.last_name)
+
+
+# Modified User class with a FK to volunteer
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    volunteer = models.ForeignKey(Volunteer, default=None, null=True)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)       
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
-    date = models.CharField(max_length=30)
+    date = models.DateField()
     csv = models.FileField(null=True, upload_to='file')
 
     def __str__(self):
         return self.name
 
+
 class Attendee(models.Model):
     volunteer = models.ForeignKey(Volunteer, related_name="volunteer")
     event = models.ForeignKey(Event, related_name="event", related_query_name="event")
-    at_event = models.IntegerField(default=0)
+    status = models.IntegerField(default=0)
     notes = models.TextField(blank=True, null=True)
     team_captain = models.ForeignKey(Volunteer, related_name="team_captain", null=True)
-    team_cap_name = models.CharField(max_length=50, null=True)
+    assignment_id = models.IntegerField(null=True, default=None)
+    job_descrip = models.CharField(max_length=50, null=True, default=None)
 
-    def __str__(self):
-        return self.volunteer.name
+
+    #def __str__(self):
+     #   name = self.volunteer.first_name + " " + self.volunteer.last_name
+     #   return name
 
