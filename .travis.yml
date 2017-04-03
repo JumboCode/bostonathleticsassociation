@@ -27,8 +27,8 @@ script:
 notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
 
-#after_success:
- # - git subtree push --prefix back-end heroku master
+after_success:
+  - git subtree push --prefix back-end heroku master
 
 deploy:
   provider: heroku
