@@ -27,9 +27,12 @@ script:
 notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
 
+#after_success:
+ # - git subtree push --prefix back-end heroku master
+
 deploy:
   provider: heroku
   api_key: "${DEPLOY_API_KEY}"
   app: floating-castle-71814
-  on: heroku
+  on: master
   run:
