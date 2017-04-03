@@ -77,10 +77,15 @@ def EventListPost(self, request, *args, **kwargs):
 
     # match attendee with their team captain
     for a in new_attendees:
+        found = False
         for cap in captains:
             if cap.assignment_id == a.assignment_id:
+                found = True
                 a.team_captain = cap.volunteer
                 a.save()
+        if not found:
+            return JsonResponse({'error':'Error With CSV, no team captain assigned to group'})
+
 
     event.csv = req_csv
     event.save()
