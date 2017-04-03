@@ -276,6 +276,7 @@ body {
 @media only screen and (max-width: 128000px) {
     #left-col {
         width: 450px;
+        overflow-x: hidden;
     }
 
     #right-col {
@@ -394,4 +395,5 @@ img:hover {
 
 #add-new_event {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 4.5rem;
 }
