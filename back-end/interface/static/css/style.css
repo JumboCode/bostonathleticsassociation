@@ -389,9 +389,7 @@ img:hover {
 
 }
 #login-left {
-    /*background: linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
-    */
-    background: purple;
+    background: linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
     min-height:100%;
 }
 
