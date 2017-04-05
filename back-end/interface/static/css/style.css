@@ -49,6 +49,7 @@ body {
     overflow-y: scroll;
     overflow-x:none;
     background: url("../images/BAALOGO.png") center center no-repeat, linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
+    z-index:100000000000;
 }
 
 ::-webkit-input-placeholder {
@@ -166,6 +167,7 @@ li {
     width:70%;
     padding-right: 20%;
     float:right;
+
 }
 
  #red-alert, #green-alert {
@@ -274,6 +276,7 @@ body {
 @media only screen and (max-width: 128000px) {
     #left-col {
         width: 450px;
+        overflow-x: hidden;
     }
 
     #right-col {
@@ -392,4 +395,6 @@ img:hover {
 
 #add-new_event {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 4.5rem;
+    padding: 10px;
 }

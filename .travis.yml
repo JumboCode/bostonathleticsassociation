@@ -18,18 +18,23 @@ install:
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
   - python back-end/manage.py migrate
-  - python back-end/manage.py loaddata back-end/api/fixtures/data_small.json
+  # - python back-end/manage.py loaddata back-end/api/fixtures/data_small.json
 
 script:
-  - python back-end/manage.py test api
+  #- python back-end/manage.py test api
   - python back-end/manage.py test interface
 
 notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
 
+#after_success:
+#  - git subtree push --prefix back-end heroku master
+
 deploy:
   provider: heroku
   api_key: "${DEPLOY_API_KEY}"
   app: floating-castle-71814
-  on: heroku
+  on: 
+    all-branches: true
+  strategy: git
   run:
