@@ -21,7 +21,7 @@ before_script:
   - python back-end/manage.py loaddata back-end/api/fixtures/data_small.json
 
 script:
-  - python back-end/manage.py test api
+  #- python back-end/manage.py test api
   - python back-end/manage.py test interface
 
 notifications:
