@@ -30,6 +30,9 @@ notifications:
 #after_success:
 #  - git subtree push --prefix back-end heroku master
 
+before_deploy:
+  - cd back-end
+
 deploy:
   provider: heroku
   api_key: "${DEPLOY_API_KEY}"
