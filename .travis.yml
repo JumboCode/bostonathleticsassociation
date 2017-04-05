@@ -34,6 +34,7 @@ deploy:
   provider: heroku
   api_key: "${DEPLOY_API_KEY}"
   app: floating-castle-71814
-  on: master
+  on: 
+    all-branches: true
   strategy: git
   run:
