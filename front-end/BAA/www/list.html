@@ -37,7 +37,7 @@
         <text><span class = "in_out1">Checked-in</span><span class = "in_out1">No show</span><span class = "in_out1">Cancelled</span></text>
       </div>
       <ion-list class = "list_c">
-          <ion-item ng-repeat="attendee in attendees| filter: ({volunteer: {fisrt_name: searchQuery}})" class="item item-button-right">
+          <ion-item ng-repeat="attendee in attendees| filter: ({volunteer: {first_name: searchQuery}})" class="item item-button-right">
             <button class =" largerB" ng-click="showPrompt(attendee.volunteer)">{{attendee.volunteer.first_name + " " + attendee.volunteer.last_name}}</button>
             <div class = 'buttons' id="align-right">
               <img ng-src="{{(isCheckedIn(attendee) && 'img/checkedin1.png' || 'img/checkedin2.png')}}" class="button button-icon larger" id="left-button" ng-click="changeStatus(attendee, 'checkIn')">
