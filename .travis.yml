@@ -28,6 +28,7 @@ notifications:
   slack: bostonathletics:J9XbxJX2qRsYrTVzHxvCtwCq
 
 after_success:
+  - heroku git:remote -a floating-castle-71814
   - git subtree push --prefix back-end heroku master
 
 before_deploy:
