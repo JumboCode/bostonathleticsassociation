@@ -45,7 +45,7 @@ class Event(models.Model):
 
 
 class Attendee(models.Model):
-    volunteer = models.ForeignKey(Volunteer, related_name="volunteer")
+    volunteer = models.ForeignKey(Volunteer, related_name="volunteer", on_delete=models.CASCADE)
     event = models.ForeignKey(Event, related_name="event", related_query_name="event")
     status = models.IntegerField(default=0)
     notes = models.TextField(blank=True, null=True)
