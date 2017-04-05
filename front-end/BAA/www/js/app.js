@@ -41,15 +41,19 @@ function checkCredentials() {
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             token = JSON.parse(request.responseText)['token'];
-            console.log(token);
-
+            //console.log(token);
+            var resp = JSON.parse(request.responseText);
+            //console.log(resp);
             // TODO: Here's where we would parse the attendees list
-            var attendees;
-            // console.log(attendees);
+            // var attendeeRequest = new XMLHttpRequest();
+            // request.open();
+            var attendees = resp.volunteers;
+            //console.log(attendees);
+
             localStorage.setItem("attendees",JSON.stringify(attendees));
             localStorage.setItem("token", token);
             verCheck();
-            //window.location.href = "list.html";
+            window.location.href = "list.html";
         }
 
         if (request.readyState == 4 && request.status == 400) {
@@ -60,15 +64,7 @@ function checkCredentials() {
     request.send("username=" + user + "&password=" + pass);
 }
 
-// function showKeyboard() {
-//     console.log("N");
-//     if (window.cordova && window.cordova.plugins.Keyboard) {
-//       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-//       console.log("Y");
-//       window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-//     }
-//
-// }
+
 
 function verCheck(){
     var LS = localStorage.getItem('token');

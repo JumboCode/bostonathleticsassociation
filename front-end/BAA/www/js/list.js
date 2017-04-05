@@ -11,10 +11,10 @@ angular.module('starter', ['ionic'])
         var attendeesTemp = localStorage.getItem("attendees");
         $scope.attendees = JSON.parse(attendeesTemp);
         console.log($scope.attendees);
-        $scope.showPrompt = function (item) {
+        $scope.showPrompt = function (attendee) {
             $scope.data = {};
             var promptPopup = $ionicPopup.show({
-                title: item.name,
+                title: attendee.first_name,
                 scope: $scope,
                 cssClass: 'my-custom-popup',
                 template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" id="volunteer_comment"></textarea>',
@@ -22,7 +22,7 @@ angular.module('starter', ['ionic'])
                     text: 'Confirm',
                     type: 'button-positive',
                     onTap: function(){
-                        updateNotes($scope.data.input, item.id);
+                        updateNotes($scope.data.input, attendee.id);
                     }
                 }, {text: 'Cancel'}]
             });
@@ -32,20 +32,21 @@ angular.module('starter', ['ionic'])
 
         $scope.changeStatus = function (item, status) {
             // Item is a attendee
-            var url = domain + "/api/attendees/"+ item.id + "/";
+            var url = domain + "api/attendees/"+ item.id + "/";
             var request = new XMLHttpRequest();
             request.open("PATCH", url);
             request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             request.setRequestHeader('Authorization', 'Token ' + token);
             console.log(status);
+
             if (status == "checkIn") {
-                item.at_event = StatusEnum.checkedIn;
+                item.status = StatusEnum.checkedIn;
                 console.log("Checked in");
             } else if (status == "noShow") {
-                item.at_event = StatusEnum.noShow;
+                item.status = StatusEnum.noShow;
                 console.log("noShow");
             } else if (status == "cancelled") {
-                item.at_event = StatusEnum.cancelled;
+                item.status = StatusEnum.cancelled;
                 console.log("cancelled");
             }
 
@@ -53,15 +54,15 @@ angular.module('starter', ['ionic'])
         };
 
         $scope.isCheckedIn = function (item) {
-            return item.at_event == StatusEnum.checkedIn;
+            return item.status == StatusEnum.checkedIn;
         };
 
         $scope.isNoShow = function (item) {
-            return item.at_event == StatusEnum.noShow;
+            return item.status == StatusEnum.noShow;
         };
 
         $scope.isCancelled = function (item) {
-            return item.at_event == StatusEnum.cancelled;
+            return item.status == StatusEnum.cancelled;
         };
     });
 
@@ -71,7 +72,7 @@ angular.module('starter', ['ionic'])
 function updateNotes(res, ID) {
     console.log(res);
     var token = localStorage.getItem("token");
-    var url = domain + "/api/attendees/" + ID + "/";
+    var url = domain + "api/attendees/" + ID + "/";
     var request = new XMLHttpRequest();
     request.open("PATCH", url);
     request.setRequestHeader("content-type", "application/x-www-form-urlencoded");

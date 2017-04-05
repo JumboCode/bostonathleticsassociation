@@ -5,7 +5,9 @@ body {
 
 #vol {
 	display: block;
-	padding-top: 15px;
+	padding-top: -2%;
+	margin-top: 0%;
+	font-family: inherit;
 }
 
 @media (min-width: 322px) {
@@ -66,6 +68,7 @@ body {
 
 #user-search > input {
 	color: white !important;
+	height: 17%;
 }
 
 #buttons-label{
@@ -86,7 +89,7 @@ body {
 	border: solid !important;
 	border-width: 2px !important;*/
 	border: none;
-	height: 21%;
+	height: 18% !important;
 }
 
 #list-content {
