@@ -53,8 +53,3 @@ class Attendee(models.Model):
     assignment_id = models.IntegerField(null=True, default=None)
     job_descrip = models.CharField(max_length=50, null=True, default=None)
 
-
-    #def __str__(self):
-     #   name = self.volunteer.first_name + " " + self.volunteer.last_name
-     #   return name
-
