@@ -84,7 +84,10 @@ def EventListPost(self, request, *args, **kwargs):
                 a.team_captain = cap.volunteer
                 a.save()
         if not found:
+
+            Attendee.objects.filter(event=event).delete()
             return JsonResponse({'error':'Error With CSV, no team captain assigned to group'})
+
 
 
     event.csv = req_csv
