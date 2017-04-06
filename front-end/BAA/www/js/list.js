@@ -1,6 +1,6 @@
 StatusEnum = {
-    checkedIn : 0,
-    noShow : 1,
+    checkedIn : 1,
+    noShow : 0,
     cancelled : 2
 };
 
@@ -50,7 +50,7 @@ angular.module('starter', ['ionic'])
                 console.log("cancelled");
             }
 
-            request.send("at_event=" + String(item.at_event));
+            request.send("status=" + String(item.status));
         };
 
         $scope.isCheckedIn = function (item) {
