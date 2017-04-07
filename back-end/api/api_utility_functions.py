@@ -179,8 +179,8 @@ def NotifyTeamCaptainsGet(self, request, event):
             user.save()
         else:
             vol = Volunteer.objects.get(pk=team_captain[1])
-            new_user = User.objects.create_user(username=username, email=team_captain[0],
-                                                password=password)
+            new_user = User.objects.create_user(username=username, email=team_captain[0])
+            new_user.set_password(password)
             new_user.profile.volunteer = vol
             new_user.profile.save()
             new_user.save()
