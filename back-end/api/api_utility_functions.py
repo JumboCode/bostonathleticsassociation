@@ -194,7 +194,10 @@ def NotifyTeamCaptainsGet(self, request, event):
         from_email = "baattendence@gmail.com"
 
         email = (subject, message, from_email, [recipient])
-        emails.append(email)
+
+        # This just only sends the emails to not example account
+        if recipient.split('@')[1] != 'example.com':
+            emails.append(email)
 
     send_mass_mail(tuple(emails), fail_silently=False)
 
