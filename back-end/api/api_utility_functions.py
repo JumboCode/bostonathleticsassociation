@@ -12,6 +12,7 @@ from django.core import serializers
 import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
+import bleach
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
@@ -24,7 +25,7 @@ def EventListPost(self, request, *args, **kwargs):
 
     serializer_class = EventSerializer
 
-    req_name = request.data.__getitem__('name').clean()
+    req_name = bleach.clean(request.data.__getitem__('name'))
     req_date = request.data.__getitem__('date')
     req_csv  = request.FILES.get('csv')
 
