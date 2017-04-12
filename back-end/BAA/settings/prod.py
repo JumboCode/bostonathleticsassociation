@@ -31,3 +31,10 @@ LOGGING = {
         },
     },
 }
+
+EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
+
+POSTMARK_API_KEY     = os.getenv('POSTMARK_API_KEY')
+POSTMARK_SENDER      = 'baattendance@baa.com'
+POSTMARK_TEST_MODE   = False        # We can use this to just to see the json
+POSTMARK_TRACK_OPENS = False
