@@ -12,6 +12,7 @@ from django.core import serializers
 import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
+from django.utils.html import strip_tags
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
@@ -24,7 +25,7 @@ def EventListPost(self, request, *args, **kwargs):
 
     serializer_class = EventSerializer
 
-    req_name = request.data.__getitem__('name')
+    req_name = strip_tags(form.cleaned_data[request.data.__getitem__('name')])
     req_date = request.data.__getitem__('date')
     req_csv  = request.FILES.get('csv')
 
@@ -84,7 +85,10 @@ def EventListPost(self, request, *args, **kwargs):
                 a.team_captain = cap.volunteer
                 a.save()
         if not found:
+
+            Attendee.objects.filter(event=event).delete()
             return JsonResponse({'error':'Error With CSV, no team captain assigned to group'})
+
 
 
     event.csv = req_csv
@@ -176,8 +180,8 @@ def NotifyTeamCaptainsGet(self, request, event):
             user.save()
         else:
             vol = Volunteer.objects.get(pk=team_captain[1])
-            new_user = User.objects.create_user(username=username, email=team_captain[0],
-                                                password=password)
+            new_user = User.objects.create_user(username=username, email=team_captain[0])
+            new_user.set_password(password)
             new_user.profile.volunteer = vol
             new_user.profile.save()
             new_user.save()

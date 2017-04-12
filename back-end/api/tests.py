@@ -1,107 +1,173 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from .models import *
+from api.models import *
+import datetime
 import os
-
+from django.core import mail
 
 # Create your tests here.
 class Model_tests(TestCase):
     def test_volunteer(self):
-        store = Volunteer(name="Ian", email="ian@ianluo.com", 
-                          phone="1231231234", city="medford",
-                          jacket="yes", jacket_size="M")
-        self.assertEqual(store.name, "Ian")
+        store = Volunteer(first_name="Ian", last_name="Luo", email="ian@ianluo.com",
+                          phone="1231231234", city="medford", state="MA")
+        self.assertEqual(store.first_name, "Ian")
         store.save() # store into the db
 
-        retrieved = Volunteer.objects.get(name="Ian")
+        retrieved = Volunteer.objects.get(first_name="Ian")
         self.assertEqual(store.email, retrieved.email)
 
     def test_event(self):
         store = Event(name="Boston Marathon")
-        store.date = "12/02/1994" # this is my birthday!
+        store.date = "1994-12-02" # this is my birthday!
         store.save()
 
         retrieve = Event.objects.get(name="Boston Marathon")
-        self.assertEqual(retrieve.date, "12/02/1994")
+        self.assertEqual(retrieve.date, datetime.date(1994, 12, 2))
 
     def test_attendee(self):
         self.test_volunteer()
         self.test_event()
 
-        ian = Volunteer.objects.get(name="Ian")
+        ian = Volunteer.objects.get(first_name="Ian")
         ians_bday = Event.objects.get(name="Boston Marathon")
-        john_cena = Volunteer(name="John Cena").save()
+        john_cena = Volunteer(first_name="John", last_name="Cena").save()
 
-        new_attendee = Attendee(volunteer=ian, event=ians_bday, at_event=True, notes="Was lit", team_captain=john_cena)
+        new_attendee = Attendee(volunteer=ian, event=ians_bday, status=1, notes="Was lit", team_captain=john_cena,
+                                assignment_id=123, job_descrip="Eat Food")
         new_attendee.save()
 
         retrieve = Attendee.objects.get(notes="Was lit")
-        self.assertEqual(retrieve.volunteer.name, "Ian")
+        self.assertEqual(retrieve.volunteer.first_name, "Ian")
 
+    def test_new_cool_profile(self):
+        user = User.objects.create_user('holeyness', 'asdf@asdf.com')
+        user.set_password('19941202')
+        user.save()
+        # This should have created a User object which alongside has a Profile object
+
+        temp_volunteer = Volunteer.objects.create(first_name='Yoooo', email='asdf@asdf.com')
+        temp_volunteer.save()
+        user.volunteer = temp_volunteer
+        user.save()
+
+        # Let's retrieve it
+        my_user = User.objects.get(username='holeyness')
+        self.assertEqual(user.volunteer.first_name, 'Yoooo')
+
+    def test_token(self):
+        """Make sure a token was created"""
+        myuser = User.objects.create_user('plzwork', 'work@work.com')
+        myuser.set_password('123123123')
+        myuser.save()
+
+        self.assertIsNotNone(Token.objects.get(user=myuser))
 
 class API_tests(TestCase):
+    token = "k"
 
     def setUp(self):
-        User.objects.create_user(username='test-user', password='asdfasdfasdf')
-        Event(name="Boston Marathon", date="12/01/2017").save()
-        Volunteer(name="John", email="john@doe.com", 
-                          phone="1241231234", city="medfasdford",
-                          jacket="yes", jacket_size="M")
+        self.token = ""
+        sampletestuser = User.objects.create(username='yourmom')
+        sampletestuser.set_password('hihihihi')
+        sampletestuser.save()
+        # This should create a token and a Profile obj
+        sampleEvent = Event.objects.create(name='My Super Cool Event', date='2017-12-02')
+        sampleEvent.save()
+        sampleVolunteer = Volunteer.objects.create(first_name='My Volunteer')
+        sampleVolunteer.save()
+        sampleTeamCap = Volunteer.objects.create(first_name='Sample Team Cap')
+        sampleTeamCap.save()
+        sampleTeamCapAttendee = Attendee.objects.create(volunteer=sampleTeamCap,
+                                                        event=sampleEvent,
+                                                        status=1,
+                                                        team_captain=sampleTeamCap,
+                                                        assignment_id=5)
+        sampleTeamCapAttendee.save()
+        sampletestuser.profile.volunteer = sampleVolunteer
+        sampletestuser.save()
+        sampletestuser.profile.save()
 
+        # Create an attendee
+        sampleAttendee = Attendee.objects.create(volunteer=sampleVolunteer,
+                                                 event=sampleEvent,
+                                                 status=0,
+                                                 team_captain=sampleTeamCap,
+                                                 assignment_id=5,
+                                                 job_descrip='Wtf this kid didnt do shit'
+                                                 )
+        sampleAttendee.save()
+
+        self.token = str(Token.objects.get(user=sampletestuser))
 
     def test_token(self):
         c = Client()
-        response = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'})
+        response = c.post('/api-token-auth/', {'username': 'yourmom', 'password': 'hihihihi'})
+        self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.json()['token'])
         self.assertIsNotNone(response.json()['first_name'])
-
+        self.assertIsNotNone(response.json()['volunteers'])
 
     def test_events(self):
         c = Client()
-        token = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'}).json()['token']
-        response = c.get('/api/events/', HTTP_AUTHORIZATION = 'Token ' + token)
-        # lets try to get the list of events through the database as well to check both are fine
-        events = Event.objects.all()
-        self.assertEqual(len(response.json()), len(events))
-        self.assertNotEqual(len(response.json()), 0)
-        # self.assertEqual(len(response.json()), len(events))
-        # self.assertNotEqual(len(response.json()), 0)
+        response = c.get('/api/events/', {}, HTTP_AUTHORIZATION='Token ' + self.token)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(any(x['name'] == 'My Super Cool Event' for x in response.json()))
+
+        response = c.delete('/api/events/' + str(response.json()[0]['id']) + '/', {}, HTTP_AUTHORIZATION='Token ' + self.token)
+        self.assertIn(response.status_code, range(200, 300))
 
 
 class Integration_tests(TestCase):
+    """This full integration test will test the entire pipeline"""
+    c = Client()
     def setUp(self):
-        User.objects.create_user(username='test-user', password='asdfasdfasdf')
+        """Set it up
+        Get the token
+        Get the file"""
 
-        boston_marathon = Event(name="Boston Marathon", date="12/01/2017")
-        boston_marathon.save()
-        john = Volunteer(name="John", email="john@doe.com", 
-                          phone="1241231234", city="medfasdford",
-                          jacket="yes", jacket_size="M")
-        john.save()
-        jack = Volunteer(name="Jack", email="Jack@doe.com", 
-                          phone="1241231234", city="medfasdford",
-                          jacket="yes", jacket_size="M") # jack will be our team cap
-        jack.save()
+        self.c = Client()
 
-        Attendee(volunteer=john, event=boston_marathon, at_event=False, notes="", team_captain=jack)
+        # Create a superuser
+        sampleSuperUser = User.objects.create(username='god', email='example@example.com')
+        sampleSuperUser.set_password('iamthegod')
+        sampleSuperUser.is_superuser = True
+        sampleSuperUser.save()
 
-    def test_email(self):
-        self.assertIsNotNone(os.getenv('EMAIL_PASS'))
+        self.token = str(Token.objects.get(user=sampleSuperUser))
 
-    def test_checkin(self):
-        # gets an event and a teamcaptain and just tries to check someone in
-        c = Client()
-        token = c.post('/api-token-auth/', {'username': 'test-user', 'password': 'asdfasdfasdf'}).json()['token']
-        events = c.get('/api/events/', HTTP_AUTHORIZATION = 'Token ' + token).json()
-        volunteers = c.get('/api/volunteers/', HTTP_AUTHORIZATION = 'Token ' + token).json()
+        self.file = open(os.path.join(os.path.dirname(__file__), 'testCSV.csv'))
 
-        # work in progress
-        event = events[0]
-        attendee = c.get('/api/attendees/event/' + str(event['id']) + "/teamcap/" + str(volunteers[0]['id']), HTTP_AUTHORIZATION = 'Token ' + token)
-        # response = c.put('/api/attendees/' + str(attendee['id']) + '/', HTTP_AUTHORIZATION = 'Token ' + token, {'event': event['id'], 'at_event': True, 'notes': 'was lit', 'id': attendee['id'], 'volunteer': volunteers[1]['id']})
+    def testIntegrate(self):
+        response = self.c.post('/api/events/', {'name': 'BAA Event', 'date': '2017-12-21', 'csv': self.file},
+                               HTTP_AUTHORIZATION='Token ' + self.token)
+        # Created the event
+        print(response.json()['id'])
+        # Lets send the emails
+        eventid = str(response.json()['id'])
+        response = self.c.get('/api/notify_captains/event/' + eventid + '/', {}, HTTP_AUTHORIZATION='Token ' + self.token)
 
+        # Let's check the outbox
+        self.assertEqual(response.status_code, 200)     # Make sure our emails sent
 
-    # TODO: add groups and make sure they can't do things they aren't supposed to do
+        # WOAH!?!?!?!? I just parsed some cool email and pw out of that
+        email = mail.outbox[0].body.split("username is:  ")[1].split('\n')[0] or ""
+        pw = mail.outbox[0].body.split("password is:  ")[1].split('\n')[0] or ""
 
+        self.assertIsNot(email, "")
+        self.assertIsNot(pw, "")
+
+        # We are now a mobile client, we will use these username and pw to get my volunteers
+        response = self.c.post('/api-token-auth/', {'username': email, 'password': pw})
+
+        self.assertIsNotNone(response.json()['token']) # Make sure I have a token
+        self.assertIsNotNone(response.json()['first_name'])
+        self.assertIsNot(response.json()['first_name'], "") # Make sure my first name isnt empty
+        self.assertIsNotNone(response.json()['volunteers'])
+
+        # Lets do some specific checkings for thsi volunteer
+        volunteers = response.json()['volunteers']
+        self.assertTrue(any(vol['volunteer']['first_name'] == 'Mary' and vol['volunteer']['last_name'] =='Miller' for vol in volunteers))
+        self.assertTrue(any(vol['volunteer']['first_name'] == 'Tufts' and vol['volunteer']['last_name'] =='University' for vol in volunteers))
+        self.assertTrue(all(vol['team_captain']['first_name'] == 'Spencer' for vol in volunteers))
 
 

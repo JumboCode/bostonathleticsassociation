@@ -1,128 +1,137 @@
 body {
-  cursor: url('http://ionicframework.com/img/finger.png'), auto;
-  background-repeat: round;
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    background-repeat: round;
 }
 
 #vol {
-	display: block;
-	padding-top: 15px;
+    display: block;
+    padding-top: -2%;
+    margin-top: 0%;
+    font-family: inherit;
 }
 
 @media (min-width: 322px) {
-	.larger {
-	/*	width: 70% !important;
-		height: -5% !important;
-		*/
-		zoom: 0.5;
-	    -moz-transform: scale(0.5);
-	}
+    .larger {
+        /*	width: 70% !important;
+            height: -5% !important;
+            */
+        zoom: 0.5;
+        -moz-transform: scale(0.5);
+    }
 
-	.in_out1 {
-		margin-right: 17px;
-		margin-top: 100px !important;
-		color: gray;
-		padding: 0px;
-		font-size: 9px;
-	}
+    .in_out1 {
+        margin-right: 17px;
+        margin-top: 30% !important;
+        color: gray;
+        padding: 0px;
+        font-size: 9px;
+    }
 }
 
 @media (max-width: 321px ) {
-	.larger {
-	/*	width: 70% !important;
-		height: -5% !important;
-		*/
-		zoom: 0.4;
-	    -moz-transform: scale(0.4);
-	}
-	.in_out1 {
-		margin-right: 11px;
-		margin-top: 100px !important;
-		color: gray;
-		padding: 0px;
-		font-size: 9px;
-	}
-}
-.largerB{
-	font-size: 100% !important;
-	margin-right: 10px;
-	font-family: frutigerBold !important;
-	color: #4a4a4a !important;
-}
-.hide{
-	display:none;
+    .larger {
+        /*	width: 70% !important;
+            height: -5% !important;
+            */
+        zoom: 0.4;
+        -moz-transform: scale(0.4);
+    }
+
+    .in_out1 {
+        margin-right: 11px;
+        margin-top: 40% !important;
+        color: gray;
+        padding: 0px;
+        font-size: 9px;
+    }
 }
 
-#user-search{
-	background-color: rgba(255, 255, 255, 0.25) !important;
-	border-radius: 25px;
-	border: none !important;
-	padding-top: 0px;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 1px;
-	margin-top: 10px;
+.largerB {
+    font-size: 100% !important;
+    margin-right: 10px;
+    font-family: frutigerBold !important;
+    color: #4a4a4a !important;
+}
+
+.hide {
+    display: none;
+}
+
+#user-search {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 25px;
+    border: none !important;
+    padding-top: 0px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1px;
+    margin-top: 10px;
 }
 
 #user-search > input {
-	color: white !important;
+    color: white !important;
+    height: 17%;
 }
 
-#buttons-label{
-	right: 90%;
-	text-align:right !important;
+#buttons-label {
+    right: 90%;
+    text-align: right !important;
+    margin-top: 8% !important;
 }
-#allign-right{
-	margin-right: -40px !important;
-	/*padding-right: px !important;*/
+
+#allign-right {
+    margin-right: -40px !important;
+    /*padding-right: px !important;*/
 }
+
 #user {
-	text-decoration-color: white;
+    text-decoration-color: white;
 }
 
-.header_bar {
-	background-color: #025797 !important;
-	/*border-color: darken(#EB9493, 0%) !important;
-	border: solid !important;
-	border-width: 2px !important;*/
-	border: none;
-	height: 21%;
+.bar {
+    background-color: #025797 !important;
+    /*border-color: darken(#EB9493, 0%) !important;
+    border: solid !important;
+    border-width: 2px !important;*/
+    border: none;
+    height: 20% !important;
 }
 
 #list-content {
-	padding-top: 100px;
+    padding-top: 30% !important;
 }
 
 .title {
-	padding-top: 10px;
-	text-align: center !important;
-	color: white !important;
-	font-family: frutigerLight;
-	font-size: 25px !important;
-	height: 100% !important;
+    /*padding-top: 10px;*/
+    text-align: center !important;
+    color: white !important;
+    font-family: HelveticaNeue-Light !important;
+    font-size: 25px !important;
+    height: 100% !important;
 }
 
 @font-face {
-	font-family: frutigerLight;
-	src: url(/fonts/Frutiger_CE_45_Light.ttf);
+    font-family: frutigerLight;
+    src: url(/fonts/Frutiger_CE_45_Light.ttf);
 }
 
 @font-face {
-	font-family: frutigerBold;
-	src: url(/fonts/Frutiger_LT_67_Bold_Condensed.ttf);
+    font-family: frutigerBold;
+    src: url(/fonts/Frutiger_LT_67_Bold_Condensed.ttf);
 }
 
 .list .item {
-	border: 0px;
-	margin: 10px;
-	border-radius: 25px;
+    border: 0px;
+    margin: 10px;
+    border-radius: 25px;
 }
 
 .button {
-	padding-left: 0px;
-	padding-right: 0px;
-	margin-left: 0px !important;
-	margin-right: 0px !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
     margin-top: 11%;
     margin-bottom: 20px;
     border-left: 0px !important;
@@ -130,62 +139,65 @@ body {
 }
 
 #left-button, #mid-button {
-	padding-right: 1px;
-	border-top: 0px;
-	border-bottom: 0px;
-	border-right: 1px !important;
-	border-color: #9b9b9b;
+    padding-right: 1px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 1px !important;
+    border-color: #9b9b9b;
 }
 
 .items_in_list {
-	border: none;
+    border: none;
 
 }
 
 i {
-	filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
 }
 
-
-input[type="search"]::-webkit-input-placeholder  {
-	color: rgba(255, 255, 255, 0.5) 
+input[type="search"]::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5)
 }
 
-input[type="search"]:-moz-placeholder  {
-    color: rgba(255, 255, 255, 0.5) ;
+input[type="search"]:-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 input[type="search"]::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5) ;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 input[type="search"]:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5) ;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 #volunteer_comment {
-	height: 25%;
+    height: 25%;
     margin-top: 7% !important;
 
 }
 
-.my-custom-popup .popup{
-        width: 90%;
+.my-custom-popup .popup {
+    width: 90%;
 }
 
-.my-custom-popup .popup-buttons{
+.my-custom-popup .popup-buttons {
     border-top: 30px !important;
 }
 
-.my-custom-popup .popup-title{
+.my-custom-popup .popup-title {
     padding-top: 5% !important;
     font-size: 38px !important;
 }
 
-.my-custom-popup .popup-body{
+.my-custom-popup .popup-body {
     padding-top: -5% !important;
 }
 
 textarea {
     padding: 10px;
+}
+
+.button-clear {
+    color: black !important;
 }

@@ -14,13 +14,14 @@ class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
-        first_name = token.user.get_short_name()
+        first_name = token.user.profile.volunteer.first_name
         # return the team captain that just logged in successfully
         # filter by user credentials that just signed in
         email = token.user.get_username()
 
         # get volunteer id tied to user account
         team_cap_id = token.user.profile.volunteer.id
+        print("team_cap_id")
 
         # since volunteers are all unique now, we can just filter by that id
         volunteers = Attendee.objects.filter(team_captain=team_cap_id)

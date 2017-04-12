@@ -10,3 +10,5 @@ back-end/static/*
 !back-end/static/.gitkeep
 back-end/file/sample_*
 npm-debug.log
+back-end/file/*
+!back-end/file/sample.csv
