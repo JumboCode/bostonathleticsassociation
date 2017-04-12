@@ -25,7 +25,8 @@ def EventListPost(self, request, *args, **kwargs):
 
     serializer_class = EventSerializer
 
-    req_name = strip_tags(form.cleaned_data[request.data.__getitem__('name')])
+    name = request.data.__getitem__('name')
+    req_name = strip_tags(form.cleaned_data['name'])
     req_date = request.data.__getitem__('date')
     req_csv  = request.FILES.get('csv')
 
