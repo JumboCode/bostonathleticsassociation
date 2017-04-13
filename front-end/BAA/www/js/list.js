@@ -30,6 +30,16 @@ angular.module('starter', ['ionic'])
 
         };
 
+	    $scope.fullnameSearch = function (searchString) {
+		    return function (object) {
+			    if (searchString == undefined || searchString == "") {
+				    return true;
+			    }
+			    searchString = searchString.toLowerCase();
+			    return (object.volunteer.first_name.toLowerCase() + ' ' + object.volunteer.last_name.toLowerCase()).indexOf(searchString) !== -1;
+		    }
+	    };
+
         $scope.changeStatus = function (item, status) {
             // Item is a attendee
             var url = domain + "api/attendees/"+ item.id + "/";
