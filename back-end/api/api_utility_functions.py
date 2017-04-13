@@ -194,15 +194,6 @@ def NotifyTeamCaptainsGet(self, request, event):
         recipient = team_captain[0]
         from_email = settings.FROM_EMAIL
 
-        email = (subject, message, from_email, [recipient])
-
-        # This just only sends the emails to not example account
-        emails.append(email)
-
-        if not settings.DEBUG:
-            send_mail(subject, message, from_email, [recipient])
-
-    if settings.DEBUG:
-        send_mass_mail(tuple(emails), fail_silently=False)
+        send_mail(subject, message, from_email, [recipient], fail_silently=True)
 
     return Response(status=200)

@@ -32,12 +32,8 @@ LOGGING = {
     },
 }
 
-EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
-
-POSTMARK_API_KEY     = os.getenv('POSTMARK_API_KEY')
-POSTMARK_SENDER      = 'ian@ianluo.com'
-POSTMARK_TEST_MODE   = False        # We can use this to just to see the json
-POSTMARK_TRACK_OPENS = False
-
-
-FROM_EMAIL = 'ian@ianluo.com'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
