@@ -1,6 +1,6 @@
 # JumboCode Boston Athletics Association Spring 2017
 
-[![Build Status](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation.svg?branch=dev)](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation)
+[![Build Status](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation.svg?branch=master)](https://travis-ci.org/jumbocodespring2017/bostonathleticsassociation)
 ## 1. About
 
 We are the JumboCode team working on a check in system for the Boston Athletics Association (BAA) for Spring 2017 at Tufts University.

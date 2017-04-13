@@ -12,3 +12,4 @@ dj-database-url
 whitenoise
 psycopg2
 django-cors-headers
+python-postmark

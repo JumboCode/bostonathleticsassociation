@@ -141,7 +141,6 @@ class Integration_tests(TestCase):
         response = self.c.post('/api/events/', {'name': 'BAA Event', 'date': '2017-12-21', 'csv': self.file},
                                HTTP_AUTHORIZATION='Token ' + self.token)
         # Created the event
-        print(response.json()['id'])
         # Lets send the emails
         eventid = str(response.json()['id'])
         response = self.c.get('/api/notify_captains/event/' + eventid + '/', {}, HTTP_AUTHORIZATION='Token ' + self.token)

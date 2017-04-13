@@ -147,10 +147,3 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-
-# !!! Do not commit secret keys, use environment variables
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'baattendence@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS', default='')
-EMAIL_PORT = 587
