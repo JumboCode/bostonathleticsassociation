@@ -27,7 +27,7 @@ angular.module('starter', ['ionic'])
 })
 
 var token;
-var domain = "http://localhost:8000/";
+var domain = "http://floating-castle-71814.herokuapp.com/";
 
 function checkCredentials() {
     var user = document.getElementById("user").value;
