@@ -1,4 +1,4 @@
-from django.core.mail import send_mass_mail
+from django.core.mail import send_mass_mail, send_mail
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics
@@ -12,6 +12,7 @@ from django.core import serializers
 import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
+from django.conf import settings
 import re
 
 from .models import *
@@ -198,6 +199,11 @@ def NotifyTeamCaptainsGet(self, request, event):
         # This just only sends the emails to not example account
         emails.append(email)
 
-    send_mass_mail(tuple(emails), fail_silently=False)
+        if not settings.DEBUG:
+            send_mail(subject, message, from_email, [recipient])
+
+
+    if settings.DEBUG:
+        send_mass_mail(tuple(emails), fail_silently=False)
 
     return Response(status=200)
