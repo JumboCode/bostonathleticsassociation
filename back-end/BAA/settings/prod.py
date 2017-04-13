@@ -38,3 +38,6 @@ POSTMARK_API_KEY     = os.getenv('POSTMARK_API_KEY')
 POSTMARK_SENDER      = 'ian@ianluo.com'
 POSTMARK_TEST_MODE   = False        # We can use this to just to see the json
 POSTMARK_TRACK_OPENS = False
+
+
+FROM_EMAIL = 'ian@ianluo.com'

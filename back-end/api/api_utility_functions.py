@@ -192,7 +192,7 @@ def NotifyTeamCaptainsGet(self, request, event):
                   "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
         recipient = team_captain[0]
-        from_email = "baattendence@gmail.com"
+        from_email = settings.FROM_EMAIL
 
         email = (subject, message, from_email, [recipient])
 
@@ -200,7 +200,7 @@ def NotifyTeamCaptainsGet(self, request, event):
         emails.append(email)
 
         if not settings.DEBUG:
-            send_mail(subject, message, 'ian@ianluo.com', [recipient])
+            send_mail(subject, message, from_email, [recipient])
 
     if settings.DEBUG:
         send_mass_mail(tuple(emails), fail_silently=False)

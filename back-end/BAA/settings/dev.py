@@ -14,3 +14,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'baattendence@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_PORT = 587
+
+FROM_EMAIL = 'baattendence@gmail.com'
