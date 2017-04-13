@@ -200,8 +200,7 @@ def NotifyTeamCaptainsGet(self, request, event):
         emails.append(email)
 
         if not settings.DEBUG:
-            send_mail(subject, message, from_email, [recipient])
-
+            send_mail(subject, message, 'ian@ianluo.com', [recipient])
 
     if settings.DEBUG:
         send_mass_mail(tuple(emails), fail_silently=False)
