@@ -1,4 +1,4 @@
-from django.core.mail import send_mass_mail
+from django.core.mail import send_mass_mail, send_mail
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics
@@ -12,6 +12,8 @@ from django.core import serializers
 import csv
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
+from django.conf import settings
+import re
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
@@ -24,7 +26,8 @@ def EventListPost(self, request, *args, **kwargs):
 
     serializer_class = EventSerializer
 
-    req_name = request.data.__getitem__('name')
+    name = request.data.__getitem__('name')
+    req_name = re.sub('[^A-Za-z0-9 ]+', '', name)
     req_date = request.data.__getitem__('date')
     req_csv  = request.FILES.get('csv')
 
@@ -189,11 +192,8 @@ def NotifyTeamCaptainsGet(self, request, event):
                   "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
 
         recipient = team_captain[0]
-        from_email = "baattendence@gmail.com"
+        from_email = settings.FROM_EMAIL
 
-        email = (subject, message, from_email, [recipient])
-        emails.append(email)
-
-    send_mass_mail(tuple(emails), fail_silently=False)
+        send_mail(subject, message, from_email, [recipient], fail_silently=True)
 
     return Response(status=200)
