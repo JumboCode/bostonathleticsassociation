@@ -16,8 +16,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.conf.urls import url, include
-from .views import CustomObtainAuthToken
+from .views import *
 import interface.views as interface
+
 
 # routers
 
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     url(r'docs/', include('rest_framework_docs.urls')),
     url(r'^interface/', include('interface.urls')),
+    url(r'^guide/', guide)
     ]
