@@ -1,31 +1,18 @@
-{% extends "base.html" %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Guide</title>
+    <link rel = "stylesheet" href = "../../interface/static/css/style.css">
+    <link rel = "shortcut icon" type = "image/png" href = "../../interface/static/images/Favicon.png"> 
+</head>
 
-{% load static %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-{% endblock stylesheets %}
-
-{% block left-column %}
-<div id = "login-left">
-	<form name="LoginForm" action = "/" method="post" autocomplete="off">
-		{% csrf_token %}
-	    <div id = "login-buttons">
-	        <span id = "Username"><input type = "text" autocomplete = "off" name = "username" placeholder = "Username"></span><br>
-	        <span id = "Password"><input type = "password" autocomplete = "off" name = "password" placeholder = "Password"></span><br>
-	    </div>
-
-         <div id = "signin-button">
-            <button type = "submit"></button>-
+<body>
+    <div id = "background">
+        <div id = "guide-content">
+            Welcome! This page provides instructions about how to access your BAA account. First, download our app for your mobile device. You should have received an email containing your username and password. This combination can be used to log into the app. 
         </div>
-	</form>
     </div>
-{% endblock left-column %}
 
-{% block right-column %}
-    <div id = "logo-image">
-        <img src="../static/images/BAALOGO.png">
-    </div>
-{% endblock right-column %}
+</body>
+</html>
