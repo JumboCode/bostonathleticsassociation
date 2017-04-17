@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock stylesheets %}
+
+{% block left-column %}
+<div id = "login-left">
+	<form name="LoginForm" action = "/" method="post" autocomplete="off">
+		{% csrf_token %}
+	    <div id = "login-buttons">
+	        <span id = "Username"><input type = "text" autocomplete = "off" name = "username" placeholder = "Username"></span><br>
+	        <span id = "Password"><input type = "password" autocomplete = "off" name = "password" placeholder = "Password"></span><br>
+	    </div>
+
+         <div id = "signin-button">
+            <button type = "submit"></button>-
+        </div>
+	</form>
+    </div>
+{% endblock left-column %}
+
+{% block right-column %}
+    <div id = "logo-image">
+        <img src="../static/images/BAALOGO.png">
+    </div>
+{% endblock right-column %}
