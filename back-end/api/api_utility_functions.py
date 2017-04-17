@@ -100,15 +100,16 @@ def EventListPost(self, request, *args, **kwargs):
 
     return Response(serializer.data)
 
-def generateReport(self, request, event):
+def GenerateReport(self, request, event):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
-    filename = self.kwargs['event']
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    file_name = "report_" + event.objects.filter(event=self.kwargs['event']).name
+    response['Content-Disposition'] = 'attachment; filename=%s' %file_name
 
     writer = csv.writer(response)
     writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
-    for a in Attendees.Objects.get(event=self.kwargs['event']):
+
+    for a in Attendee.Objects.get(event=self.kwargs['event']):
         if a.volunteer.team_captain == a.volunteer:
             is_cap = "YES"
         else:
