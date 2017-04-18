@@ -1,7 +1,7 @@
 First Name,Last Name,City,State,Phone,Email,Captain,Status,AssignmentID,Job Description
 Mary,Miller,Boston,MA,510510510,example@example.com,NO,CANCEL,344,
-Tati,Doyle,Boston,MA,5106845211,mcmorisi@gmail.com,YES,OK,378,Captain
-Pulkit,Jain,Boston,MA,510510510,example@example.com,NO,NO SHOW,344,Checks in volunteers
+Pulkit,Jain,Boston,MA,5106845211,pulkit.jain@tufts.edu,YES,OK,378,Captain
+Tati,Doyle,Boston,MA,510510510,example@example.com,NO,NO SHOW,344,Checks in volunteers
 Vivian,Chen,Boston,MA,510510510,example@example.com,NO,NO SHOW,344,Hands out water
 Michael,Morisi,Boston,MA,510510510,example@example.com,NO,NO SHOW,344,
 Spencer,Perry,Boston,MA,4436022494,captain2@example.com,YES,OK,344,Captain
