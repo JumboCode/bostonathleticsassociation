@@ -114,7 +114,7 @@ def generateReport(self, request, event):
         else:
             is_cap = "NO"
         writer.writerow(a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
-            a.volunteer.phone, a.volunteer.email, is_cap, a.status a.assignment_id, a.job_descrip)
+            a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip)
 
     return response
 
