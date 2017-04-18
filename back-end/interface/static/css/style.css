@@ -418,7 +418,8 @@ body {
     border-color: black;
     border-width: 2px;
     margin-left: 25%;
-    margin-top: 25%;
+    margin-top: 10%;
+    padding-top: 20px;
     background-color: white;
     line-height: 30px;
 }

@@ -31,3 +31,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         # return the attendees for the teamp captain along with token information
         return Response({'token': token.key, 'first_name':first_name,
                          'volunteers':serializer.data})
+
+
+def guide(request):
+    render(request, './templates/login-instructions.html')
