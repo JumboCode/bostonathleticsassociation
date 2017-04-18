@@ -183,11 +183,20 @@ input[type="search"]:-ms-input-placeholder {
 
 .my-custom-popup .popup-buttons {
     border-top: 30px !important;
+    margin-right: 5% !important;
+
 }
 
 .my-custom-popup .popup-title {
-    padding-top: 5% !important;
-    font-size: 38px !important;
+    padding-top: 8% !important;
+    font-size: 30px !important;
+    text-align: center !important;
+    margin-left: -10%;
+}
+
+.button.button-positive {
+    margin-right: 5% !important;
+    margin-left: -2% !important;
 }
 
 .my-custom-popup .popup-body {

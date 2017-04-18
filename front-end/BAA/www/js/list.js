@@ -4,13 +4,14 @@ StatusEnum = {
     cancelled : 2
 };
 
-var domain = "http://localhost:8000/";
+var domain = "http://floating-castle-71814.herokuapp.com/";
 angular.module('starter', ['ionic'])
     .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
         var token = localStorage.getItem("token");
         var attendeesTemp = localStorage.getItem("attendees");
         $scope.attendees = JSON.parse(attendeesTemp);
-        console.log($scope.attendees);
+
+        // The popup button
         $scope.showPrompt = function (attendee) {
             $scope.data = {};
             var promptPopup = $ionicPopup.show({
@@ -30,6 +31,7 @@ angular.module('starter', ['ionic'])
 
         };
 
+        // Helper function for name search
 	    $scope.fullnameSearch = function (searchString) {
 		    return function (object) {
 			    if (searchString == undefined || searchString == "") {
@@ -40,6 +42,7 @@ angular.module('starter', ['ionic'])
 		    }
 	    };
 
+        // Change the state of an attendee
         $scope.changeStatus = function (item, status) {
             // Item is a attendee
             var url = domain + "api/attendees/"+ item.id + "/";
@@ -47,17 +50,14 @@ angular.module('starter', ['ionic'])
             request.open("PATCH", url);
             request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             request.setRequestHeader('Authorization', 'Token ' + token);
-            console.log(status);
 
+            // For determining the status of attendee
             if (status == "checkIn") {
                 item.status = StatusEnum.checkedIn;
-                console.log("Checked in");
             } else if (status == "noShow") {
                 item.status = StatusEnum.noShow;
-                console.log("noShow");
             } else if (status == "cancelled") {
                 item.status = StatusEnum.cancelled;
-                console.log("cancelled");
             }
 
             request.send("status=" + String(item.status));
