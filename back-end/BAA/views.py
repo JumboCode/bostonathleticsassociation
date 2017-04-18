@@ -35,4 +35,4 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
 
 def guide(request):
-    render(request, './templates/login-instructions.html')
+    return render(request, './templates/login-instructions.html')
