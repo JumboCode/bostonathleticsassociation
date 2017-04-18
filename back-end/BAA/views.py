@@ -8,6 +8,7 @@ from api.models import *
 from api.serializers import *
 
 import datetime
+from django.shortcuts import render
 
 
 class CustomObtainAuthToken(ObtainAuthToken):
