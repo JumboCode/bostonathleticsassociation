@@ -100,6 +100,24 @@ def EventListPost(self, request, *args, **kwargs):
 
     return Response(serializer.data)
 
+def GenerateReport(self, request, event):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    file_name = "report_" + event.objects.filter(event=self.kwargs['event']).name
+    response['Content-Disposition'] = 'attachment; filename=%s' %file_name
+
+    writer = csv.writer(response)
+    writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
+
+    for a in Attendee.Objects.get(event=self.kwargs['event']):
+        if a.volunteer.team_captain == a.volunteer:
+            is_cap = "YES"
+        else:
+            is_cap = "NO"
+        writer.writerow(a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
+            a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip)
+
+    return response
 
 # API Call that Returns List of attendees based upon the event
 # and the team captain object
@@ -188,8 +206,10 @@ def NotifyTeamCaptainsGet(self, request, event):
             new_user.profile.save()
             new_user.save()
 
-        message = "Hello, " + team_captain[2] + ",\n \n Your username is:  " + username + \
-                  "\n Your password is:  " + password + "\n \n \n Please login at [insert_url_here]"
+        message = "Hello " + team_captain[2] + ",\n \n You are registered as a team captain for: " + \
+                  Event.objects.get(pk=event).name + " \n \n Your username is:  " + username + \
+                  "\n Your password is:  " + password + "\n \n \n Please follow the instructions to sign in here: " + \
+                  settings.DOMAIN + '/signin-guide'
 
         recipient = team_captain[0]
         from_email = settings.FROM_EMAIL

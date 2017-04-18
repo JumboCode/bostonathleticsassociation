@@ -49,6 +49,9 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
+class GenerateReport(APIView):
+    def get(self, request, event):
+        return GenerateReport(self, request, event)
 
 
 #returns all attendees, ability to create as well

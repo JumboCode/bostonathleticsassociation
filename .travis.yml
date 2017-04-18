@@ -39,4 +39,6 @@ deploy:
   app: floating-castle-71814
   on: 
     all-branches: true
-  run: 
+  run:
+    - python manage.py migrate
+    - rm file/*

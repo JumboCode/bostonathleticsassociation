@@ -398,3 +398,27 @@ img:hover {
     font-size: 4.5rem;
     padding: 10px;
 }
+
+#background {
+    padding-top: 0;
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
+    /*background: linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);*/
+}
+
+body {
+    background: linear-gradient(135deg, #035898 0%,#f1f442 88%,#035898 99%,#0a0809 100%);
+}
+
+#guide-content {
+    height: 50%;
+    width: 50%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    margin-left: 25%;
+    margin-top: 25%;
+    background-color: white;
+    line-height: 30px;
+}

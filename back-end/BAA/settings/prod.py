@@ -38,3 +38,4 @@ EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 FROM_EMAIL = 'ian@ianluo.com'
+DOMAIN = 'http://floating-castle-71814.herokuapp.com/'
