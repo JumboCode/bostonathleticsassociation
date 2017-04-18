@@ -17,9 +17,8 @@ input[type="text"], input[type="password"] {
 }
 
 .scroll-content {
-	background-image: url("../img/app sign-in background.png");
+	background-image: url("../img/login-bg.png");
 	background-size: cover;
-	/*position:relative;*/
 }
 
 #userpng {
