@@ -70,7 +70,7 @@ function edit_event(i, events) {
     $("#date").html("<p>" + month + "/" + day + "/" + year + "</p>");
     $("#delete-button").attr("onclick","delete_event(" + i + ",  ent)");
     $("#user-pass-button").attr("onclick", "send_email(" + i + ", ent)");
-
+    $("#gen-report-button").attr("onclick", "generate_report(" + i + ", ent)");
 
 
 
@@ -219,9 +219,11 @@ function delete_event(i, events) {
     var url = window.location.origin;
 
     xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-            window.location.reload(true);
-        }
+        if (this.readyState === 4 && this.status == 200) {
+          window.location.reload(true);
+       } else if (this.readyState == 4 && this.status != 200){
+          alert("There was a problem deleting this event. Please try again in a few minutes.");
+      }
     });
 
     xhr.open("DELETE", url + "/api/events/" + events[i].pk + "/");
@@ -240,8 +242,26 @@ function send_email(i, events) {
             $("#red-alert").toggle(false);
             $("#green-alert").toggle(true);
         },
+        failure: function() {
+            alert("There was a problem with uploading your CSV file. Please check all fields and try again in a few minutes.");
+        },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);
         }
     });
 }
+
+function generate_report(i, events) {
+    $.ajax({
+        url: window.location.origin + "/api/events/generatereport/" + events[i].pk + "/",
+        success: function() {
+            // TODO Download file
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", window.token);
+        }
+    });
+}
+
+
+
