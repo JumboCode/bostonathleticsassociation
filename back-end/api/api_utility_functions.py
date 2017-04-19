@@ -105,7 +105,7 @@ def GenerateReportGet(self, request, event):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     file_name = "report_" + Event.objects.get(event=self.kwargs['event']).name
-    response['Content-Disposition'] = 'attachment; filename=' + file_name + ".csv"
+    response['Content-Disposition'] = 'attachment; filename="' + file_name + ".csv" + '"'
 
     writer = csv.writer(response)
     writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
