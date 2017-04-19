@@ -39,3 +39,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 FROM_EMAIL = 'ian@ianluo.com'
 DOMAIN = 'http://floating-castle-71814.herokuapp.com/'
+
+SECRET_KEY = os.getenv('DJANGO_SECRETKEY')
