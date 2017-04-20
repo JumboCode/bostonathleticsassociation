@@ -6,7 +6,7 @@ StatusEnum = {
 
 var domain = "http://floating-castle-71814.herokuapp.com/";
 angular.module('starter', ['ionic'])
-    .controller('MyCtrl', function ($scope, $ionicPopup, $http) {
+    .controller('MyCtrl', function ($scope, $ionicPopup, $ionicScrollDelegate) {
         var token = localStorage.getItem("token");
         var attendeesTemp = localStorage.getItem("attendees");
         $scope.attendees = JSON.parse(attendeesTemp);
@@ -38,7 +38,11 @@ angular.module('starter', ['ionic'])
 				    return true;
 			    }
 			    searchString = searchString.toLowerCase();
-			    return (object.volunteer.first_name.toLowerCase() + ' ' + object.volunteer.last_name.toLowerCase()).indexOf(searchString) !== -1;
+			     var compareString = object.volunteer.first_name.toLowerCase() + ' ' + object.volunteer.last_name.toLowerCase();
+                 var substring = compareString.indexOf(searchString);
+
+			     $ionicScrollDelegate.scrollTop();
+			    return (substring !== -1);
 		    }
 	    };
 
