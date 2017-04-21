@@ -30,7 +30,7 @@ function checkCredentials() {
 	request.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 
 	request.onreadystatechange = function () {
-		if (request.readyState == 4 && request.status == 200) {
+		if (request.readyState === 4 && request.status === 200) {
 			token = JSON.parse(request.responseText)['token'];
 			var resp = JSON.parse(request.responseText);
 
@@ -45,7 +45,7 @@ function checkCredentials() {
 			window.location.href = "list.html";
 		}
 
-		if (request.readyState == 4 && request.status == 400) {
+		if (request.readyState === 4 & request.status !== 200) {
 			alert("invalid login");
 		}
 	};

@@ -10,8 +10,7 @@ from rest_framework.parsers import MultiPartParser
 from django.http import HttpResponse, Http404
 from django.core import serializers
 
-from api.api_utility_functions import EventListPost, FilteredAttendeeListGet, SearchEventGet
-from api.api_utility_functions import DownloadFileGet, NotifyTeamCaptainsGet
+from api.api_utility_functions import *
 import csv
 
 from django.contrib.auth.models import Group
@@ -51,7 +50,7 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class GenerateReport(APIView):
     def get(self, request, event):
-        return GenerateReport(self, request, event)
+        return GenerateReportGet(self, request, event)
 
 
 #returns all attendees, ability to create as well

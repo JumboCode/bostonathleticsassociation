@@ -8,6 +8,7 @@ from api.models import *
 from api.serializers import *
 
 import datetime
+from django.shortcuts import render
 
 
 class CustomObtainAuthToken(ObtainAuthToken):
@@ -21,8 +22,6 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
         # get volunteer id tied to user account
         team_cap_id = token.user.profile.volunteer.id
-        print("team_cap_id")
-
         # since volunteers are all unique now, we can just filter by that id
         volunteers = Attendee.objects.filter(team_captain=team_cap_id)
 
@@ -31,3 +30,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         # return the attendees for the teamp captain along with token information
         return Response({'token': token.key, 'first_name':first_name,
                          'volunteers':serializer.data})
+
+
+def guide(request):
+    return render(request, 'login-instructions.html')

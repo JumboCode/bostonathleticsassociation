@@ -154,6 +154,7 @@ li {
 
 #right-col {
     display: block;
+    background:white;
     width: 80%;
     height: 100%;
     padding-top: 9%;
@@ -418,7 +419,10 @@ body {
     border-color: black;
     border-width: 2px;
     margin-left: 25%;
-    margin-top: 25%;
+    margin-top: 10%;
+    padding-top: 20px;
     background-color: white;
     line-height: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
 }

@@ -33,9 +33,8 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect('/interface/main/')
         else:
-            #TODO: failed to login
-            return render(request, 'signin.html', {})
-    return render(request, 'signin.html', {})
+            return render(request, 'signin.html', {"error": "Wrong Username or Password"})
+    return render(request, 'signin.html', {"error":""})
 
 @login_required(login_url='/')
 def main(request):

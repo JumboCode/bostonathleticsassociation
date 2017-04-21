@@ -49,14 +49,8 @@ def EventListPost(self, request, *args, **kwargs):
 
     for row in reader:
         # What happens if volunteer is mostly the same, but one field is updated?
-        volunteer = Volunteer.objects.create(
-            first_name=row[0],
-            last_name= row[1],
-            city=row[2],
-            state=row[3],
-            phone=row[4],
-            email=row[5].lower()
-        )
+        volunteer = Volunteer.objects.create(first_name=row[0],last_name= row[1],city=row[2],state=row[3],
+                                            phone=row[4], email=row[5].lower())
         statusCode = 0
         if row[7] == "NO SHOW":
             statusCode = 0
@@ -78,7 +72,17 @@ def EventListPost(self, request, *args, **kwargs):
                                                job_descrip=row[9])
             new_attendees.append(attendee)
 
+    #check to make sure that no two team captains have the same assignment id
+    for cap in captains:
+        for c in captains:
+            if cap != c:
+                if cap.assignment_id == c.assignment_id:
+                    Attendee.objects.filter(event=event).delete()
+                    event.delete()
+                    return JsonResponse({'error': 'Error With CSV, 2 Two team captains with same assignment id'})
+
     # match attendee with their team captain
+    # ensure that each assignment id has a captain associated with it
     for a in new_attendees:
         found = False
         for cap in captains:
@@ -87,35 +91,32 @@ def EventListPost(self, request, *args, **kwargs):
                 a.team_captain = cap.volunteer
                 a.save()
         if not found:
-
             Attendee.objects.filter(event=event).delete()
+            event.delete()
             return JsonResponse({'error':'Error With CSV, no team captain assigned to group'})
-
-
 
     event.csv = req_csv
     event.save()
-
     serializer = serializer_class(event, context={'request':request})
 
     return Response(serializer.data)
 
-def GenerateReport(self, request, event):
+def GenerateReportGet(self, request, event):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
-    file_name = "report_" + event.objects.filter(event=self.kwargs['event']).name
-    response['Content-Disposition'] = 'attachment; filename=%s' %file_name
+    file_name = "report_" + Event.objects.get(event=self.kwargs['event']).name
+    response['Content-Disposition'] = 'attachment; filename="' + file_name + ".csv" + '"'
 
     writer = csv.writer(response)
     writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
 
-    for a in Attendee.Objects.get(event=self.kwargs['event']):
+    for a in Attendee.objects.filter(event=self.kwargs['event']):
         if a.volunteer.team_captain == a.volunteer:
             is_cap = "YES"
         else:
             is_cap = "NO"
-        writer.writerow(a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
-            a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip)
+        writer.writerow([a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
+            a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip])
 
     return response
 
