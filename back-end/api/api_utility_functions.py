@@ -54,6 +54,7 @@ def EventListPost(self, request, *args, **kwargs):
         for row in reader:
 
             if (len(row) != 10):
+                Attendee.objects.filter(event=event).delete()
                 event.delete()
                 return JsonResponse({'error': "Error with CSV: Missing Row"})
 
