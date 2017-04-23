@@ -1,7 +1,7 @@
 StatusEnum = {
-    checkedIn : 1,
+    checkedIn : 2,
     noShow : 0,
-    cancelled : 2
+    cancelled : 1
 };
 
 var domain = "http://floating-castle-71814.herokuapp.com/";
