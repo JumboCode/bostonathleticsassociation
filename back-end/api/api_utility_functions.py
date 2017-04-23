@@ -50,7 +50,13 @@ def EventListPost(self, request, *args, **kwargs):
         else:
             event.delete()
             return JsonResponse({'error': "error with finding csv header"})
+
         for row in reader:
+
+            if (len(row) != 10):
+                event.delete()
+                return JsonResponse({'error': "Error with CSV: Missing Row"})
+
             volunteer = Volunteer.objects.create(first_name=row[0],last_name= row[1],city=row[2],state=row[3],
                                                 phone=row[4], email=row[5].lower())
             statusCode = 0
