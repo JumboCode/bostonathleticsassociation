@@ -14,8 +14,9 @@ angular.module('starter', ['ionic'])
         // The popup button
         $scope.showPrompt = function (attendee) {
             $scope.data = {};
+            var full_name = attendee.first_name + " " + attendee.last_name;
             var promptPopup = $ionicPopup.show({
-                title: attendee.first_name,
+                title: full_name,
                 scope: $scope,
                 cssClass: 'my-custom-popup',
                 template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" id="volunteer_comment"></textarea>',
