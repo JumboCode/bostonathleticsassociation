@@ -32,15 +32,20 @@
         <ion-content>
             <span id="userpng"> <img src="img/user.png" height="20px" width="20px"> </span>
             <span id="lockpng"> <img src="img/lock.png" height="20px" width="20px"> </span>
-            <div class="inputs">
-                <label class="item item-input">
-                    <input type="text" placeholder="Username" id="user" autocomplete="off">
+            <form action="javascript:checkCredentials()">
+                <div class="inputs">
+                    <label class="item item-input">
+                        <input type="text" placeholder="Username" id="user" autocomplete="off">
+                    </label>
+                    <label class="item item-input">
+                        <input type="password" placeholder="Password" id="pass" autocomplete="off">
+                    </label>
+                </div>
+                <label id="login">
+                    <img src="img/sign_in.png" style="height: 50px;"/>
+                    <input type="submit"/>
                 </label>
-                <label class="item item-input">
-                    <input type="password" placeholder="Password" id="pass" autocomplete="off">
-                </label>
-            </div>
-            <span id="login" onclick="checkCredentials()"> <img src="img/sign_in.png" height="50px"> </span>
+            </form>
         </ion-content>
     </ion-pane>
 </body>

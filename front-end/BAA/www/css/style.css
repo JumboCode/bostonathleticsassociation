@@ -43,6 +43,10 @@ input[type="text"], input[type="password"] {
 	padding-top: 7%;
 }
 
+#login input[type="submit"] {
+	display: none;
+}
+
 #user::-webkit-input-placeholder  {
     color:    white
 }
