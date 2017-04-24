@@ -46,7 +46,7 @@
       <ion-list class = "list_c">
           <ion-item ng-repeat="attendee in attendees | filter:fullnameSearch(searchQuery)" class="item item-button-right">
           <!--<ion-item ng-repeat="attendee in attendees| filter: ({volunteer: {first_name: searchQuery}})" class="item item-button-right">-->
-            <button class="button-clear" ng-click="showPrompt(attendee.volunteer)">{{attendee.volunteer.first_name + " " + attendee.volunteer.last_name}}</button>
+            <button class="button-clear" ng-click="showPrompt(attendee)">{{attendee.volunteer.first_name + " " + attendee.volunteer.last_name}}</button>
             <div class = 'buttons' id="align-right">
               <img ng-src="{{(isCheckedIn(attendee) && 'img/checkedin1.png' || 'img/checkedin2.png')}}" class="button button-icon larger" id="left-button" ng-click="changeStatus(attendee, 'checkIn')">
               <img ng-src="{{(isNoShow(attendee)    && 'img/noshow1.png'    || 'img/noshow2.png')}}" class="button button-icon larger" id = "mid-button" ng-click="changeStatus(attendee, 'noShow')">
