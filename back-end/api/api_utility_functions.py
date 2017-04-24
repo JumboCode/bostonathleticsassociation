@@ -233,7 +233,7 @@ def NotifyTeamCaptainsGet(self, request, event):
         message = "Hello " + team_captain[2] + ",\n \n You are registered as a team captain for: " + \
                   Event.objects.get(pk=event).name + " \n \n Your username is:  " + username + \
                   "\n Your password is:  " + password + "\n \n \n Please follow the instructions to sign in here: " + \
-                  settings.DOMAIN + '/signin-guide'
+                  settings.DOMAIN + 'guide/'
 
         recipient = team_captain[0]
         from_email = settings.FROM_EMAIL
