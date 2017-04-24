@@ -20,7 +20,7 @@ angular.module('starter', ['ionic'])
                 title: full_name,
                 scope: $scope,
                 cssClass: 'my-custom-popup',
-                template: '<textarea rows="30" cols="20" wrap="hard" ng-model="data.input" ng-controller="MyCtrl" id="volunteer_comment" placeholder="{{notes}}"></textarea>',
+                template: '<textarea rows="30" cols="20" wrap="hard" ng-model="data.input" ng-controller="MyCtrl" id="volunteer_comment" placeholder="Add notes"></textarea>',
                 buttons: [{
                     text: 'Confirm',
                     type: 'button-positive',
