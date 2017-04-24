@@ -24,8 +24,8 @@ from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerialize
 
 def EventListPost(self, request, *args, **kwargs):
 
-    serializer_class = EventSerializer
 
+    serializer_class = EventSerializer
     name = request.data.__getitem__('name')
     req_name = re.sub('[^A-Za-z0-9 ]+', '', name)
     req_date = request.data.__getitem__('date')
@@ -34,72 +34,95 @@ def EventListPost(self, request, *args, **kwargs):
     f = TextIOWrapper(req_csv.file, encoding=request.encoding)
     #reader = csv.reader(f, delimiter=',')
 
+
     event = Event.objects.create(name=req_name, date=req_date, csv=None)
 
     new_attendees = []
     captains = []
 
-    # create a volunteer for every person in  csv
-    # then create a corresponding attendee (specific for the new event) for each volunteer
-    has_header = csv.Sniffer().has_header(f.read(1024))
-    f.seek(0)  # rewind
-    reader = csv.reader(f, delimiter=',')
-    if has_header:
-        next(reader)  # skip header row
+    try:
+        has_header = csv.Sniffer().has_header(f.read(1024))
+        f.seek(0)  # rewind
+        reader = csv.reader(f, delimiter=',')
 
-    for row in reader:
-        # What happens if volunteer is mostly the same, but one field is updated?
-        volunteer = Volunteer.objects.create(first_name=row[0],last_name= row[1],city=row[2],state=row[3],
-                                            phone=row[4], email=row[5].lower())
-        statusCode = 0
-        if row[7] == "NO SHOW":
-            statusCode = 0
-        elif row[7] == "CANCEL":
-            statusCode = 1
-        elif row[7] == "OK":
-            statusCode = 2
-
-        if row[6] == "YES":
-            attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=statusCode, assignment_id=row[8],
-                                               job_descrip=row[9])
-            captains.append(attendee)
-            new_attendees.append(attendee)
-
+        if has_header:
+            next(reader)  # skip header row
         else:
-            attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
-                                               event=event, status=statusCode, assignment_id=row[8],
-                                               job_descrip=row[9])
-            new_attendees.append(attendee)
-
-    #check to make sure that no two team captains have the same assignment id
-    for cap in captains:
-        for c in captains:
-            if cap != c:
-                if cap.assignment_id == c.assignment_id:
-                    Attendee.objects.filter(event=event).delete()
-                    event.delete()
-                    return JsonResponse({'error': 'Error With CSV, 2 Two team captains with same assignment id'})
-
-    # match attendee with their team captain
-    # ensure that each assignment id has a captain associated with it
-    for a in new_attendees:
-        found = False
-        for cap in captains:
-            if cap.assignment_id == a.assignment_id:
-                found = True
-                a.team_captain = cap.volunteer
-                a.save()
-        if not found:
-            Attendee.objects.filter(event=event).delete()
             event.delete()
-            return JsonResponse({'error':'Error With CSV, no team captain assigned to group'})
+            return JsonResponse({'error': "error with finding csv header"})
 
-    event.csv = req_csv
-    event.save()
-    serializer = serializer_class(event, context={'request':request})
+        for row in reader:
 
-    return Response(serializer.data)
+            if (len(row) != 10):
+                Attendee.objects.filter(event=event).delete()
+                event.delete()
+                return JsonResponse({'error': "Error with CSV: Missing Row"})
+
+            volunteer = Volunteer.objects.create(first_name=row[0],last_name= row[1],city=row[2],state=row[3],
+                                                phone=row[4], email=row[5].lower())
+            statusCode = 0
+            if row[7] == "NO SHOW":
+                statusCode = 0
+            elif row[7] == "CANCEL":
+                statusCode = 1
+            elif row[7] == "OK":
+                statusCode = 2
+
+            if row[6] == "YES":
+                attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
+                                                   event=event, status=statusCode, assignment_id=row[8],
+                                                   job_descrip=row[9])
+                captains.append(attendee)
+                new_attendees.append(attendee)
+
+            elif row[6] == "NO":
+                attendee = Attendee.objects.create(volunteer=volunteer, team_captain=None,
+                                                   event=event, status=statusCode, assignment_id=row[8],
+                                                   job_descrip=row[9])
+                new_attendees.append(attendee)
+
+            # error check to make sure that CSV only YES or NO for CAPTAIN Field
+            else:
+                Attendee.objects.filter(event=event).delete()
+                event.delete()
+                return JsonResponse({'error': "Error with CSV, Team Captain field is not 'YES' or 'NO'"})
+
+        #check to make sure that no two team captains have the same assignment id
+        for cap in captains:
+            for c in captains:
+                if cap != c:
+                    if cap.assignment_id == c.assignment_id:
+                        Attendee.objects.filter(event=event).delete()
+                        event.delete()
+                        return JsonResponse({'error': 'Error With CSV, 2 Two team captains with same assignment id: ' + c.assignment_id })
+
+        # match attendee with their team captain
+        # ensure that each assignment id has a captain associated with it
+        for a in new_attendees:
+            found = False
+            for cap in captains:
+                if cap.assignment_id == a.assignment_id:
+                    found = True
+                    a.team_captain = cap.volunteer
+                    a.save()
+            if not found:
+                Attendee.objects.filter(event=event).delete()
+                event.delete()
+                return JsonResponse({'error':'Error With CSV, no team captain assigned to group ' + a.assignment_id})
+
+        event.csv = req_csv
+        event.save()
+        serializer = serializer_class(event, context={'request':request})
+
+        return Response(serializer.data)
+
+    # Generic CSV ERROR
+    except csv.Error:
+        Attendee.objects.filter(event=event).delete()
+        event.delete()
+        return JsonResponse({'error': 'Error with CSV'})
+
+
 
 def GenerateReportGet(self, request, event):
     # Create the HttpResponse object with the appropriate CSV header.
@@ -210,7 +233,7 @@ def NotifyTeamCaptainsGet(self, request, event):
         message = "Hello " + team_captain[2] + ",\n \n You are registered as a team captain for: " + \
                   Event.objects.get(pk=event).name + " \n \n Your username is:  " + username + \
                   "\n Your password is:  " + password + "\n \n \n Please follow the instructions to sign in here: " + \
-                  settings.DOMAIN + '/signin-guide'
+                  settings.DOMAIN + 'guide/'
 
         recipient = team_captain[0]
         from_email = settings.FROM_EMAIL

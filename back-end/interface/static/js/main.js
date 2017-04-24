@@ -242,7 +242,7 @@ function send_email(i, events) {
             $("#red-alert").toggle(false);
             $("#green-alert").toggle(true);
         },
-        failure: function() {
+        error: function() {
             alert("There was a problem with uploading your CSV file. Please check all fields and try again in a few minutes.");
         },
         beforeSend: function (xhr) {
@@ -254,13 +254,26 @@ function send_email(i, events) {
 function generate_report(i, events) {
     $.ajax({
         url: window.location.origin + "/api/events/generatereport/" + events[i].pk + "/",
-        success: function() {
-            // TODO Download file
+        success: function(data) {
+            var genReportButton = document.getElementById('gen-report-button');
+            var downloadReportButton = genReportButton.cloneNode();
+            downloadReportButton.textContent = 'Download Report as CSV';
+            downloadReportButton.removeAttribute("onclick");
+
+
+            var csvFile = new Blob([[data]], {type: 'text/csv'});
+            downloadReportButton.download = 'report.csv';
+            downloadReportButton.href = window.URL.createObjectURL(csvFile);
+
+            downloadReportButton.dataset.downloadurl = ['text/csv', downloadReportButton.download, downloadReportButton.href].join(':');
+
+            genReportButton.parentNode.replaceChild(downloadReportButton, genReportButton);
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);
         }
     });
+
 }
 
 
