@@ -135,13 +135,18 @@ def GenerateReportGet(self, request, event):
     writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
 
     for a in Attendee.objects.filter(event=event):
-        print(a)
+        if a.status == 0:
+            statusCode = "NO SHOW"
+        elif a.status == 1:
+            statusCode = "CANCEL"
+        elif a.status == 2:
+            statusCode = "OK"
         if a.volunteer.team_captain == a.volunteer:
             is_cap = "YES"
         else:
             is_cap = "NO"
         writer.writerow([a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
-                         a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip])
+                         a.volunteer.phone, a.volunteer.email, is_cap, statusCode, a.assignment_id, a.job_descrip])
 
     return response
 
