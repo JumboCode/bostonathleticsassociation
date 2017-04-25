@@ -255,19 +255,10 @@ function generate_report(i, events) {
     $.ajax({
         url: window.location.origin + "/api/events/generatereport/" + events[i].pk + "/",
         success: function(data) {
-            var genReportButton = document.getElementById('gen-report-button');
-            var downloadReportButton = genReportButton.cloneNode();
-            downloadReportButton.textContent = 'Download Report as CSV';
-            downloadReportButton.removeAttribute("onclick");
-
-
-            var csvFile = new Blob([[data]], {type: 'text/csv'});
-            downloadReportButton.download = 'report.csv';
-            downloadReportButton.href = window.URL.createObjectURL(csvFile);
-
-            downloadReportButton.dataset.downloadurl = ['text/csv', downloadReportButton.download, downloadReportButton.href].join(':');
-
-            genReportButton.parentNode.replaceChild(downloadReportButton, genReportButton);
+            var resultCSV = document.createElement('a');
+            resultCSV.download = 'EventReport_' + events[i].fields.name + '.csv';
+            resultCSV.href = 'data:text/csv,' + encodeURIComponent(data);
+            resultCSV.click();
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);

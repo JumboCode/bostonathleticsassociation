@@ -125,21 +125,23 @@ def EventListPost(self, request, *args, **kwargs):
 
 
 def GenerateReportGet(self, request, event):
+    event = Event.objects.get(pk=self.kwargs['event'])
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
-    file_name = "report_" + Event.objects.get(event=self.kwargs['event']).name
+    file_name = "report_" + event.name
     response['Content-Disposition'] = 'attachment; filename="' + file_name + ".csv" + '"'
 
     writer = csv.writer(response)
     writer.writerow(['First Name', 'Last Name', 'City', 'State', 'Phone', 'Email', 'Captain', 'Status', 'AssignmentID', 'Job Description'])
 
-    for a in Attendee.objects.filter(event=self.kwargs['event']):
+    for a in Attendee.objects.filter(event=event):
+        print(a)
         if a.volunteer.team_captain == a.volunteer:
             is_cap = "YES"
         else:
             is_cap = "NO"
         writer.writerow([a.volunteer.first_name, a.volunteer.last_name, a.volunteer.city, a.volunteer.state,
-            a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip])
+                         a.volunteer.phone, a.volunteer.email, is_cap, a.status, a.assignment_id, a.job_descrip])
 
     return response
 
