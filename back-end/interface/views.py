@@ -1,7 +1,6 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.http import *
 from django.template import RequestContext
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -37,6 +36,7 @@ def login_view(request):
     return render(request, 'signin.html', {"error":""})
 
 @login_required(login_url='/')
+@user_passes_test(lambda u: u.is_staff, login_url='/')
 def main(request):
     user_token = Token.objects.get(user=request.user)
     entries = serializers.serialize("json", Event.objects.all().order_by('date'))

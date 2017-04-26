@@ -27,6 +27,11 @@ class Volunteer(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     volunteer = models.ForeignKey(Volunteer, default=None, null=True)
+    class Meta:
+        permissions = (
+            ("can_access_team", "Can access information of team members"),
+            ("can_checkin", "Can change status code of team members")
+        )
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)       

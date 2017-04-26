@@ -24,7 +24,6 @@ from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerialize
 
 def EventListPost(self, request, *args, **kwargs):
 
-
     serializer_class = EventSerializer
     name = request.data.__getitem__('name')
     req_name = re.sub('[^A-Za-z0-9 ]+', '', name)
