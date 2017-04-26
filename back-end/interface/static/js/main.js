@@ -49,9 +49,9 @@ function add_event() {
 /* Displays event info */
 function edit_event(i, events) {
     if (($('#right-col-content-view').css('display') == 'block'))
-        $("#right-col-content-view").toggle("show");
+        $("#right-col-content-view").toggle("fast");
     if (($('#right-col-content-add').css('display') == 'block'))
-        $("#right-col-content-add").toggle("show");
+        $("#right-col-content-add").toggle("fast");
     $("li").css({"background-color":"rgba(255, 255, 255, 0.0)"});
     $("#event" + i).css({"background-color":"rgba(255, 255, 255, 0.3)"});
     
@@ -79,11 +79,11 @@ function edit_event(i, events) {
     $("#file_name").prop("downloasd", file_name);
     $("#file_name").html(file_name);
     if (($('#right-col-content-edit').css('display') != 'block')) {
-        $("#right-col-content-edit").toggle("show");
+        $("#right-col-content-edit").toggle("fast");
     }
     else {
-        $("#right-col-content-edit").toggle("show");
-        $("#right-col-content-edit").toggle("show");
+        $("#right-col-content-edit").toggle("fast");
+        $("#right-col-content-edit").toggle("fast");
     }
 }
 
@@ -243,7 +243,8 @@ function send_email(i, events) {
             $("#green-alert").toggle(true);
         },
         error: function() {
-            alert("There was a problem with uploading your CSV file. Please check all fields and try again in a few minutes.");
+            $("#red-alert-error").toggle(true);
+            $("#green-alert").toggle(false);
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);

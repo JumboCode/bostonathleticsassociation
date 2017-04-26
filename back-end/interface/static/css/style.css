@@ -171,9 +171,9 @@ li {
 
 }
 
- #red-alert, #green-alert {
-    display: none;
-    font-size: 20px;
+ #red-alert, #green-alert, #red-alert-error {
+    display: none !important; 
+    font-size: 20px !important;
 }
 
 body {

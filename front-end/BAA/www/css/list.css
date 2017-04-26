@@ -10,6 +10,7 @@ body {
     font-family: inherit;
 }
 
+
 @media (min-width: 322px) {
     .larger {
         /*	width: 70% !important;
@@ -217,4 +218,24 @@ textarea {
 
 .button-clear {
     color: black !important;
+}
+
+@media (min-width: 768px) {
+    .bar {
+        height: 15% !important;
+    }
+
+    #list-content {
+        padding-top: 15% !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bar {
+        height: 12% !important;
+    }
+
+    #list-content {
+        padding-top: 10% !important;
+    }
 }
