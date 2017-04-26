@@ -15,10 +15,10 @@ angular.module('starter', ['ionic'])
         $scope.showPrompt = function (attendee) {
             $scope.data = {};
             var promptPopup = $ionicPopup.show({
-                title: attendee.first_name + " " + attendee.last_name[0] + ".",
+                title: attendee.first_name + " " + attendee.last_name,
                 scope: $scope,
                 cssClass: 'my-custom-popup',
-                template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" id="volunteer_comment"></textarea>',
+                template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" placeholder=" Add Note" id="volunteer_comment"></textarea>',
                 buttons: [{
                     text: 'Confirm',
                     type: 'button-positive',
