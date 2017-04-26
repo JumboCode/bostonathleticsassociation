@@ -243,7 +243,8 @@ function send_email(i, events) {
             $("#green-alert").toggle(true);
         },
         error: function() {
-            alert("There was a problem with uploading your CSV file. Please check all fields and try again in a few minutes.");
+            $("#red-alert-error").toggle(true);
+            $("#green-alert").toggle(false);
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);
@@ -262,6 +263,9 @@ function generate_report(i, events) {
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", window.token);
+        },
+        error: function() {
+            $("#red-alert-error").toggle(true);
         }
     });
 
