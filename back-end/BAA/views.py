@@ -9,6 +9,7 @@ from api.serializers import *
 
 import datetime
 from django.shortcuts import render
+from django.contrib.auth.decorators import permission_required
 
 
 class CustomObtainAuthToken(ObtainAuthToken):
@@ -28,9 +29,10 @@ class CustomObtainAuthToken(ObtainAuthToken):
         serializer = AttendeeSerializer(volunteers, many=True)
 
         # return the attendees for the teamp captain along with token information
-        if token.user.profile.has_perm(can_access_team):
-            return Response({'token': token.key, 'first_name': first_name,
-                             'volunteers': serializer.data})
+        # TODO: Check who gets tokens
+
+        return Response({'token': token.key, 'first_name': first_name,
+                         'volunteers': serializer.data})
 
 
 def guide(request):

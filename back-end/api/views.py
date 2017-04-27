@@ -40,7 +40,7 @@ class EventList(generics.ListCreateAPIView):
     serializer_class = EventSerializer
 
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.is_staff:
+        if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):
             return EventListPost(self, request, *args, **kwargs)
         else:
             return HttpResponseForbidden()
