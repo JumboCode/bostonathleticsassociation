@@ -131,6 +131,7 @@ class Integration_tests(TestCase):
         sampleSuperUser = User.objects.create(username='god', email='example@example.com')
         sampleSuperUser.set_password('iamthegod')
         sampleSuperUser.is_superuser = True
+        sampleSuperUser.is_staff = True
         sampleSuperUser.save()
 
         self.token = str(Token.objects.get(user=sampleSuperUser))
