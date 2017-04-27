@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import permission_required
 
 
 class CustomObtainAuthToken(ObtainAuthToken):
-    @permission_required('profile.can_access_team')
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
@@ -30,6 +29,8 @@ class CustomObtainAuthToken(ObtainAuthToken):
         serializer = AttendeeSerializer(volunteers, many=True)
 
         # return the attendees for the teamp captain along with token information
+        # TODO: Check who gets tokens
+
         return Response({'token': token.key, 'first_name': first_name,
                          'volunteers': serializer.data})
 
