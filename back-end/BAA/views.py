@@ -29,8 +29,8 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
         # return the attendees for the teamp captain along with token information
         if token.user.profile.has_perm(can_access_team):
-            return Response({'token': token.key, 'first_name':first_name,
-                             'volunteers':serializer.data})
+            return Response({'token': token.key, 'first_name': first_name,
+                             'volunteers': serializer.data})
 
 
 def guide(request):
