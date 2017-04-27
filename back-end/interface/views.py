@@ -21,6 +21,9 @@ from django.utils.safestring import mark_safe
 # Create your views here.
 
 def login_view(request):
+    if request.user.is_authenticated() and request.user.is_staff:
+        return HttpResponseRedirect('/interface/main/')
+
     logout(request)
     username = password = ''
     if request.POST:
@@ -33,7 +36,7 @@ def login_view(request):
             return HttpResponseRedirect('/interface/main/')
         else:
             return render(request, 'signin.html', {"error": True})
-    return render(request, 'signin.html', {"error":""})
+    return render(request, 'signin.html', {"error": ""})
 
 @login_required(login_url='/')
 @user_passes_test(lambda u: u.is_staff, login_url='/')
