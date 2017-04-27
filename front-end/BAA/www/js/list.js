@@ -10,18 +10,17 @@ angular.module('starter', ['ionic'])
         var token = localStorage.getItem("token");
         var attendeesTemp = localStorage.getItem("attendees");
         $scope.attendees = JSON.parse(attendeesTemp);
+
         // The popup button
-        
+
         $scope.showPrompt = function (attendeeObj) {
             var attendee = attendeeObj.volunteer;
             $scope.data = {};
-            var full_name = attendee.first_name + " " + attendee.last_name;
-
             var promptPopup = $ionicPopup.show({
-                title: full_name,
+                title: attendee.first_name + " " + attendee.last_name[0] + ".",
                 scope: $scope,
                 cssClass: 'my-custom-popup',
-                template: '<div><textarea placeholder="Add comment about volunteer..." rows="30" cols="20" wrap="hard" ng-model="data.input" id="volunteer_comment"></textarea>',
+                template: '<div><textarea rows="30" cols="20" wrap="hard" ng-model="data.input" placeholder=" Add Note" id="volunteer_comment"></textarea>',
                 buttons: [{
                     text: 'Confirm',
                     type: 'button-positive',
