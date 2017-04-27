@@ -249,7 +249,6 @@ def NotifyTeamCaptainsGet(self, request, event):
             try:
                 send_mail(subject, message, from_email, [recipient], fail_silently=False)
             except SMTPException:
-                print("Hit sending mail error")
                 return JsonResponse({'error':'Error with sending email', 'recipient': recipient, 'subject':subject}, status=500)
 
             return Response(status=200)
