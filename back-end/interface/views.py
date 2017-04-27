@@ -21,7 +21,7 @@ from django.utils.safestring import mark_safe
 # Create your views here.
 
 def login_view(request):
-    if request.user.is_authenticated() and request.user.is_staff:
+    if request.user.is_authenticated() and request.user.is_staff and not request.POST:
         return HttpResponseRedirect('/interface/main/')
 
     logout(request)
