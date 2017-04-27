@@ -80,6 +80,12 @@ angular.module('starter', ['ionic'])
         $scope.isCancelled = function (item) {
             return item.status == StatusEnum.cancelled;
         };
+
+        $scope.logout = function () {
+            localStorage.clear();
+            window.location.href = "index.html";
+
+        }
     });
 
 

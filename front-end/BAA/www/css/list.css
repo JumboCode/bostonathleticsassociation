@@ -239,3 +239,12 @@ textarea {
         padding-top: 10% !important;
     }
 }
+
+#logout {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 90%;
+    background-color: #025797 !important;
+    text-align: center;
+    display: block;
+}
