@@ -138,9 +138,11 @@ function get_new_event_info() {
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
+    if (this.readyState === 4 && this.status == 200) {
         window.location.reload(true);
-        }
+    } else if (this.readyState == 4) {
+        alert("There was an error with your CSV file. Please check it and try again.");
+    }
     });
 
     xhr.open("POST", url + "/api/events/");
