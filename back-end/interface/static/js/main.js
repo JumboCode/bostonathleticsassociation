@@ -259,7 +259,7 @@ function generate_report(i, events) {
         url: window.location.origin + "/api/events/generatereport/" + events[i].pk + "/",
         success: function(data) {
             var resultCSV = document.createElement('a');
-            resultCSV.download = 'EventReport_' + events[i].fields.name + '.csv';
+            resultCSV.download = 'EventReport_' + events[i].fields.name.replace(' ', '_') + '.csv';
             resultCSV.href = 'data:text/csv,' + encodeURIComponent(data);
             resultCSV.click();
         },
