@@ -15,18 +15,30 @@ angular.module('starter', ['ionic'])
 
         $scope.showPrompt = function (attendeeObj) {
             var attendee = attendeeObj.volunteer;
-            $scope.data = {};
-            $scope.notes = attendeeObj.notes;
+            console.log(attendeeObj);
+            if (attendeeObj.notes == "undefined") {
+                var notes = "";
+                $scope.holder = "Please enter notes";
+            } else if (attendeeObj.notes == undefined) {
+                var notes = "";
+                $scope.holder = "Please enter notes";
+            } else {
+                var notes = attendeeObj.notes;
+                $scope.holder = "";
+
+            }
+
+            $scope.data = {input: notes};
             var promptPopup = $ionicPopup.show({
                 title: attendee.first_name + " " + attendee.last_name[0] + ".",
                 scope: $scope,
                 cssClass: 'my-custom-popup',
-                template: '<textarea rows="30" cols="20" wrap="hard" ng-controller="MyCtrl" ng-model="data.input" id="volunteer_comment">fsadkljklfdsajklfdsajdfjsal;jkladfs;</textarea>',
+                template: '<textarea  rows="30" cols="20" wrap="hard" ng-controller="MyCtrl" ng-model="data.input" id="volunteer_comment" placeholder={{holder}}></textarea>',
                 buttons: [{
                     text: 'Confirm',
                     type: 'button-positive',
                     onTap: function(){
-                        updateNotes($scope.data.input, attendee.id);
+                        updateNotes($scope.data.input, attendeeObj);
                     }
                 }, {text: 'Cancel'}]
             });
@@ -92,8 +104,8 @@ angular.module('starter', ['ionic'])
 
 
 
-function updateNotes(res, ID) {
-    console.log(res);
+function updateNotes(note, attendee) {
+    var ID = attendee.volunteer.id;
     var token = localStorage.getItem("token");
     var url = domain + "api/attendees/" + ID + "/";
     var request = new XMLHttpRequest();
@@ -104,11 +116,12 @@ function updateNotes(res, ID) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             console.log("response: " + request.responseText);
+            attendee.notes = note;
         }
         if (request.readyState == 4 && request.status == 400) {
             alert("comment not saved");
         }
     };
 
-    request.send("notes=" + res);
+    request.send("notes=" + note);
 }
