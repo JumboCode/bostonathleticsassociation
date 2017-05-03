@@ -10,10 +10,11 @@ from rest_framework.parsers import MultiPartParser
 from django.http import HttpResponse, Http404
 from django.core import serializers
 import csv
+import re
 from django.contrib.auth.models import Group
 from io import TextIOWrapper
 from django.conf import settings
-import re
+from smtplib import SMTPException
 
 from .models import *
 from .serializers import VolunteerSerializer, EventSerializer, AttendeeSerializer
@@ -84,7 +85,7 @@ def EventListPost(self, request, *args, **kwargs):
             else:
                 Attendee.objects.filter(event=event).delete()
                 event.delete()
-                return JsonResponse({'error': "Error with CSV, Team Captain field is not 'YES' or 'NO'"})
+                return JsonResponse({'error': "Error with CSV, Team Captain field is not 'YES' or 'NO'"}, status=400)
 
         #check to make sure that no two team captains have the same assignment id
         for cap in captains:
@@ -93,7 +94,7 @@ def EventListPost(self, request, *args, **kwargs):
                     if cap.assignment_id == c.assignment_id:
                         Attendee.objects.filter(event=event).delete()
                         event.delete()
-                        return JsonResponse({'error': 'Error With CSV, 2 Two team captains with same assignment id: ' + c.assignment_id })
+                        return JsonResponse({'error': 'Error With CSV, 2 Two team captains with same assignment id: ' + c.assignment_id }, status=400)
 
         # match attendee with their team captain
         # ensure that each assignment id has a captain associated with it
@@ -107,7 +108,7 @@ def EventListPost(self, request, *args, **kwargs):
             if not found:
                 Attendee.objects.filter(event=event).delete()
                 event.delete()
-                return JsonResponse({'error':'Error With CSV, no team captain assigned to group ' + a.assignment_id})
+                return JsonResponse({'error':'Error With CSV, no team captain assigned to group ' + a.assignment_id}, status=400)
 
         event.csv = req_csv
         event.save()
@@ -119,7 +120,7 @@ def EventListPost(self, request, *args, **kwargs):
     except csv.Error:
         Attendee.objects.filter(event=event).delete()
         event.delete()
-        return JsonResponse({'error': 'Error with CSV'})
+        return JsonResponse({'error': 'Error with CSV'}, status=400)
 
 
 
@@ -217,33 +218,41 @@ def NotifyTeamCaptainsGet(self, request, event):
     # 0 corresponds to team captain's email, 1 to team captain's unique volunteer id
     # 3 to the team captain's first name
 
-    for team_captain in Attendee.objects.filter(event=event)\
+    try:
+        for team_captain in Attendee.objects.filter(event=event)\
             .values_list('team_captain__email','team_captain__id', 'team_captain__first_name').distinct():
-        password = User.objects.make_random_password()
-        username = team_captain[0]
+            password = User.objects.make_random_password()
+            username = team_captain[0]
 
-        if User.objects.filter(username=username).exists():
-            user = User.objects.get(username=username)
-            user.set_password(password)
-            user.profile.volunteer = Volunteer.objects.get(pk=team_captain[1])
-            user.profile.volunteer.save()
-            user.save()
-        else:
-            vol = Volunteer.objects.get(pk=team_captain[1])
-            new_user = User.objects.create_user(username=username, email=team_captain[0])
-            new_user.set_password(password)
-            new_user.profile.volunteer = vol
-            new_user.profile.save()
-            new_user.save()
+            if User.objects.filter(username=username).exists():
+                user = User.objects.get(username=username)
+                user.set_password(password)
+                user.profile.volunteer = Volunteer.objects.get(pk=team_captain[1])
+                user.profile.volunteer.save()
+                user.save()
+            else:
+                vol = Volunteer.objects.get(pk=team_captain[1])
+                new_user = User.objects.create_user(username=username, email=team_captain[0])
+                new_user.set_password(password)
+                new_user.profile.volunteer = vol
+                new_user.profile.save()
+                new_user.save()
 
-        message = "Hello " + team_captain[2] + ",\n \n You are registered as a team captain for: " + \
-                  Event.objects.get(pk=event).name + " \n \n Your username is:  " + username + \
-                  "\n Your password is:  " + password + "\n \n \n Please follow the instructions to sign in here: " + \
-                  settings.DOMAIN + 'guide/'
+            message = "Hello " + team_captain[2] + ",\n \n You are registered as a team captain for: " + \
+                      Event.objects.get(pk=event).name + " \n \n Your username is:  " + username + \
+                      "\n Your password is:  " + password + "\n \n \n Please follow the instructions to sign in here: " + \
+                      settings.DOMAIN + 'guide/'
 
-        recipient = team_captain[0]
-        from_email = settings.FROM_EMAIL
+            recipient = team_captain[0]
+            from_email = settings.FROM_EMAIL
 
-        send_mail(subject, message, from_email, [recipient], fail_silently=True)
+            try:
+                send_mail(subject, message, from_email, [recipient], fail_silently=False)
+            except SMTPException:
+                return JsonResponse({'error':SMTPException, 'recipient': recipient, 'subject':subject}, status=500)
 
-    return Response(status=200)
+            return Response(status=200)
+
+    except Exception:
+        return JsonResponse({'erorr': 'Error with generating emails'}, status=500)
+

@@ -138,9 +138,11 @@ function get_new_event_info() {
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
+    if (this.readyState === 4 && this.status == 200) {
         window.location.reload(true);
-        }
+    } else if (this.readyState == 4) {
+        alert("There was an error with your CSV file. Please check it and try again.");
+    }
     });
 
     xhr.open("POST", url + "/api/events/");
@@ -257,7 +259,7 @@ function generate_report(i, events) {
         url: window.location.origin + "/api/events/generatereport/" + events[i].pk + "/",
         success: function(data) {
             var resultCSV = document.createElement('a');
-            resultCSV.download = 'EventReport_' + events[i].fields.name + '.csv';
+            resultCSV.download = 'EventReport_' + events[i].fields.name.replace(' ', '_') + '.csv';
             resultCSV.href = 'data:text/csv,' + encodeURIComponent(data);
             resultCSV.click();
         },
