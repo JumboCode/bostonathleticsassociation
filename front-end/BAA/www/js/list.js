@@ -15,7 +15,6 @@ angular.module('starter', ['ionic'])
 
         $scope.showPrompt = function (attendeeObj) {
             var attendee = attendeeObj.volunteer;
-            console.log(attendeeObj);
             if (attendeeObj.notes == "undefined") {
                 var notes = "";
                 $scope.holder = "Please enter notes";
@@ -115,7 +114,6 @@ function updateNotes(note, attendee) {
 
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
-            console.log("response: " + request.responseText);
             attendee.notes = note;
         }
         if (request.readyState == 4 && request.status == 400) {
